@@ -109,6 +109,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
         modelUrls: fileList,
         publicPath: `${STATE.PUBLIC_PATH}/editor/`  // 节点解析，资源文件路径（包含hdr，天空盒，图片等）
       })
+      CACHE.jsonParser = jsonParser
       jsonParser.parseNodes(nodeData, jsonParser.nodes) // 解析节点, jsonParser.nodes存储了配置文件导出的所有节点信息
       container.loadModelsByUrl({
         // prefix: '',  // 路径前缀， 模型地址最终为 `${STATE.PUBLIC_PATH}/editor/${prefix}/fileName`
@@ -119,6 +120,8 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
         onLoad: (evt) => {
           // console.log('onload', evt)
           CACHE.container = evt
+          window.STATE = STATE
+          window.CACHE = CACHE
           window.container = evt
 
           /**
@@ -162,11 +165,25 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
                 API.setPickable(sModel, evt)
               }
               // elements pickable update ---- todo
+
+              if (sModel.userData.type === 'TagGroup') {
+                sModel.children.forEach(e => {
+                  const title = e.opts.title
+                  e.children.forEach(e2 => {
+                    e2.userData.title = title
+                    evt.clickObjects.push(e2)
+                  })
+                })
+              }
             })
 
+            
+            CACHE.container.bloomPass.radius = 0.4
+            CACHE.container.bloomPass.strength = 0.9
 
-
-
+            
+            
+            // API.testBox()
             CACHE.container.loadingBar.style.visibility = 'hidden'
           })
 
@@ -179,9 +196,6 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           // evt.updateSceneByNodes(jsonParser.nodes[0] , 800 , () => {
           //   console.log('update finish')
           // })
-
-
-
         }
       })
 
@@ -189,7 +203,30 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
        * 出于性能考虑，container中的clickObjects不再自动添加，需要在加载模型时手动添加，注意！！！
        */
       const events = new Bol3D.Events(container)
-      events.ondblclick = (e) => { }
+      events.ondblclick = (e) => {
+        if (!e.objects.length) {
+          return
+        }
+        const obj = e.objects[0].object
+        console.log('e: ', obj);
+
+        // 左键双击
+        if (e.event.button === 0) {
+
+          // 进入不同楼
+          if (['1#', '2#', '3#', '4#'].includes(obj.userData.title)) {
+            API.enterBuilding(obj.userData.title)
+          }
+
+
+          // 右键双击
+        } else if (e.event.button === 2) {
+          API.backToMainScene()
+        }
+      }
+
+
+      console.log('events: ', events);
       events.onhover = (e) => { }
     })
 }

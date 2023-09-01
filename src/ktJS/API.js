@@ -29,7 +29,7 @@ function cameraAnimation({ cameraState, callback, delayTime = 0, duration = 800 
       },
       duration
     )
-    .onUpdate(() => {})
+    .onUpdate(() => { })
     .onComplete(() => {
       count++
 
@@ -51,7 +51,7 @@ function cameraAnimation({ cameraState, callback, delayTime = 0, duration = 800 
       },
       duration
     )
-    .onUpdate(() => {})
+    .onUpdate(() => { })
     .onComplete(() => {
       count++
       if (count == 2) {
@@ -163,7 +163,7 @@ function loadGUI() {
       CACHE.container.filterPass.filterMaterial.uniforms.contrast.value = val
     })
 
-  
+
 }
 
 
@@ -180,8 +180,90 @@ function setPickable(model, evt) {
   }
 }
 
+
+// 进入不同楼
+function enterBuilding(title) {
+  if (title === '1#') {
+    CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[2], 800, () => {
+      STATE.currentScene.value = title
+    })
+
+  } else if (title === '2#') {
+    CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[3], 800, () => {
+      STATE.currentScene.value = title
+    })
+
+  } else if (title === '3#') {
+    CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[5], 800, () => {
+      STATE.currentScene.value = title
+    })
+
+  } else if (title === '4#') {
+    CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[4], 800, () => {
+      STATE.currentScene.value = title
+    })
+  }
+}
+
+// 推出到主页面
+function backToMainScene() {
+  if(STATE.currentScene.value !== 'main') {
+    CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[0], 0, () => {
+      STATE.currentScene.value = 'main'
+    })
+  }
+}
+
+
+/**
+ * 测试用盒子
+ */
+function testBox() {
+  const boxG = new Bol3D.BoxGeometry(5, 5, 5)
+  const boxM = new Bol3D.MeshBasicMaterial({ color: 0xffffff })
+  const box = new Bol3D.Mesh(boxG, boxM)
+  function waitContainerLoad() {
+    if (!CACHE.container) {
+      setTimeout(() => {
+        waitContainerLoad()
+      }, 1000)
+    } else {
+      CACHE.container.scene.add(box)
+      setModelPosition(box)
+    }
+  }
+  waitContainerLoad()
+}
+
+/**
+ * 设置模型位置(position)，旋转(rotation)，缩放(scale),有该属性的物体亦可
+ * @param {object} mesh 待操作模型
+ */
+function setModelPosition(mesh) {
+  const controls = CACHE.container.transformControl
+  controls.showY = false
+  const gui = new dat.GUI()
+  const options = {
+    transformModel: "translate"
+  }
+  gui.add(options, 'transformModel', ["translate", 'rotate', 'scale']).onChange(val => controls.setMode(val))
+  const positionX = gui.add(mesh.position, 'x').onChange(val => mesh.position.x = val).name('positionX')
+  const positionY = gui.add(mesh.position, 'y').onChange(val => mesh.position.y = val).name('positionY')
+  const positionZ = gui.add(mesh.position, 'z').onChange(val => mesh.position.z = val).name('positionZ')
+  controls.attach(mesh)
+  controls.addEventListener("change", (e) => {
+    positionX.setValue(mesh.position.x)
+    positionY.setValue(mesh.position.y)
+    positionZ.setValue(mesh.position.z)
+  })
+}
+
+
 export const API = {
   cameraAnimation,
   loadGUI,
+  enterBuilding,
+  backToMainScene,
+  testBox,
   setPickable
 }
