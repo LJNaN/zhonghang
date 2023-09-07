@@ -1,5 +1,6 @@
 import { STATE } from './STATE.js'
 import { CACHE } from './CACHE.js'
+import { DATA } from './DATA.js'
 
 // 相机动画（传指定state）
 const targetPos = new Bol3D.Vector3()
@@ -162,8 +163,6 @@ function loadGUI() {
     .onChange((val) => {
       CACHE.container.filterPass.filterMaterial.uniforms.contrast.value = val
     })
-
-
 }
 
 
@@ -186,33 +185,73 @@ function enterBuilding(title) {
   if (title === '1#') {
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[2], 800, () => {
       STATE.currentScene.value = title
+      initDevices(title)
     })
 
   } else if (title === '2#') {
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[3], 800, () => {
       STATE.currentScene.value = title
+      initDevices(title)
     })
 
   } else if (title === '3#') {
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[5], 800, () => {
       STATE.currentScene.value = title
+      initDevices(title)
     })
 
   } else if (title === '4#') {
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[4], 800, () => {
       STATE.currentScene.value = title
+      initDevices(title)
     })
+  }
+}
+
+
+// 不同楼的设备加载
+function initDevices(title) {
+  if (title === '4#') {
+    STATE.deviceList.children = []
+
+    const wubumox = CACHE.container.scene.children.find(e => e.name === 'wubumox')
+    const sanbumox = CACHE.container.scene.children.find(e => e.name === 'sanbumox')
+
+    const wubuMap = DATA.deviceMap.find(e => e.name === 'wubu')
+    const sanbuMap = DATA.deviceMap.find(e => e.name === 'sanbu')
+
+    wubuMap.device.forEach((e, index) => {
+      const model = wubumox.children.find(e2 => e2.name === e.type)
+      if(!model) return
+      
+      model.position.set(e.position[0], e.position[1], e.position[2])
+      model.scale.set(e.scale, e.scale, e.scale)
+      model.rotation.x = e.rotate[0]
+      model.rotation.y = e.rotate[1]
+      model.rotation.z = e.rotate[2]
+      STATE.deviceList.add(model)
+
+      if (index === 0) {
+        setModelPosition(model)
+      }
+      
+    })
+
+    if (!STATE.deviceList.parent) {
+      CACHE.container.scene.add(STATE.deviceList)
+    }
   }
 }
 
 // 推出到主页面
 function backToMainScene() {
-  if(STATE.currentScene.value !== 'main') {
+  if (STATE.currentScene.value !== 'main') {
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[0], 0, () => {
       STATE.currentScene.value = 'main'
     })
   }
 }
+window.backToMainScene = backToMainScene
 
 
 /**
@@ -241,20 +280,31 @@ function testBox() {
  */
 function setModelPosition(mesh) {
   const controls = CACHE.container.transformControl
-  controls.showY = false
   const gui = new dat.GUI()
   const options = {
     transformModel: "translate"
   }
   gui.add(options, 'transformModel', ["translate", 'rotate', 'scale']).onChange(val => controls.setMode(val))
-  const positionX = gui.add(mesh.position, 'x').onChange(val => mesh.position.x = val).name('positionX')
-  const positionY = gui.add(mesh.position, 'y').onChange(val => mesh.position.y = val).name('positionY')
-  const positionZ = gui.add(mesh.position, 'z').onChange(val => mesh.position.z = val).name('positionZ')
+  const positionX = gui.add(mesh.position, 'x').onChange(val => mesh.position.x = val).name('positionX').step(5)
+  const positionY = gui.add(mesh.position, 'y').onChange(val => mesh.position.y = val).name('positionY').step(5)
+  const positionZ = gui.add(mesh.position, 'z').onChange(val => mesh.position.z = val).name('positionZ').step(5)
+  const rotateX = gui.add(mesh.rotation, 'x').onChange(val => mesh.rotation.x = val).name('rotateX').step(0.1)
+  const rotateY = gui.add(mesh.rotation, 'y').onChange(val => mesh.rotation.y = val).name('rotateY').step(0.1)
+  const rotateZ = gui.add(mesh.rotation, 'z').onChange(val => mesh.rotation.z = val).name('rotateZ').step(0.1)
+  const scaleZX = gui.add(mesh.scale, 'x').onChange(val => mesh.scale.x = val).name('scaleX').step(1)
+  const scaleZY = gui.add(mesh.scale, 'y').onChange(val => mesh.scale.y = val).name('scaleY').step(1)
+  const scaleZZ = gui.add(mesh.scale, 'z').onChange(val => mesh.scale.z = val).name('scaleZ').step(1)
   controls.attach(mesh)
   controls.addEventListener("change", (e) => {
     positionX.setValue(mesh.position.x)
     positionY.setValue(mesh.position.y)
     positionZ.setValue(mesh.position.z)
+    rotateX.setValue(mesh.rotation.x)
+    rotateY.setValue(mesh.rotation.y)
+    rotateZ.setValue(mesh.rotation.z)
+    scaleZX.setValue(mesh.scale.x)
+    scaleZY.setValue(mesh.scale.y)
+    scaleZZ.setValue(mesh.scale.z)
   })
 }
 

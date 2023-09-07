@@ -12,9 +12,11 @@ const initialState = {
 // 1# 2# 3# 4# 各楼
 let currentScene = ref('main')
 
+const deviceList = new Bol3D.Group()
 
 export const STATE = {
   initialState,
   currentScene,
-  PUBLIC_PATH
+  PUBLIC_PATH,
+  deviceList
 }

@@ -115,10 +115,10 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
         // prefix: '',  // 路径前缀， 模型地址最终为 `${STATE.PUBLIC_PATH}/editor/${prefix}/fileName`
         modelUrls: jsonParser.modelUrls,
         onProgress: (model, evt) => {
-          // console.log('progress', model)
+          // 
         },
         onLoad: (evt) => {
-          // console.log('onload', evt)
+          // 
           CACHE.container = evt
           window.STATE = STATE
           window.CACHE = CACHE
@@ -177,12 +177,21 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
               }
             })
 
-            
-            CACHE.container.bloomPass.radius = 0.4
-            CACHE.container.bloomPass.strength = 0.9
+            // 给标签加辉光
+            const iconArr = CACHE.container.scene.children.find(e => e.children?.[0]?.isCompositeIcon)
+            if (iconArr) {
+              iconArr.traverse(e => {
+                if (e.isMesh) {
+                  CACHE.container.addBloom(e)
+                }
+              })
+            }
 
-            
-            
+            CACHE.container.bloomPass.radius = 0.4
+            CACHE.container.bloomPass.strength = 0.5
+
+
+
             // API.testBox()
             CACHE.container.loadingBar.style.visibility = 'hidden'
           })
@@ -194,7 +203,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           * @callback: 更新完成回调
           */
           // evt.updateSceneByNodes(jsonParser.nodes[0] , 800 , () => {
-          //   console.log('update finish')
+          //   
           // })
         }
       })
@@ -208,7 +217,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           return
         }
         const obj = e.objects[0].object
-        console.log('e: ', obj);
+
 
         // 左键双击
         if (e.event.button === 0) {
@@ -216,6 +225,18 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           // 进入不同楼
           if (['1#', '2#', '3#', '4#'].includes(obj.userData.title)) {
             API.enterBuilding(obj.userData.title)
+
+          } else if (obj.name === '3dlcf_1' || obj.name === '3dlcf_3') {
+            API.enterBuilding('1#')
+
+          } else if (obj.name === '124cf_1' || obj.name === '124cf_3') {
+            API.enterBuilding('2#')
+
+          } else if (obj.name === '1cdlcj_1' || obj.name === '1cdlcj_3') {
+            API.enterBuilding('3#')
+
+          } else if (obj.name === '35cf_1' || obj.name === '35cf_3') {
+            API.enterBuilding('4#')
           }
 
 
@@ -226,7 +247,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
       }
 
 
-      console.log('events: ', events);
+
       events.onhover = (e) => { }
     })
 }
