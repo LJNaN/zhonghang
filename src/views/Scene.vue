@@ -1,19 +1,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { loadSceneByJSON, sceneOnLoad } from "@/ktJS";
+import { loadSceneByJSON } from "@/ktJS";
 
 const sceneContainerRef = ref(null);
 
 onMounted(() => {
-  // sceneOnLoad({
-  //   domElement: sceneContainerRef.value,
-  //   callback: () => {
-  //     //
-  //   },
-  // });
-
-
-
   loadSceneByJSON({
     domElement: sceneContainerRef.value,
     callback: () => {
@@ -36,6 +27,7 @@ onMounted(() => {
   height: 100%;
   position: absolute;
 }
+
 canvas {
   width: 100%;
   height: 100%;

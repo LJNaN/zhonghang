@@ -8,15 +8,21 @@ const initialState = {
   target: { x: -921.59, y: 0, z: 879.28 }
 }
 
+const deviceModel = {}
+
 // main 主场景
 // 1# 2# 3# 4# 各楼
 let currentScene = ref('main')
 
 const deviceList = new Bol3D.Group()
 
+const mainClickObjects = []
+
 export const STATE = {
   initialState,
   currentScene,
   PUBLIC_PATH,
+  deviceModel,
+  mainClickObjects,
   deviceList
 }

@@ -1,89 +1,9 @@
 import { API } from './API.js'
 import { CACHE } from './CACHE.js'
 import { STATE } from './STATE.js'
+import { DATA } from './DATA.js'
 
 let container
-
-// 原始加载方式
-export const sceneOnLoad = ({ domElement, callback }) => {
-  container = new Bol3D.Container({
-    publicPath: STATE.PUBLIC_PATH,
-    container: domElement,
-    viewState: 'orbit',
-    bloomEnabled: false,
-    cameras: {
-      orbitCamera: {
-        position: [STATE.initialState.position.x, STATE.initialState.position.y, STATE.initialState.position.z],
-        near: 1,
-        far: 300,
-        fov: 30
-      }
-    },
-    controls: {
-      orbitControls: {
-        autoRotate: false,
-        autoRotateSpeed: 1,
-        target: [STATE.initialState.target.x, STATE.initialState.target.y, STATE.initialState.target.z],
-        // minDistance: 0,
-        // maxDistance: 2500,
-        maxPolarAngle: Math.PI * 0.44,
-        minPolarAngle: Math.PI * 0.05,
-        enableDamping: true,
-        dampingFactor: 0.05,
-      }
-    },
-    lights: {
-      directionLights: [{ color: 0xedeacc, intensity: 1.0, position: [20.3, 70, 40.2], mapSize: [4096, 4096], near: 10, far: 15000, bias: -0.001, distance: 8000 }],
-      ambientLight: {
-        color: '#ffffff',
-        intensity: 0
-      }
-    },
-    background: {
-      type: 'color',
-      value: '#333333'
-    },
-    modelUrls: ['/model/白模.glb'],
-    hdrUrls: ['/hdr/HDR.hdr'],
-    enableShadow: false,
-    antiShake: false,
-    // fog: {
-    //   color: '#2c4027',
-    //   intensity: 0.00022
-    // },
-    toneMapping: {
-      toneMappingExposure: 0.596
-    },
-    outlineEnabled: false,
-    dofEnabled: false,
-    msaa: {
-      supersampling: false
-    },
-    gammaEnabled: true,
-    stats: true,
-    // loadingBar: {
-    //   show: true,
-    //   type: 10
-    // }
-
-    onLoad: (evt) => {
-      CACHE.container = evt
-      window.container = evt
-
-
-
-      API.loadGUI()
-      callback && callback()
-    }
-  })
-
-  /**
-   * 出于性能考虑，container中的clickObjects不再自动添加，需要在加载模型时手动添加，注意！！！
-   */
-  const events = new Bol3D.Events(container)
-  events.ondblclick = (e) => { }
-  events.onhover = (e) => { }
-}
 
 // 通过配置文件加载
 export const loadSceneByJSON = ({ domElement, callback }) => {
@@ -161,9 +81,9 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             // update clickObjects
             evt.scene.children.forEach((sModel) => {
               // model pickable update
-              if (sModel.userData.fileName && sModel.userData.fileName !== '' && sModel.visible) {
-                API.setPickable(sModel, evt)
-              }
+              // if (sModel.userData.fileName && sModel.userData.fileName !== '' && sModel.visible) {
+              //   API.setPickable(sModel, evt)
+              // }
               // elements pickable update ---- todo
 
               if (sModel.userData.type === 'TagGroup') {
@@ -172,7 +92,16 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
                   e.children.forEach(e2 => {
                     e2.userData.title = title
                     evt.clickObjects.push(e2)
+                    STATE.mainClickObjects.push(e2)
                   })
+                })
+
+              } else if (sModel.name === 'waijing') {
+                sModel.traverse(e => {
+                  if (['3dlcf_1', '3dlcf_3', '124cf_1', '124cf_3', '1cdlcj_1', '1cdlcj_3', '35cf_1', '35cf_3'].includes(e.name)) {
+                    evt.clickObjects.push(e)
+                    STATE.mainClickObjects.push(e)
+                  }
                 })
               }
             })
@@ -190,6 +119,11 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             CACHE.container.bloomPass.radius = 0.4
             CACHE.container.bloomPass.strength = 0.5
 
+
+            API.initModels()
+            window.STATE = STATE
+            window.DATA = DATA
+            window.CACHE = CACHE
 
 
             // API.testBox()
@@ -213,35 +147,51 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
        */
       const events = new Bol3D.Events(container)
       events.ondblclick = (e) => {
-        if (!e.objects.length) {
-          return
-        }
-        const obj = e.objects[0].object
-
-
         // 左键双击
         if (e.event.button === 0) {
+          if (!e.objects.length) {
+            return
+          }
+          const obj = e.objects[0].object
+
 
           // 进入不同楼
-          if (['1#', '2#', '3#', '4#'].includes(obj.userData.title)) {
-            API.enterBuilding(obj.userData.title)
+          if (STATE.currentScene.value === 'main') {
+            if (['1#', '2#', '3#', '4#'].includes(obj.userData.title)) {
+              API.enterBuilding(obj.userData.title)
 
-          } else if (obj.name === '3dlcf_1' || obj.name === '3dlcf_3') {
-            API.enterBuilding('1#')
+            } else if (obj.name === '3dlcf_1' || obj.name === '3dlcf_3') {
+              API.enterBuilding('1#')
 
-          } else if (obj.name === '124cf_1' || obj.name === '124cf_3') {
-            API.enterBuilding('2#')
+            } else if (obj.name === '124cf_1' || obj.name === '124cf_3') {
+              API.enterBuilding('2#')
 
-          } else if (obj.name === '1cdlcj_1' || obj.name === '1cdlcj_3') {
-            API.enterBuilding('3#')
+            } else if (obj.name === '1cdlcj_1' || obj.name === '1cdlcj_3') {
+              API.enterBuilding('3#')
 
-          } else if (obj.name === '35cf_1' || obj.name === '35cf_3') {
-            API.enterBuilding('4#')
+            } else if (obj.name === '35cf_1' || obj.name === '35cf_3') {
+              API.enterBuilding('4#')
+            }
+
+          } else {
+            if (obj.userData.type === 'device') {
+              const modelMap = DATA.deviceMap.find(e2 => e2.id === obj.userData.id)
+              const model = STATE.deviceList.children.find(e2 => e2.userData.id === obj.userData.id)
+              if (modelMap && model) {
+                CACHE.container.outlineObjects = []
+                model.traverse(e2 => {
+                  if (e2.isMesh) {
+                    CACHE.container.outlineObjects.push(e2)
+                  }
+                })
+                STATE.handleMouseText.value = `点击设备 id: ${obj.userData.id} 制造部: ${modelMap.area} 班组: ${modelMap.group} 点击时间: ${new Date() * 1}`
+              }
+            }
           }
 
 
           // 右键双击
-        } else if (e.event.button === 2) {
+        } if (e.event.button === 2) {
           API.backToMainScene()
         }
       }
