@@ -153,6 +153,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             return
           }
           const obj = e.objects[0].object
+          // console.log('obj: ', obj);
 
 
           // 进入不同楼
@@ -184,7 +185,15 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
                     CACHE.container.outlineObjects.push(e2)
                   }
                 })
-                STATE.handleMouseText.value = `点击设备 id: ${obj.userData.id} 制造部: ${modelMap.area} 班组: ${modelMap.group} 点击时间: ${new Date() * 1}`
+
+                window.parent.postMessage({
+                  event: 'productLineClick',
+                  targetData: {
+                    Id: `点击事件 设备 ${obj.userData.id}`,
+                    dept: modelMap.area,
+                    team: modelMap.group
+                  }
+                }, '*')
               }
             }
           }

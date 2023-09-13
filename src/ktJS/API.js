@@ -198,7 +198,27 @@ function enterBuilding(title) {
     CACHE.container.outlinePass.hiddenEdgeColor = new Bol3D.Color(0.44, 1, 1)
     CACHE.container.outlinePass.visibleEdgeColor = new Bol3D.Color(0.44, 1, 1)
     STATE.currentScene.value = title
-    STATE.handleMouseText.value = `进入 ${STATE.currentScene.value}`
+
+    window.parent.postMessage({
+      event: 'productLineClick',
+      targetData: {
+        Id: `点击事件 车间 ${STATE.currentScene.value}`,
+        dept: '',
+        team: ''
+      }
+    }, '*')
+
+    if (title === '1#') {
+      const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
+      if (waijing) {
+        waijing.traverse(e => {
+          if (e.name === '3DCF-lc-01') {
+            e.renderOrder = 1
+          }
+        })
+      }
+    }
+
     initDevices(title)
   })
 }
@@ -255,10 +275,47 @@ function initDevices(title) {
       if (!modelMap) return
       const originModel = STATE.deviceModel[modelMap.modelName]
       if (!originModel) return
+      const model = originModel.clone()
+      model.position.set(e.position[0], e.position[1], e.position[2])
+      model.rotation.x = e.rotate[0]
+      model.rotation.y = e.rotate[1]
+      model.rotation.z = e.rotate[2]
+      model.userData.id = e.id
+      model.userData.area = e.area
+      model.userData.type = 'device'
+      STATE.deviceList.add(model)
+
+      model.traverse(e2 => {
+        if (e2.isMesh) {
+          e2.userData.id = e.id
+          e2.userData.type = 'device'
+          CACHE.container.clickObjects.push(e2)
+        }
+      })
+
+      // if (index === 0) {
+      //   setModelPosition(model)
+      // }
+
+    })
+
+    if (!STATE.deviceList.parent) {
+      CACHE.container.scene.add(STATE.deviceList)
+    }
+
+  } else if (title === '2#') {
+
+    STATE.deviceList.children = []
+
+    const sibuMap = DATA.deviceMap.filter(e => e.area === '第四制造部')
+
+    sibuMap.forEach((e, index) => {
+      const modelMap = DATA.deviceIdTypeMap.find(e2 => e2.id.includes(e.id))
+      if (!modelMap) return
+      const originModel = STATE.deviceModel[modelMap.modelName]
+      if (!originModel) return
 
       const model = originModel.clone()
-
-
       model.position.set(e.position[0], e.position[1], e.position[2])
       model.rotation.x = e.rotate[0]
       model.rotation.y = e.rotate[1]
@@ -302,7 +359,15 @@ function backToMainScene() {
       CACHE.container.loadingBar.style.visibility = 'hidden'
       CACHE.container.clickObjects = STATE.mainClickObjects
 
-      STATE.handleMouseText.value = `从 ${STATE.currentScene.value} 退出到外场景`
+      window.parent.postMessage({
+        event: 'productLineClick',
+        targetData: {
+          Id: `点击事件 车间 ${STATE.currentScene.value} 退出`,
+          dept: '',
+          team: ''
+        }
+      }, '*')
+
       STATE.currentScene.value = 'main'
     })
   }
@@ -310,55 +375,6 @@ function backToMainScene() {
 
 
 
-
-
-// 甲方的双击事件
-STATE.handleMouseText = ref('')
-function handleMouse() {
-  if (CACHE.handleMousePromise) {
-    CACHE.handleMousePromise.reject()
-  }
-
-  let textWatch = null
-  let myReject = null
-
-  CACHE.handleMousePromise = new Promise((resolve, reject) => {
-    myReject = reject
-    textWatch = watch(STATE.handleMouseText,
-      (newVal) => {
-        resolve(newVal)
-        textWatch()
-        CACHE.handleMousePromise = null
-      })
-  })
-
-  CACHE.handleMousePromise.reject = () => {
-    myReject()
-    CACHE.handleMousePromise = null
-    textWatch && textWatch()
-  }
-
-  return CACHE.handleMousePromise
-}
-window.handleMouse = handleMouse
-
-// 甲方那边要添加的代码
-{
-  document.addEventListener('dblclick', (() => {
-    handleMouse().then(e => { console.log(e) }).catch(() => { })
-  }))
-
-  const dbrClickEvent = new CustomEvent('dbrClickEvent', { bubbles: true })
-  document.addEventListener('mousedown', e => {
-    if (e.button === 2 && e.detail === 2) {
-      e.target.dispatchEvent(dbrClickEvent)
-    }
-  })
-
-  document.addEventListener('dbrClickEvent', () => {
-    handleMouse().then(e => { console.log(e) }).catch(() => { })
-  })
-}
 
 /**
  * 测试用盒子

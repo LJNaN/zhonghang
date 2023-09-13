@@ -8499,7 +8499,7 @@
             {
               "uuid": "root_waijing_0_Line002",
               "name": "Line002",
-              "visible": true,
+              "visible": false,
               "selected": false,
               "index": 1,
               "spread": false,
@@ -20597,6 +20597,5779 @@
               },
               "show": true,
               "parent": "root_wubumox_0"
+            }
+          ],
+          "options": {
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "renderOrder": 0
+          },
+          "show": true,
+          "parent": ""
+        },
+        {
+          "uuid": "root_sibumox_0",
+          "name": "sibumox",
+          "visible": true,
+          "selected": false,
+          "index": 0,
+          "spread": false,
+          "type": "Group",
+          "children": [
+            {
+              "uuid": "root_sibumox_0_(VR)灯光001",
+              "name": "(VR)灯光001",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Object3D",
+              "children": [],
+              "options": {
+                "position": [
+                  0.525,
+                  0,
+                  -0.8124
+                ],
+                "rotation": [
+                  -90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010012",
+              "name": "6103010012",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010012_6103010012_1",
+                  "name": "6103010012_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010012",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478676",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010012_6103010012_2",
+                  "name": "6103010012_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010012",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478677",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010012_6103010012_3",
+                  "name": "6103010012_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010012",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478678",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010012_6103010012_4",
+                  "name": "6103010012_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010012",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478679",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010012_6103010012_5",
+                  "name": "6103010012_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010012",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478680",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010012_6103010012_6",
+                  "name": "6103010012_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010012",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478681",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -4.8551,
+                  0,
+                  -0.1355
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  39.108,
+                  39.108,
+                  39.108
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010014",
+              "name": "6103010014",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010014_6103010014_1",
+                  "name": "6103010014_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010014",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478723",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010014_6103010014_2",
+                  "name": "6103010014_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010014",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478724",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010014_6103010014_3",
+                  "name": "6103010014_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010014",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478725",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010014_6103010014_4",
+                  "name": "6103010014_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010014",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478726",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010014_6103010014_5",
+                  "name": "6103010014_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010014",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478727",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010014_6103010014_6",
+                  "name": "6103010014_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010014",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478728",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010014_6103010014_7",
+                  "name": "6103010014_7",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010014",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478729",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -0.8851,
+                  0,
+                  -0.1552
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  39.108,
+                  39.108,
+                  39.108
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010013",
+              "name": "6103010013",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010013_6103010013_1",
+                  "name": "6103010013_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010013",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478751",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010013_6103010013_2",
+                  "name": "6103010013_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010013",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478752",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010013_6103010013_3",
+                  "name": "6103010013_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010013",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478753",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010013_6103010013_4",
+                  "name": "6103010013_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010013",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478754",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010013_6103010013_5",
+                  "name": "6103010013_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010013",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478755",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010013_6103010013_6",
+                  "name": "6103010013_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010013",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478756",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010013_6103010013_7",
+                  "name": "6103010013_7",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010013",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478757",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  4.7747,
+                  0,
+                  -0.1552
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  39.108,
+                  39.108,
+                  39.108
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010017",
+              "name": "6103010017",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010017_6103010017_1",
+                  "name": "6103010017_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010017",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478806",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010017_6103010017_2",
+                  "name": "6103010017_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010017",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478807",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010017_6103010017_3",
+                  "name": "6103010017_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010017",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478808",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010017_6103010017_4",
+                  "name": "6103010017_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010017",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478809",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010017_6103010017_5",
+                  "name": "6103010017_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010017",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478810",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010017_6103010017_6",
+                  "name": "6103010017_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010017",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478811",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010017_6103010017_7",
+                  "name": "6103010017_7",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010017",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478812",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  9.998,
+                  0,
+                  -0.1355
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  39.108,
+                  39.108,
+                  39.108
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010004",
+              "name": "6103010004",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_1",
+                  "name": "6103010004_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478855",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_2",
+                  "name": "6103010004_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478856",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_3",
+                  "name": "6103010004_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478857",
+                    "color": "#ff1d00",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_4",
+                  "name": "6103010004_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478858",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_5",
+                  "name": "6103010004_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478859",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_6",
+                  "name": "6103010004_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478860",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_7",
+                  "name": "6103010004_7",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478861",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_8",
+                  "name": "6103010004_8",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478862",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_9",
+                  "name": "6103010004_9",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478863",
+                    "color": "#f68b18",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010004_6103010004_10",
+                  "name": "6103010004_10",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010004",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478864",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -15.0653,
+                  0,
+                  0.217
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  3.9844,
+                  3.9844,
+                  3.9844
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010007",
+              "name": "6103010007",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  14.582,
+                  0,
+                  0.0682
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  4.4864,
+                  4.4864,
+                  4.4864
+                ],
+                "renderOrder": 2,
+                "castShadow": true,
+                "receiveShadow": true,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_sibumox_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "6103010007_001",
+                "color": "#ffffff",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_sibumox_0_6103010009",
+              "name": "6103010009",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  18.7238,
+                  0,
+                  0.0682
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  4.4864,
+                  4.4864,
+                  4.4864
+                ],
+                "renderOrder": 2,
+                "castShadow": true,
+                "receiveShadow": true,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_sibumox_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "6103010009_001",
+                "color": "#ffffff",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_sibumox_0_6103010019",
+              "name": "6103010019",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  -22.8606,
+                  0,
+                  -6.382
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  0.8273,
+                  0.8273,
+                  0.8273
+                ],
+                "renderOrder": 2,
+                "castShadow": true,
+                "receiveShadow": true,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_sibumox_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "6103010019",
+                "color": "#ffffff",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_sibumox_0_6103010020",
+              "name": "6103010020",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010020_6103010020_1",
+                  "name": "6103010020_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010020",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479982",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010020_6103010020_2",
+                  "name": "6103010020_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010020",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479983",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -17.6937,
+                  -0.0002,
+                  -6.2519
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  0.9366,
+                  0.9366,
+                  0.9366
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010021",
+              "name": "6103010021",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010021_6103010021_1",
+                  "name": "6103010021_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010021",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479986",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010021_6103010021_2",
+                  "name": "6103010021_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010021",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479987",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010021_6103010021_3",
+                  "name": "6103010021_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010021",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479988",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -12.5375,
+                  0,
+                  -6.0433
+                ],
+                "rotation": [
+                  0,
+                  89.9759,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103110011",
+              "name": "6103110011",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103110011_6103110011_1",
+                  "name": "6103110011_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103110011",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249480006",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103110011_6103110011_2",
+                  "name": "6103110011_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103110011",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249480007",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  19.2461,
+                  0,
+                  -5.4843
+                ],
+                "rotation": [
+                  0,
+                  90,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010022",
+              "name": "6103010022",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010022_6103010022_1",
+                  "name": "6103010022_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010022",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479991",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010022_6103010022_2",
+                  "name": "6103010022_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010022",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479992",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010022_6103010022_3",
+                  "name": "6103010022_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010022",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479993",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -6.9576,
+                  0,
+                  -5.6922
+                ],
+                "rotation": [
+                  0,
+                  89.9759,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103040001",
+              "name": "6103040001",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  10.4258,
+                  -0.0006,
+                  -5.9399
+                ],
+                "rotation": [
+                  0,
+                  89.9759,
+                  0
+                ],
+                "scale": [
+                  0.4128,
+                  0.4128,
+                  0.4128
+                ],
+                "renderOrder": 2,
+                "castShadow": true,
+                "receiveShadow": true,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_sibumox_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "6103040001",
+                "color": "#ffffff",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_sibumox_0_6103040002",
+              "name": "6103040002",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103040002_6103040002_1",
+                  "name": "6103040002_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103040002",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249480002",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103040002_6103040002_2",
+                  "name": "6103040002_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103040002",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249480003",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  14.8205,
+                  -0.0006,
+                  -5.7116
+                ],
+                "rotation": [
+                  0,
+                  89.9759,
+                  0
+                ],
+                "scale": [
+                  0.3767,
+                  0.3767,
+                  0.3767
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103110012",
+              "name": "6103110012",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103110012_6103110012_1",
+                  "name": "6103110012_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103110012",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249480010",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103110012_6103110012_2",
+                  "name": "6103110012_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103110012",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249480011",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103110012_6103110012_3",
+                  "name": "6103110012_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103110012",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249480012",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  25.4984,
+                  0,
+                  -5.0391
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  0.818,
+                  0.818,
+                  0.818
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_61030100001",
+              "name": "61030100001",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  33.844,
+                  -0.0016,
+                  -5.5043
+                ],
+                "rotation": [
+                  0,
+                  89.9759,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 2,
+                "castShadow": true,
+                "receiveShadow": true,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_sibumox_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "p-xhc60t",
+                "color": "#ffffff",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_sibumox_0_6103030001",
+              "name": "6103030001",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  1.9805,
+                  0.0171,
+                  -6.1717
+                ],
+                "rotation": [
+                  180,
+                  0,
+                  180
+                ],
+                "scale": [
+                  0.721,
+                  0.721,
+                  0.721
+                ],
+                "renderOrder": 2,
+                "castShadow": true,
+                "receiveShadow": true,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_sibumox_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "6103030001",
+                "color": "#ffffff",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_sibumox_0_6103010003_6103010015",
+              "name": "6103010003_6103010015",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010003_6103010015_6103010003_6103010015_1",
+                  "name": "6103010003_6103010015_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010003_6103010015",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478666",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010003_6103010015_6103010003_6103010015_2",
+                  "name": "6103010003_6103010015_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010003_6103010015",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478667",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010003_6103010015_6103010003_6103010015_3",
+                  "name": "6103010003_6103010015_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010003_6103010015",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478668",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010003_6103010015_6103010003_6103010015_4",
+                  "name": "6103010003_6103010015_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010003_6103010015",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478669",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010003_6103010015_6103010003_6103010015_5",
+                  "name": "6103010003_6103010015_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010003_6103010015",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478670",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010003_6103010015_6103010003_6103010015_6",
+                  "name": "6103010003_6103010015_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010003_6103010015",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478671",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010003_6103010015_6103010003_6103010015_7",
+                  "name": "6103010003_6103010015_7",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010003_6103010015",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478672",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010003_6103010015_6103010003_6103010015_8",
+                  "name": "6103010003_6103010015_8",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010003_6103010015",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478673",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -18.5639,
+                  0,
+                  -0.0804
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  3.8973,
+                  3.8973,
+                  3.8973
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_4bushuicao17",
+              "name": "4bushuicao17",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  -4.0937,
+                  0,
+                  -17.5441
+                ],
+                "rotation": [
+                  0,
+                  89.9759,
+                  0
+                ],
+                "scale": [
+                  0.5828,
+                  0.5828,
+                  0.5828
+                ],
+                "renderOrder": 2,
+                "castShadow": true,
+                "receiveShadow": true,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_sibumox_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "4bushoucao",
+                "color": "#ffffff",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_sibumox_0_4bushuicao19",
+              "name": "4bushuicao19",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  -2.8245,
+                  0.0062,
+                  -26.785
+                ],
+                "rotation": [
+                  0,
+                  89.9759,
+                  0
+                ],
+                "scale": [
+                  0.5828,
+                  0.5828,
+                  0.5828
+                ],
+                "renderOrder": 2,
+                "castShadow": true,
+                "receiveShadow": true,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_sibumox_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "4bushoucao",
+                "color": "#ffffff",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_sibumox_0_610310006",
+              "name": "610310006",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_1",
+                  "name": "610310006_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478990",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_2",
+                  "name": "610310006_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478991",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_3",
+                  "name": "610310006_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478992",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0.549999952,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_4",
+                  "name": "610310006_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478993",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_5",
+                  "name": "610310006_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478994",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_6",
+                  "name": "610310006_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478995",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_7",
+                  "name": "610310006_7",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478996",
+                    "color": "#6f0808",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_8",
+                  "name": "610310006_8",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478997",
+                    "color": "#427582",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_9",
+                  "name": "610310006_9",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478998",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_10",
+                  "name": "610310006_10",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478999",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_610310006_610310006_11",
+                  "name": "610310006_11",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_610310006",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479000",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -22.2403,
+                  0,
+                  -0.1635
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  8.4296,
+                  39.2269,
+                  8.4296
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010005",
+              "name": "6103010005",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010005_6103010005_1",
+                  "name": "6103010005_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010005",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478815",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010005_6103010005_2",
+                  "name": "6103010005_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010005",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478816",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010005_6103010005_3",
+                  "name": "6103010005_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010005",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478817",
+                    "color": "#e70000",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010005_6103010005_4",
+                  "name": "6103010005_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010005",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478818",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010005_6103010005_5",
+                  "name": "6103010005_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010005",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478819",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010005_6103010005_6",
+                  "name": "6103010005_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010005",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478820",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010005_6103010005_7",
+                  "name": "6103010005_7",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010005",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478821",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010005_6103010005_8",
+                  "name": "6103010005_8",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010005",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478822",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010005_6103010005_9",
+                  "name": "6103010005_9",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010005",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249478823",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -9.3594,
+                  0,
+                  -0.258
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  4.3072,
+                  4.3072,
+                  4.3072
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
+            },
+            {
+              "uuid": "root_sibumox_0_6103010010",
+              "name": "6103010010",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_1",
+                  "name": "6103010010_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479028",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_2",
+                  "name": "6103010010_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479029",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_3",
+                  "name": "6103010010_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479030",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_4",
+                  "name": "6103010010_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479031",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_5",
+                  "name": "6103010010_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479032",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_6",
+                  "name": "6103010010_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479033",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_7",
+                  "name": "6103010010_7",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479034",
+                    "color": "#6f0808",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_8",
+                  "name": "6103010010_8",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479035",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0.549999952,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_9",
+                  "name": "6103010010_9",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479036",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_10",
+                  "name": "6103010010_10",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479037",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_sibumox_0_6103010010_6103010010_11",
+                  "name": "6103010010_11",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_sibumox_0_6103010010",
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249479038",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  24.188,
+                  0,
+                  0.0682
+                ],
+                "rotation": [
+                  90,
+                  0,
+                  0
+                ],
+                "scale": [
+                  10.4734,
+                  48.7374,
+                  10.4734
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_sibumox_0"
             }
           ],
           "options": {
@@ -35266,6 +41039,10 @@
     {
       "file": "wubumox.glb",
       "id": 1
+    },
+    {
+      "file": "sibumox.glb",
+      "id": 2
     }
   ]
 }
