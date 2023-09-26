@@ -191,7 +191,6 @@ function enterBuilding(title) {
   else if (title === '3#') node = 5
   else if (title === '4#') node = 4
 
-  CACHE.container.clickObjects = []
   CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[node], 800, () => {
     CACHE.container.outlinePass.edgeStrength = 3
     CACHE.container.outlinePass.pulsePeriod = 1
@@ -219,7 +218,7 @@ function enterBuilding(title) {
       }
     }
 
-    initDevices(title)
+    // initDevices(title)
   })
 }
 
@@ -262,86 +261,39 @@ function initModels() {
 }
 
 
-// 不同楼的设备加载
-function initDevices(title) {
-  if (title === '4#') {
-    STATE.deviceList.children = []
+// 设备加载
+function initDevices() {
+  STATE.deviceList.children = []
+  DATA.deviceMap.forEach((e, index) => {
+    const modelMap = DATA.deviceIdTypeMap.find(e2 => e2.id.includes(e.id))
+    if (!modelMap) return
+    const originModel = STATE.deviceModel[modelMap.modelName]
+    if (!originModel) return
+    const model = originModel.clone()
+    model.position.set(e.position[0], e.position[1], e.position[2])
+    model.rotation.x = e.rotate[0]
+    model.rotation.y = e.rotate[1]
+    model.rotation.z = e.rotate[2]
+    model.userData.id = e.id
+    model.userData.area = e.area
+    model.userData.type = 'device'
+    STATE.deviceList.add(model)
 
-    const wubuMap = DATA.deviceMap.filter(e => e.area === '第五制造部')
-    const sanbuMap = DATA.deviceMap.filter(e => e.area === '第三制造部')
-
-    wubuMap.forEach((e, index) => {
-      const modelMap = DATA.deviceIdTypeMap.find(e2 => e2.id.includes(e.id))
-      if (!modelMap) return
-      const originModel = STATE.deviceModel[modelMap.modelName]
-      if (!originModel) return
-      const model = originModel.clone()
-      model.position.set(e.position[0], e.position[1], e.position[2])
-      model.rotation.x = e.rotate[0]
-      model.rotation.y = e.rotate[1]
-      model.rotation.z = e.rotate[2]
-      model.userData.id = e.id
-      model.userData.area = e.area
-      model.userData.type = 'device'
-      STATE.deviceList.add(model)
-
-      model.traverse(e2 => {
-        if (e2.isMesh) {
-          e2.userData.id = e.id
-          e2.userData.type = 'device'
-          CACHE.container.clickObjects.push(e2)
-        }
-      })
-
-      // if (index === 0) {
-      //   setModelPosition(model)
-      // }
-
+    model.traverse(e2 => {
+      if (e2.isMesh) {
+        e2.userData.id = e.id
+        e2.userData.type = 'device'
+        CACHE.container.clickObjects.push(e2)
+      }
     })
 
-    if (!STATE.deviceList.parent) {
-      CACHE.container.scene.add(STATE.deviceList)
-    }
+    // if (index === 0) {
+    //   setModelPosition(model)
+    // }
+  })
 
-  } else if (title === '2#') {
-
-    STATE.deviceList.children = []
-
-    const sibuMap = DATA.deviceMap.filter(e => e.area === '第四制造部')
-
-    sibuMap.forEach((e, index) => {
-      const modelMap = DATA.deviceIdTypeMap.find(e2 => e2.id.includes(e.id))
-      if (!modelMap) return
-      const originModel = STATE.deviceModel[modelMap.modelName]
-      if (!originModel) return
-
-      const model = originModel.clone()
-      model.position.set(e.position[0], e.position[1], e.position[2])
-      model.rotation.x = e.rotate[0]
-      model.rotation.y = e.rotate[1]
-      model.rotation.z = e.rotate[2]
-      model.userData.id = e.id
-      model.userData.area = e.area
-      model.userData.type = 'device'
-      STATE.deviceList.add(model)
-
-      model.traverse(e2 => {
-        if (e2.isMesh) {
-          e2.userData.id = e.id
-          e2.userData.type = 'device'
-          CACHE.container.clickObjects.push(e2)
-        }
-      })
-
-      // if (index === 0) {
-      //   setModelPosition(model)
-      // }
-
-    })
-
-    if (!STATE.deviceList.parent) {
-      CACHE.container.scene.add(STATE.deviceList)
-    }
+  if (!STATE.deviceList.parent) {
+    CACHE.container.scene.add(STATE.deviceList)
   }
 }
 
@@ -349,15 +301,11 @@ function initDevices(title) {
 function backToMainScene() {
   if (STATE.currentScene.value !== 'main') {
     CACHE.container.loadingBar.style.visibility = 'visible'
-    STATE.deviceList.children.forEach(e => {
-      e.parent.remove(e)
-    })
-    STATE.deviceList.children = []
     CACHE.container.outlineObjects = []
 
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[0], 0, () => {
       CACHE.container.loadingBar.style.visibility = 'hidden'
-      CACHE.container.clickObjects = STATE.mainClickObjects
+      // CACHE.container.clickObjects = STATE.mainClickObjects
 
       window.parent.postMessage({
         event: 'productLineClick',
@@ -436,6 +384,7 @@ export const API = {
   loadGUI,
   enterBuilding,
   backToMainScene,
+  initDevices,
   testBox,
   initModels,
   setPickable

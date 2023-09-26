@@ -16,13 +16,11 @@ let currentScene = ref('main')
 
 const deviceList = new Bol3D.Group()
 
-const mainClickObjects = []
 
 export const STATE = {
   initialState,
   currentScene,
   PUBLIC_PATH,
   deviceModel,
-  mainClickObjects,
   deviceList
 }

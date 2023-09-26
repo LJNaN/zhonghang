@@ -92,7 +92,6 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
                   e.children.forEach(e2 => {
                     e2.userData.title = title
                     evt.clickObjects.push(e2)
-                    STATE.mainClickObjects.push(e2)
                   })
                 })
 
@@ -100,7 +99,6 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
                 sModel.traverse(e => {
                   if (['3dlcf_1', '3dlcf_3', '124cf_1', '124cf_3', '1cdlcj_1', '1cdlcj_3', '35cf_1', '35cf_3'].includes(e.name)) {
                     evt.clickObjects.push(e)
-                    STATE.mainClickObjects.push(e)
                   }
                 })
               }
@@ -121,12 +119,13 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
 
             API.initModels()
+            API.initDevices()
             window.STATE = STATE
             window.DATA = DATA
             window.CACHE = CACHE
 
 
-            // API.testBox()
+            API.testBox()
             CACHE.container.loadingBar.style.visibility = 'hidden'
           })
 
@@ -152,8 +151,16 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           if (!e.objects.length) {
             return
           }
-          const obj = e.objects[0].object
-          // console.log('obj: ', obj);
+
+          let obj = null
+          for (let i = 0; i < e.objects.length; i++) {
+            if (e.objects[i].object.visible) {
+              obj = e.objects[i].object
+              break
+            }
+          }
+          console.log('obj: ', obj);
+          if(!obj) return
 
 
           // 进入不同楼
