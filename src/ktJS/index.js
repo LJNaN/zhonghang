@@ -125,7 +125,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             window.CACHE = CACHE
 
 
-            API.testBox()
+            // API.testBox()
             CACHE.container.loadingBar.style.visibility = 'hidden'
           })
 
@@ -160,7 +160,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             }
           }
           console.log('obj: ', obj);
-          if(!obj) return
+          if (!obj) return
 
 
           // 进入不同楼
@@ -183,25 +183,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
           } else {
             if (obj.userData.type === 'device') {
-              const modelMap = DATA.deviceMap.find(e2 => e2.id === obj.userData.id)
-              const model = STATE.deviceList.children.find(e2 => e2.userData.id === obj.userData.id)
-              if (modelMap && model) {
-                CACHE.container.outlineObjects = []
-                model.traverse(e2 => {
-                  if (e2.isMesh) {
-                    CACHE.container.outlineObjects.push(e2)
-                  }
-                })
-
-                window.parent.postMessage({
-                  event: 'productLineClick',
-                  targetData: {
-                    Id: `点击事件 设备 ${obj.userData.id}`,
-                    dept: modelMap.area,
-                    team: modelMap.group
-                  }
-                }, '*')
-              }
+              API.handleDevice(obj)
             }
           }
 
@@ -214,6 +196,33 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
 
 
-      events.onhover = (e) => { }
+      events.onhover = (e) => {
+        if (!e.objects.length) {
+          return
+        }
+
+        let obj = null
+        for (let i = 0; i < e.objects.length; i++) {
+          if (e.objects[i].object.visible) {
+            obj = e.objects[i].object
+            break
+          }
+        }
+        if (!obj) return
+
+
+        if (obj.userData.type === 'device') {
+          const modelMap = DATA.deviceMap.find(e2 => e2.id === obj.userData.id)
+          const model = STATE.deviceList.children.find(e2 => e2.userData.id === obj.userData.id)
+          if (modelMap && model) {
+            CACHE.container.outlineObjects = []
+            model.traverse(e2 => {
+              if (e2.isMesh) {
+                CACHE.container.outlineObjects.push(e2)
+              }
+            })
+          }
+        }
+      }
     })
 }

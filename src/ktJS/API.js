@@ -192,6 +192,16 @@ function enterBuilding(title) {
   else if (title === '4#') node = 4
 
   CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[node], 800, () => {
+
+    STATE.deviceList.children.forEach(e => {
+      e.traverse(e2 => {
+        if (e2.isMesh) {
+          e2.material.transparent = false
+          e2.material.opacity = 1
+        }
+      })
+    })
+
     CACHE.container.outlinePass.edgeStrength = 3
     CACHE.container.outlinePass.pulsePeriod = 1
     CACHE.container.outlinePass.hiddenEdgeColor = new Bol3D.Color(0.44, 1, 1)
@@ -216,6 +226,24 @@ function enterBuilding(title) {
           }
         })
       }
+
+    } else if (title === '2#') {
+      STATE.deviceList.children.forEach(e => {
+        if (e.userData.area === '第一制造部' || e.userData.area === '第二制造部' || e.userData.area === '第四制造部') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
+      })
+
+    } else if (title === '4#') {
+      STATE.deviceList.children.forEach(e => {
+        if (e.userData.area === '第五制造部' || e.userData.area === '第三制造部') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
+      })
     }
 
     // initDevices(title)
@@ -270,6 +298,21 @@ function initDevices() {
     const originModel = STATE.deviceModel[modelMap.modelName]
     if (!originModel) return
     const model = originModel.clone()
+
+    model.traverse(e2 => {
+      if (e2.isMesh) {
+        let mesh = null
+        originModel.traverse(e3 => {
+          if (e3.isMesh && e2.name === e2.name) {
+            mesh = e3
+          }
+        })
+        if (mesh) {
+          e2.material = mesh.material.clone()
+        }
+      }
+    })
+
     model.position.set(e.position[0], e.position[1], e.position[2])
     model.rotation.x = e.rotate[0]
     model.rotation.y = e.rotate[1]
@@ -297,15 +340,16 @@ function initDevices() {
   }
 }
 
-// 推出到主页面
+// 退出到主页面
 function backToMainScene() {
   if (STATE.currentScene.value !== 'main') {
     CACHE.container.loadingBar.style.visibility = 'visible'
-    CACHE.container.outlineObjects = []
 
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[0], 0, () => {
+      STATE.deviceList.children.forEach(e => {
+        e.visible = true
+      })
       CACHE.container.loadingBar.style.visibility = 'hidden'
-      // CACHE.container.clickObjects = STATE.mainClickObjects
 
       window.parent.postMessage({
         event: 'productLineClick',
@@ -319,6 +363,96 @@ function backToMainScene() {
       STATE.currentScene.value = 'main'
     })
   }
+}
+
+
+// 从主页面点击部
+function handleArea(area) {
+  const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
+  waijing.children.forEach(e => {
+    if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
+      e.visible = false
+    }
+  })
+
+  STATE.deviceList.children.forEach(e => {
+    if (e.userData.area === area) {
+      e.traverse(e2 => {
+        if (e2.isMesh) {
+          e2.material.transparent = false
+          e2.material.opacity = 1
+        }
+      })
+
+    } else {
+      e.traverse(e2 => {
+        if (e2.isMesh) {
+          e2.material.transparent = true
+          e2.material.opacity = 0.1
+        }
+      })
+    }
+  })
+
+}
+
+// 设备全部恢复
+function deviceReset() {
+  const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
+  waijing.children.forEach(e => {
+    if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
+      e.visible = true
+    }
+  })
+
+
+  let areaList = []
+
+  if (STATE.currentScene.value === 'main') {
+    areaList = ['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部']
+  } else if (STATE.currentScene.value === '1#') {
+    areaList = []
+  } else if (STATE.currentScene.value === '2#') {
+    areaList = ['第一制造部', '第二制造部', '第四制造部']
+  } else if (STATE.currentScene.value === '3#') {
+    areaList = []
+  } else if (STATE.currentScene.value === '4#') {
+    areaList = ['第三制造部', '第五制造部']
+  }
+
+  STATE.deviceList.children.forEach(e => {
+    if (areaList.includes(e.userData.area)) {
+      e.traverse(e2 => {
+        if (e2.isMesh) {
+          e2.material.transparent = false
+          e2.material.opacity = 1
+        }
+      })
+    }
+  })
+}
+
+
+// 点击设备
+function handleDevice(obj) {
+  const modelMap = DATA.deviceMap.find(e2 => e2.id === obj.userData.id)
+  const model = STATE.deviceList.children.find(e2 => e2.userData.id === obj.userData.id)
+  if (modelMap && model) {
+    window.parent.postMessage({
+      event: 'productLineClick',
+      targetData: {
+        Id: `点击事件 设备 ${obj.userData.id}`,
+        dept: modelMap.area,
+        team: modelMap.group
+      }
+    }, '*')
+  }
+
+  const cameraState = {
+    position: { x: model.position.x + 200, y: model.position.y + 200, z: model.position.z + 200 },
+    target: { x: model.position.x, y: model.position.y, z: model.position.z }
+  }
+  cameraAnimation({ cameraState })
 }
 
 
@@ -386,6 +520,9 @@ export const API = {
   backToMainScene,
   initDevices,
   testBox,
+  handleDevice,
   initModels,
+  handleArea,
+  deviceReset,
   setPickable
 }
