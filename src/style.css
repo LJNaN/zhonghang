@@ -10,3 +10,9 @@ body {
 .dg.ac {
   z-index: 1 !important;
 }
+
+
+.mouseClickPopup .popup-close {
+  right: 3% !important;
+  top: 3% !important;
+}

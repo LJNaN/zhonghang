@@ -29,13 +29,13 @@ watch(STATE.currentScene,
   ((newVal) => {
     if (newVal === 'main') {
       areaList.value = ['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部','全部显示']
-    } else if (newVal === '1#') {
-      areaList.value = []
     } else if (newVal === '2#') {
-      areaList.value = ['第一制造部', '第二制造部', '第四制造部','全部显示']
-    } else if (newVal === '3#') {
       areaList.value = []
-    } else if (newVal === '4#') {
+    } else if (newVal === '17#') {
+      areaList.value = ['第一制造部', '第二制造部', '第四制造部','全部显示']
+    } else if (newVal === '5#') {
+      areaList.value = []
+    } else if (newVal === '3#') {
       areaList.value = ['第三制造部', '第五制造部','全部显示']
     }
   }), { immediate: true })

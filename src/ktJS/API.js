@@ -183,17 +183,20 @@ function setPickable(model, evt) {
 
 // 进入不同楼
 function enterBuilding(title) {
-  if (!['1#', '2#', '3#', '4#'].includes(title)) return
+  if (!['2#', '17#', '5#', '3#'].includes(title)) return
 
   let node = 2
-  if (title === '1#') node = 2
-  else if (title === '2#') node = 3
-  else if (title === '3#') node = 5
-  else if (title === '4#') node = 4
+  if (title === '2#') node = 2
+  else if (title === '17#') node = 3
+  else if (title === '5#') node = 5
+  else if (title === '3#') node = 4
+
+  destoryCurrentPopup()
 
   CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[node], 800, () => {
 
     STATE.deviceList.children.forEach(e => {
+      e.userData.circle.popup.material.opacity = 1
       e.traverse(e2 => {
         if (e2.isMesh) {
           e2.material.transparent = false
@@ -217,7 +220,7 @@ function enterBuilding(title) {
       }
     }, '*')
 
-    if (title === '1#') {
+    if (title === '2#') {
       const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
       if (waijing) {
         waijing.traverse(e => {
@@ -226,8 +229,16 @@ function enterBuilding(title) {
           }
         })
       }
+      STATE.deviceList.children.forEach(e => {
+        e.visible = false
+      })
 
-    } else if (title === '2#') {
+    } else if (title === '5#') {
+      STATE.deviceList.children.forEach(e => {
+        e.visible = false
+      })
+
+    } else if (title === '17#') {
       STATE.deviceList.children.forEach(e => {
         if (e.userData.area === '第一制造部' || e.userData.area === '第二制造部' || e.userData.area === '第四制造部') {
           e.visible = true
@@ -236,7 +247,7 @@ function enterBuilding(title) {
         }
       })
 
-    } else if (title === '4#') {
+    } else if (title === '3#') {
       STATE.deviceList.children.forEach(e => {
         if (e.userData.area === '第五制造部' || e.userData.area === '第三制造部') {
           e.visible = true
@@ -320,7 +331,9 @@ function initDevices() {
     model.userData.id = e.id
     model.userData.area = e.area
     model.userData.type = 'device'
+    model.visible = false
     STATE.deviceList.add(model)
+
 
     model.traverse(e2 => {
       if (e2.isMesh) {
@@ -338,16 +351,30 @@ function initDevices() {
   if (!STATE.deviceList.parent) {
     CACHE.container.scene.add(STATE.deviceList)
   }
+
+
+  initCircle()
+}
+
+// 加载状态圆点
+function initCircle() {
+  STATE.deviceList.children.forEach(e => {
+    const circleIcon = new Icon(e.userData.id)
+    e.userData.circle = circleIcon
+  })
 }
 
 // 退出到主页面
 function backToMainScene() {
   if (STATE.currentScene.value !== 'main') {
+    CACHE.container.outlineObjects = []
     CACHE.container.loadingBar.style.visibility = 'visible'
+
+    destoryCurrentPopup()
 
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[0], 0, () => {
       STATE.deviceList.children.forEach(e => {
-        e.visible = true
+        e.visible = false
       })
       CACHE.container.loadingBar.style.visibility = 'hidden'
 
@@ -368,6 +395,7 @@ function backToMainScene() {
 
 // 从主页面点击部
 function handleArea(area) {
+
   const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
   waijing.children.forEach(e => {
     if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
@@ -376,7 +404,10 @@ function handleArea(area) {
   })
 
   STATE.deviceList.children.forEach(e => {
+    e.visible = true
+
     if (e.userData.area === area) {
+      e.userData.circle.popup.material.opacity = 1
       e.traverse(e2 => {
         if (e2.isMesh) {
           e2.material.transparent = false
@@ -385,6 +416,7 @@ function handleArea(area) {
       })
 
     } else {
+      e.userData.circle.popup.material.opacity = 0.1
       e.traverse(e2 => {
         if (e2.isMesh) {
           e2.material.transparent = true
@@ -396,7 +428,7 @@ function handleArea(area) {
 
 }
 
-// 设备全部恢复
+// 设备全部恢复 全部显示
 function deviceReset() {
   const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
   waijing.children.forEach(e => {
@@ -410,18 +442,20 @@ function deviceReset() {
 
   if (STATE.currentScene.value === 'main') {
     areaList = ['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部']
-  } else if (STATE.currentScene.value === '1#') {
-    areaList = []
   } else if (STATE.currentScene.value === '2#') {
-    areaList = ['第一制造部', '第二制造部', '第四制造部']
-  } else if (STATE.currentScene.value === '3#') {
     areaList = []
-  } else if (STATE.currentScene.value === '4#') {
+  } else if (STATE.currentScene.value === '17#') {
+    areaList = ['第一制造部', '第二制造部', '第四制造部']
+  } else if (STATE.currentScene.value === '5#') {
+    areaList = []
+  } else if (STATE.currentScene.value === '3#') {
     areaList = ['第三制造部', '第五制造部']
   }
 
   STATE.deviceList.children.forEach(e => {
+    e.visible = false
     if (areaList.includes(e.userData.area)) {
+      e.userData.circle.popup.material.opacity = 1
       e.traverse(e2 => {
         if (e2.isMesh) {
           e2.material.transparent = false
@@ -456,6 +490,163 @@ function handleDevice(obj) {
 }
 
 
+// 单击楼层、设备弹弹窗
+// type building deivce 
+// id 楼title 设备id
+function mouseClick(type, id, clickVal) {
+  if (type === 'building') {
+    let buildingArea = []
+    if (id === '3#') {
+      buildingArea = ['第三制造部', '第五制造部']
+    } else if (id === '17#') {
+      buildingArea = ['第一制造部', '第二制造部', '第四制造部']
+    }
+
+    const info = {
+      title: id,
+      list: [
+        { name: '部别', value: buildingArea.length ? buildingArea.join(' ') : '--' },
+        { name: '设备数', value: '123台' }
+      ]
+    }
+    const popup = new Popup('building', info, clickVal.point)
+
+  } else if (type === 'device') {
+    handleDevice(clickVal.object)
+
+    const deviceData = DATA.deviceMap.find(e => e.id === id)
+    const info = {
+      title: id,
+      list: [
+        { name: '部别', value: deviceData.area || '--' },
+        { name: '设备状态', value: '正常' }
+      ]
+    }
+    const popup = new Popup('device', info, clickVal.point)
+  }
+}
+
+function destoryCurrentPopup() {
+  if (STATE.currentPopup) {
+    STATE.currentPopup.element.remove()
+    STATE.currentPopup.parent.remove(STATE.currentPopup)
+  }
+  STATE.currentPopup = null
+}
+
+class Popup {
+  type = ''
+  info = {
+    title: '',
+    list: []
+  }
+  position = { x: 0, y: 0, z: 0 }
+  popup = null
+
+  constructor(type, info, position) {
+    if (type) {
+      this.type = type
+    }
+    if (info.title && info.list) {
+      this.info.title = info.title
+      this.info.list = info.list
+    }
+    if (position) this.position = position
+
+    let text = ''
+    this.info.list.forEach(e => {
+      text += `
+        <div style="width: 100%;min-height: 20%;display: flex; justify-content: space-between;align-items: center;">
+          <span style="font-weight: bold;font-size: 5rem;word-break: keep-all; letter-spacing: 0.5rem; color: #FFF; ">${e.name}</span>
+          <span style="font-weight: bold;font-size: 5rem;word-break: break-all;letter-spacing: 0.5rem; color: #FFF; ">${e.value}</span>
+        </div>
+      `
+    })
+
+    const popup = new Bol3D.POI.Popup3DSprite({
+      value: `<div style="pointer-events: all; width: 2000px; height: 1000px; background: url('/assets/3d/img/1.png') center / 100% 100% no-repeat;">
+          <p style="position: absolute;font-size: 6rem; color: #FFF;font-weight: bold;letter-spacing: 2rem;top: 10%;left: 50%;transform: translateX(-50%);">${this.info.title}</p>
+          <div style="position: absolute; display: flex;flex-direction: column;height: 65%;width: 90%;left: 5%;bottom: 8%;">
+            ${text}
+          </div>
+        </div>`,
+      position: [this.position.x, this.position.y, this.position.z],
+      width: 200,
+      height: 100,
+      closeSize: 7,
+      className: 'mouseClickPopup',
+      size: this.type === 'building' ? 0.3 : 0.05,
+      closeColor: '#ffffff'
+    })
+    this.popup = popup
+
+    destoryCurrentPopup()
+    CACHE.container.scene.add(popup)
+    STATE.currentPopup = popup
+  }
+}
+
+class Icon {
+  state = Math.random() > 0.9 ? 1 : 0
+  popup = null
+  deviceModel = null
+  deviceId = ''
+
+
+  constructor(deviceId) {
+    const model = STATE.deviceList.children.find(e => e.userData.id === deviceId)
+    if (!model) return
+
+    this.deviceId = deviceId
+    this.deviceModel = model
+
+    this.init()
+  }
+
+  init() {
+    let url = '/assets/3d/img/2.png'
+    if (this.state === 0) {
+      url = '/assets/3d/img/2.png'
+    } else if (this.state === 1) {
+      url = '/assets/3d/img/3.png'
+    }
+
+    let top = 0
+    this.deviceModel.traverse(e => {
+      if (e.isMesh) {
+        if (e.geometry.boundingBox.max.y > top) {
+          top = e.geometry.boundingBox.max.y
+        }
+      }
+    })
+    const typeMap = DATA.deviceIdTypeMap.find(e => e.id.includes(this.deviceId))
+
+    const popup = new Bol3D.POI.Icon({
+      url,
+      position: [0, top + 10 / typeMap.scale, 0],
+      scale: [0.02 / typeMap.scale, 0.02 / typeMap.scale],
+      sizeAttenuation: false
+    })
+
+    this.popup = popup
+    popup.userData.type = 'circle'
+    this.deviceModel.add(popup)
+  }
+
+  destory() {
+    if (this.popup) {
+      this.popup.parent.remove(this.popup)
+    }
+  }
+
+  changeState(state) {
+    if (state != undefined && this.state !== state) {
+      this.state = state
+      this.destory()
+      this.init()
+    }
+  }
+}
 
 
 /**
@@ -515,6 +706,7 @@ function setModelPosition(mesh) {
 
 export const API = {
   cameraAnimation,
+  mouseClick,
   loadGUI,
   enterBuilding,
   backToMainScene,

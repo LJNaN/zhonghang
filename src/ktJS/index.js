@@ -145,6 +145,49 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
        * 出于性能考虑，container中的clickObjects不再自动添加，需要在加载模型时手动添加，注意！！！
        */
       const events = new Bol3D.Events(container)
+
+      events.onclick = (e) => {
+        if (!e.objects.length) {
+          return
+        }
+
+        let obj = null
+        let objIndex = 0
+        for (let i = 0; i < e.objects.length; i++) {
+          if (e.objects[i].object.visible) {
+            obj = e.objects[i].object
+            objIndex = i
+            break
+          }
+        }
+        if (!obj) return
+
+
+        // 进入不同楼
+        if (STATE.currentScene.value === 'main') {
+          if (['2#', '17#', '5#', '3#'].includes(obj.userData.title)) {
+            API.mouseClick('building', obj.userData.title, e.objects[objIndex])
+
+          } else if (obj.name === '3dlcf_1' || obj.name === '3dlcf_3') {
+            API.mouseClick('building', '2#', e.objects[objIndex])
+
+          } else if (obj.name === '124cf_1' || obj.name === '124cf_3') {
+            API.mouseClick('building', '17#', e.objects[objIndex])
+
+          } else if (obj.name === '1cdlcj_1' || obj.name === '1cdlcj_3') {
+            API.mouseClick('building', '5#', e.objects[objIndex])
+
+          } else if (obj.name === '35cf_1' || obj.name === '35cf_3') {
+            API.mouseClick('building', '3#', e.objects[objIndex])
+          }
+
+        } else {
+          if (obj.userData.type === 'device') {
+            API.mouseClick('device', obj.userData.id,e.objects[objIndex] )
+          }
+        }
+      }
+
       events.ondblclick = (e) => {
         // 左键双击
         if (e.event.button === 0) {
@@ -165,26 +208,22 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
           // 进入不同楼
           if (STATE.currentScene.value === 'main') {
-            if (['1#', '2#', '3#', '4#'].includes(obj.userData.title)) {
+            if (['2#', '17#', '5#', '3#'].includes(obj.userData.title)) {
               API.enterBuilding(obj.userData.title)
 
             } else if (obj.name === '3dlcf_1' || obj.name === '3dlcf_3') {
-              API.enterBuilding('1#')
-
-            } else if (obj.name === '124cf_1' || obj.name === '124cf_3') {
               API.enterBuilding('2#')
 
+            } else if (obj.name === '124cf_1' || obj.name === '124cf_3') {
+              API.enterBuilding('17#')
+
             } else if (obj.name === '1cdlcj_1' || obj.name === '1cdlcj_3') {
-              API.enterBuilding('3#')
+              API.enterBuilding('5#')
 
             } else if (obj.name === '35cf_1' || obj.name === '35cf_3') {
-              API.enterBuilding('4#')
+              API.enterBuilding('3#')
             }
 
-          } else {
-            if (obj.userData.type === 'device') {
-              API.handleDevice(obj)
-            }
           }
 
 

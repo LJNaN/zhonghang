@@ -11,10 +11,12 @@ const initialState = {
 const deviceModel = {}
 
 // main 主场景
-// 1# 2# 3# 4# 各楼
+// 2# 17# 5# 3# 各楼
 let currentScene = ref('main')
 
 const deviceList = new Bol3D.Group()
+
+let currentPopup = null
 
 
 export const STATE = {
@@ -22,5 +24,6 @@ export const STATE = {
   currentScene,
   PUBLIC_PATH,
   deviceModel,
+  currentPopup,
   deviceList
 }
