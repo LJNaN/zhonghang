@@ -69,6 +69,41 @@ function cameraAnimation({ cameraState, callback, delayTime = 0, duration = 800 
   return t1
 }
 
+// 算聚焦距离的
+function computedCameraFocusPosition(targetP, gapDistance = 400, y = 300) {
+  const differencePosition = {
+    x: CACHE.container.orbitControls.target.x - CACHE.container.orbitCamera.position.x,
+    y: CACHE.container.orbitControls.target.y - CACHE.container.orbitCamera.position.y,
+    z: CACHE.container.orbitControls.target.z - CACHE.container.orbitCamera.position.z
+  }
+
+  const tempPosition = {
+    x: targetP.x - differencePosition.x,
+    y: targetP.y - differencePosition.y,
+    z: targetP.z - differencePosition.z
+  }
+
+  const currentP = tempPosition
+
+  // 计算点1和点2之间的距离
+  let distance = Math.sqrt((targetP.x - currentP.x) ** 2 + (targetP.z - currentP.z) ** 2);
+
+  // 计算从点1到点2的向量，并将其标准化为单位向量
+  let vector = { x: (targetP.x - currentP.x) / distance, z: (targetP.z - currentP.z) / distance };
+
+  // 将向量乘以100，以便点1向点2移动
+  let scaled_vector = { x: vector.x * gapDistance, z: vector.z * gapDistance };
+
+  // 将点1的x和z坐标设置为新位置的值，使其靠近点2
+  const computedPosition = new Bol3D.Vector3()
+  computedPosition.x = targetP.x - scaled_vector.x;
+  computedPosition.z = targetP.z - scaled_vector.z;
+  computedPosition.y = y;
+
+  // 最终坐标[x3,y3,z3]
+  return computedPosition
+}
+
 function loadGUI() {
   // gui
   const gui = new dat.GUI()
@@ -191,9 +226,33 @@ function enterBuilding(title) {
   else if (title === '5#') node = 5
   else if (title === '3#') node = 4
 
-  destoryCurrentPopup()
+  destroyCurrentPopup()
 
   CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[node], 800, () => {
+
+    if (title === '2#' || title === '5#') {
+      STATE.wallList.forEach(e => {
+        e.visible = false
+      })
+
+    } else if (title === '3#') {
+      STATE.wallList.forEach(e => {
+        if (e.name === 'sanchangdiban' || e.name === 'wuchangdiban') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
+      })
+
+    } else if (title === '17#') {
+      STATE.wallList.forEach(e => {
+        if (e.name === 'yichangdiban' || e.name === 'erchangdiban' || e.name === 'sichangdiban') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
+      })
+    }
 
     STATE.deviceList.children.forEach(e => {
       e.userData.circle.popup.material.opacity = 1
@@ -331,6 +390,7 @@ function initDevices() {
     model.userData.id = e.id
     model.userData.area = e.area
     model.userData.type = 'device'
+    model.userData.group = e.group
     model.visible = false
     STATE.deviceList.add(model)
 
@@ -370,7 +430,7 @@ function backToMainScene() {
     CACHE.container.outlineObjects = []
     CACHE.container.loadingBar.style.visibility = 'visible'
 
-    destoryCurrentPopup()
+    destroyCurrentPopup()
 
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[0], 0, () => {
       STATE.deviceList.children.forEach(e => {
@@ -393,77 +453,186 @@ function backToMainScene() {
 }
 
 
-// 从主页面点击部
+// 二维按钮  点击部
 function handleArea(area) {
 
-  const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
-  waijing.children.forEach(e => {
-    if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
-      e.visible = false
-    }
-  })
+  if (STATE.currentScene.value === 'main') {
+    const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
+    waijing.children.forEach(e => {
+      if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
+        e.visible = false
+      }
+    })
 
-  STATE.deviceList.children.forEach(e => {
-    e.visible = true
+    STATE.wallList.forEach(e => {
+      if (e.name != '3dulidiban' || e.name != '1dulidiban') {
+        e.visible = true
+      }
+    })
 
-    if (e.userData.area === area) {
-      e.userData.circle.popup.material.opacity = 1
-      e.traverse(e2 => {
-        if (e2.isMesh) {
-          e2.material.transparent = false
-          e2.material.opacity = 1
+    STATE.deviceList.children.forEach(e => {
+      e.visible = true
+
+      if (e.userData.area === area) {
+        e.userData.circle.popup.material.opacity = 1
+        e.traverse(e2 => {
+          if (e2.isMesh) {
+            e2.material.transparent = false
+            e2.material.opacity = 1
+          }
+        })
+
+      } else {
+        e.userData.circle.popup.material.opacity = 0.1
+        e.traverse(e2 => {
+          if (e2.isMesh) {
+            e2.material.transparent = true
+            e2.material.opacity = 0.1
+          }
+        })
+      }
+    })
+
+  } else {
+
+    if (STATE.currentScene.value === '2#' || STATE.currentScene.value === '5#') {
+      STATE.wallList.forEach(e => {
+        e.visible = false
+      })
+
+    } else if (STATE.currentScene.value === '3#') {
+      STATE.wallList.forEach(e => {
+        if (e.name === 'sanchangdiban' || e.name === 'wuchangdiban') {
+          e.visible = true
+        } else {
+          e.visible = false
         }
       })
 
-    } else {
-      e.userData.circle.popup.material.opacity = 0.1
-      e.traverse(e2 => {
-        if (e2.isMesh) {
-          e2.material.transparent = true
-          e2.material.opacity = 0.1
+    } else if (STATE.currentScene.value === '17#') {
+      STATE.wallList.forEach(e => {
+        if (e.name === 'yichangdiban' || e.name === 'erchangdiban' || e.name === 'sichangdiban') {
+          e.visible = true
+        } else {
+          e.visible = false
         }
       })
     }
-  })
+
+
+    STATE.deviceList.children.forEach(e => {
+      if (STATE.currentScene.value === '3#') {
+        if (e.userData.area === '第三制造部' || e.userData.area === '第五制造部') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
+      } else if (STATE.currentScene.value === '17#') {
+        if (e.userData.area === '第一制造部' || e.userData.area === '第二制造部' || e.userData.area === '第四制造部') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
+      }
+
+
+
+      if (e.userData.area === area) {
+        e.userData.circle.popup.material.opacity = 1
+        e.traverse(e2 => {
+          if (e2.isMesh) {
+            e2.material.transparent = false
+            e2.material.opacity = 1
+          }
+        })
+
+      } else {
+        e.userData.circle.popup.material.opacity = 0.1
+        e.traverse(e2 => {
+          if (e2.isMesh) {
+            e2.material.transparent = true
+            e2.material.opacity = 0.1
+          }
+        })
+      }
+
+    })
+  }
+
 
 }
 
 // 设备全部恢复 全部显示
 function deviceReset() {
-  const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
-  waijing.children.forEach(e => {
-    if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
-      e.visible = true
-    }
-  })
-
-
-  let areaList = []
-
   if (STATE.currentScene.value === 'main') {
-    areaList = ['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部']
-  } else if (STATE.currentScene.value === '2#') {
-    areaList = []
-  } else if (STATE.currentScene.value === '17#') {
-    areaList = ['第一制造部', '第二制造部', '第四制造部']
-  } else if (STATE.currentScene.value === '5#') {
-    areaList = []
-  } else if (STATE.currentScene.value === '3#') {
-    areaList = ['第三制造部', '第五制造部']
-  }
 
-  STATE.deviceList.children.forEach(e => {
-    e.visible = false
-    if (areaList.includes(e.userData.area)) {
-      e.userData.circle.popup.material.opacity = 1
-      e.traverse(e2 => {
-        if (e2.isMesh) {
-          e2.material.transparent = false
-          e2.material.opacity = 1
+    const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
+    waijing.children.forEach(e => {
+      if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
+        e.visible = true
+      }
+    })
+
+    STATE.wallList.forEach(e => {
+      e.visible = false
+    })
+
+
+    let areaList = []
+
+    if (STATE.currentScene.value === 'main') {
+      areaList = ['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部']
+    } else if (STATE.currentScene.value === '2#') {
+      areaList = []
+    } else if (STATE.currentScene.value === '17#') {
+      areaList = ['第一制造部', '第二制造部', '第四制造部']
+    } else if (STATE.currentScene.value === '5#') {
+      areaList = []
+    } else if (STATE.currentScene.value === '3#') {
+      areaList = ['第三制造部', '第五制造部']
+    }
+
+    STATE.deviceList.children.forEach(e => {
+      e.visible = false
+      if (areaList.includes(e.userData.area)) {
+        e.userData.circle.popup.material.opacity = 1
+        e.traverse(e2 => {
+          if (e2.isMesh) {
+            e2.material.transparent = false
+            e2.material.opacity = 1
+          }
+        })
+      }
+    })
+
+  } else {
+    if (STATE.currentScene.value === '3#') {
+      STATE.deviceList.children.forEach(e => {
+        if (['第三制造部', '第五制造部'].includes(e.userData.area)) {
+          e.userData.circle.popup.material.opacity = 1
+          e.traverse(e2 => {
+            if (e2.isMesh) {
+              e2.material.transparent = false
+              e2.material.opacity = 1
+            }
+          })
+        }
+      })
+
+    } else if (STATE.currentScene.value === '17#') {
+      STATE.deviceList.children.forEach(e => {
+        if (['第一制造部', '第二制造部', '第四制造部'].includes(e.userData.area)) {
+          e.userData.circle.popup.material.opacity = 1
+          e.traverse(e2 => {
+            if (e2.isMesh) {
+              e2.material.transparent = false
+              e2.material.opacity = 1
+            }
+          })
         }
       })
     }
-  })
+  }
 }
 
 
@@ -482,8 +651,11 @@ function handleDevice(obj) {
     }, '*')
   }
 
+  
+  const finalPosition = API.computedCameraFocusPosition(model.position, 200)
+
   const cameraState = {
-    position: { x: model.position.x + 200, y: model.position.y + 200, z: model.position.z + 200 },
+    position: finalPosition,
     target: { x: model.position.x, y: model.position.y, z: model.position.z }
   }
   cameraAnimation({ cameraState })
@@ -526,7 +698,7 @@ function mouseClick(type, id, clickVal) {
   }
 }
 
-function destoryCurrentPopup() {
+function destroyCurrentPopup() {
   if (STATE.currentPopup) {
     STATE.currentPopup.element.remove()
     STATE.currentPopup.parent.remove(STATE.currentPopup)
@@ -564,7 +736,7 @@ class Popup {
     })
 
     const popup = new Bol3D.POI.Popup3DSprite({
-      value: `<div style="pointer-events: all; width: 2000px; height: 1000px; background: url('/assets/3d/img/1.png') center / 100% 100% no-repeat;">
+      value: `<div style="pointer-events: all; width: 2000px; height: 1000px; background: url('./assets/3d/img/1.png') center / 100% 100% no-repeat;">
           <p style="position: absolute;font-size: 6rem; color: #FFF;font-weight: bold;letter-spacing: 2rem;top: 10%;left: 50%;transform: translateX(-50%);">${this.info.title}</p>
           <div style="position: absolute; display: flex;flex-direction: column;height: 65%;width: 90%;left: 5%;bottom: 8%;">
             ${text}
@@ -580,7 +752,7 @@ class Popup {
     })
     this.popup = popup
 
-    destoryCurrentPopup()
+    destroyCurrentPopup()
     CACHE.container.scene.add(popup)
     STATE.currentPopup = popup
   }
@@ -604,11 +776,11 @@ class Icon {
   }
 
   init() {
-    let url = '/assets/3d/img/2.png'
+    let url = './assets/3d/img/2.png'
     if (this.state === 0) {
-      url = '/assets/3d/img/2.png'
+      url = './assets/3d/img/2.png'
     } else if (this.state === 1) {
-      url = '/assets/3d/img/3.png'
+      url = './assets/3d/img/3.png'
     }
 
     let top = 0
@@ -633,7 +805,7 @@ class Icon {
     this.deviceModel.add(popup)
   }
 
-  destory() {
+  destroy() {
     if (this.popup) {
       this.popup.parent.remove(this.popup)
     }
@@ -642,9 +814,142 @@ class Icon {
   changeState(state) {
     if (state != undefined && this.state !== state) {
       this.state = state
-      this.destory()
+      this.destroy()
       this.init()
     }
+  }
+}
+
+
+// 部门围墙的shader
+class WallLine {
+  time = { value: 0.0 }
+  size = {
+    x: { value: 0.0 },
+    y: { value: 0.0 },
+    z: { value: 0.0 }
+  }
+  UscaleY = { value: 8.0 }
+
+  baseTopColor = { value: new Bol3D.Color(0.22, 0.32, 0.48) }
+  baseDownColor = { value: new Bol3D.Color(0.18, 1, 1) }
+  lineColor = { value: new Bol3D.Color(0.18, 1, 1) }
+
+  constructor(object) {
+    this.setMaterial(object)
+
+    this.shaderRender()
+  }
+
+  setMaterial(object) {
+    object.geometry.computeBoundingBox();
+    object.geometry.computeBoundingSphere();
+    const { geometry } = object;
+    const { max, min } = geometry.boundingBox;
+    const size = new Bol3D.Vector3(
+      max.x - min.x,
+      max.y - min.y,
+      max.z - min.z
+    )
+    this.size.x.value = size.x
+    this.size.y.value = size.y
+    this.size.z.value = size.z
+
+    const { material } = object
+
+    material.transparent = true;
+    material.side = 2;
+    material.alphaToCoverage = true
+
+    material.onBeforeCompile = (shader) => {
+      shader.uniforms.time = this.time
+      shader.uniforms.x0 = this.size.x
+      shader.uniforms.y0 = this.size.y
+      shader.uniforms.z0 = this.size.z
+      shader.uniforms.baseTop = this.baseTopColor
+      shader.uniforms.baseDown = this.baseDownColor
+      shader.uniforms.lineCol = this.lineColor
+
+
+      /**
+       * 对片元着色器进行修改
+       */
+      const fragment = `
+        uniform float time;
+        uniform float x0;
+        uniform float y0;
+        uniform float z0;
+        uniform float UscaleY;
+        uniform vec3 baseTop;
+        uniform vec3 baseDown;
+        uniform vec3 lineCol;
+
+        varying vec3 vPosition;
+        float x;
+        float y;
+        float z;
+
+        // GRAPH section
+        int n = 5; //number of lines
+        float scl = 2.; //difference between thin and thick lines
+        float speed = 1.;
+
+        float pi = 3.14;
+
+        void main() {
+      `;
+      const fragmentColor = `
+        x = vPosition.x / x0 + 0.5;  // 要除以模型的xyz  +0.5是让坐标系变为0-1
+        y = vPosition.y / (y0 + UscaleY) + 0.5;  // 要除以模型的xyz  +0.5是让坐标系变为0-1
+        z = vPosition.z / z0 + 0.5;  // 要除以模型的xyz  +0.5是让坐标系变为0-1
+
+        // 要把uv转为position
+
+        vec2 uv = vec2 (x, y);
+        vec3 baseCol = mix(baseDown, baseTop, smoothstep(-0.2, 1., uv.y));
+
+
+        float off = fract(time*speed);
+
+        float lg = fract((exp(scl*uv.y)-1.) / (exp(scl)-1.) * float(n) - off);
+        float mask = distance(lg, 0.5)*2.;
+
+        vec3 col = mix(baseCol, lineCol, smoothstep(0.8, .9, mask)) ;
+
+        gl_FragColor = vec4(col, 1.1 - y);
+        #include <logdepthbuf_fragment>
+      `;
+      shader.fragmentShader = shader.fragmentShader.replace("void main() {", fragment)
+      shader.fragmentShader = shader.fragmentShader.replace("gl_FragColor = vec4( outgoingLight, diffuseColor.a );", fragmentColor);
+
+
+
+      /**
+       * 对顶点着色器进行修改
+       */
+      const vertex = `
+        uniform float time;
+        varying vec3 vColor;
+        varying vec3 vPosition;
+
+        
+        void main() { 
+          vPosition = vec3 (position.x, position.y, position.z);
+      `
+      const vertexPosition = `
+        vec3 transformed = vec3(vPosition);
+      `
+
+      shader.vertexShader = shader.vertexShader.replace("void main() {", vertex);
+      shader.vertexShader = shader.vertexShader.replace("#include <begin_vertex>", vertexPosition);
+    }
+
+  }
+
+
+  shaderRender() {
+    requestAnimationFrame(this.shaderRender.bind(this))
+    this.time.value = STATE.clock.getElapsedTime()
   }
 }
 
@@ -716,5 +1021,7 @@ export const API = {
   initModels,
   handleArea,
   deviceReset,
-  setPickable
+  setPickable,
+  WallLine,
+  computedCameraFocusPosition
 }

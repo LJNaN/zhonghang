@@ -18,6 +18,9 @@ const deviceList = new Bol3D.Group()
 
 let currentPopup = null
 
+const wallList = []
+
+const clock = new Bol3D.Clock()
 
 export const STATE = {
   initialState,
@@ -25,5 +28,7 @@ export const STATE = {
   PUBLIC_PATH,
   deviceModel,
   currentPopup,
+  wallList,
+  clock,
   deviceList
 }

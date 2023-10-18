@@ -3,7 +3,15 @@
   <div class="home">
 
     <div class="areaList">
-      <div class="areaList-item" v-for="item in areaList" :key="item" @click="handleArea(item)">{{ item }}</div>
+      <div class="areaList-item" v-for="item in areaList" :key="item" @click="handleArea(item)">
+        {{ item }}
+        <div v-if="item != '全部显示' && popupShow[item]" class="areaList-item-group">
+          <div class="areaList-item-group-item" v-for="group in groupList[item]" @click.stop="handleGroup(item, group)">{{
+            group
+          }}
+          </div>
+        </div>
+      </div>
     </div>
 
     <div v-if="STATE.currentScene.value != 'main'" class="back" @click="back">返回</div>
@@ -11,10 +19,12 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch, reactive, render } from "vue";
 import * as echarts from "echarts";
 import { API } from "@/ktJS/API"
 import { STATE } from "@/ktJS/STATE"
+import { DATA } from "@/ktJS/DATA"
+import { CACHE } from "@/ktJS/CACHE";
 
 let areaList = ref([
   '第一制造部',
@@ -25,32 +35,112 @@ let areaList = ref([
   '全部显示'
 ])
 
+
+const popupShow = reactive({
+  '第一制造部': false,
+  '第二制造部': false,
+  '第三制造部': false,
+  '第四制造部': false,
+  '第五制造部': false
+})
+STATE.popupShow = popupShow
+
+
+const groupList = {}
+for (let key in popupShow) {
+  groupList[key] = Array.from(new Set(DATA.deviceMap.filter(e => e.area === key).map(e => e.group))).filter(e => e)
+}
+
 watch(STATE.currentScene,
   ((newVal) => {
     if (newVal === 'main') {
-      areaList.value = ['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部','全部显示']
+      areaList.value = ['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部', '全部显示']
     } else if (newVal === '2#') {
       areaList.value = []
     } else if (newVal === '17#') {
-      areaList.value = ['第一制造部', '第二制造部', '第四制造部','全部显示']
+      areaList.value = ['第一制造部', '第二制造部', '第四制造部', '全部显示']
     } else if (newVal === '5#') {
       areaList.value = []
     } else if (newVal === '3#') {
-      areaList.value = ['第三制造部', '第五制造部','全部显示']
+      areaList.value = ['第三制造部', '第五制造部', '全部显示']
     }
   }), { immediate: true })
 
 
 function handleArea(item) {
-  if(item === '全部显示') {
+  if (STATE.currentScene.value === 'main') {
+    for (let key in popupShow) {
+      popupShow[key] = false
+    }
+  } else {
+    for (let key in popupShow) {
+      popupShow[key] = key === item
+    }
+  }
+
+
+  if (item === '全部显示') {
     API.deviceReset()
   } else {
     API.handleArea(item)
   }
 }
 
+function handleGroup(item, group) {
+
+  if (!['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部'].includes(item)) return
+
+  const list = DATA.deviceMap.filter(e => e.area === item && e.group === group)
+
+  if (!list.length) return
+
+  STATE.deviceList.children.forEach(e => {
+    if (e.visible && e.userData.area === item) {
+      if (e.userData.group === group) {
+        e.userData.circle.popup.material.opacity = 1
+        e.traverse(e2 => {
+          if (e2.isMesh) {
+            e2.material.transparent = false
+            e2.material.opacity = 1
+          }
+        })
+      } else {
+        e.userData.circle.popup.material.opacity = 0.1
+        e.traverse(e2 => {
+          if (e2.isMesh) {
+            e2.material.transparent = true
+            e2.material.opacity = 0.1
+          }
+        })
+      }
+    }
+  })
+
+
+
+  // 高亮部分的中心点
+  let x_sum = 0
+  let z_sum = 0
+  list.forEach(e => {
+    x_sum += e.position[0]
+    z_sum += e.position[2]
+  })
+
+  const center = { x: x_sum / list.length, y: 0, z: z_sum / list.length }
+  const finalPosition = API.computedCameraFocusPosition(center)
+
+  const cameraState = {
+    position: finalPosition,
+    target: { x: center.x, y: 0, z: center.z }
+  }
+  API.cameraAnimation({ cameraState })
+}
+
 function back() {
   API.backToMainScene()
+  for (let key in STATE.popupShow) {
+    STATE.popupShow[key] = false
+  }
 }
 
 
@@ -79,6 +169,7 @@ onMounted(() => {
 
 
     &-item {
+      position: relative;
       border: 1px solid #bad3ff;
       margin: 0 2%;
       pointer-events: all;
@@ -96,6 +187,24 @@ onMounted(() => {
       letter-spacing: 2px;
       transition: all 0.3s;
       opacity: 0.8;
+
+      &-group {
+        position: absolute;
+        width: 100%;
+        bottom: 42px;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+
+        &-item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 24px;
+          background-color: #47669c;
+          border: 1px solid #FFFFFF55;
+        }
+      }
     }
 
     &-item:hover {

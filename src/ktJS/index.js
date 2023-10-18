@@ -99,6 +99,17 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
                 sModel.traverse(e => {
                   if (['3dlcf_1', '3dlcf_3', '124cf_1', '124cf_3', '1cdlcj_1', '1cdlcj_3', '35cf_1', '35cf_3'].includes(e.name)) {
                     evt.clickObjects.push(e)
+
+                  } else if (['1dulidiban', 'sanbudiban', 'wuchangdiban', '3dulidiban', 'yichangdiban', 'sichangdiban', 'erchangdiban'].includes(e.name)) {// 围墙
+                    STATE.wallList.push(e)
+                    if (e.name === 'sanbudiban') {
+                      e.name = 'sanchangdiban'
+                    }
+
+                    e.visible = false
+                    e.renderOrder = 0
+                    const wall = new API.WallLine(e)
+                    wall.name = e.name
                   }
                 })
               }
@@ -183,7 +194,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
         } else {
           if (obj.userData.type === 'device') {
-            API.mouseClick('device', obj.userData.id,e.objects[objIndex] )
+            API.mouseClick('device', obj.userData.id, e.objects[objIndex])
           }
         }
       }
@@ -230,6 +241,9 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           // 右键双击
         } if (e.event.button === 2) {
           API.backToMainScene()
+          for (let key in STATE.popupShow) {
+            STATE.popupShow[key] = false
+          }
         }
       }
 
