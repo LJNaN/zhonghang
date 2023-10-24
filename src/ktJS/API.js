@@ -369,19 +369,19 @@ function initDevices() {
     if (!originModel) return
     const model = originModel.clone()
 
-    model.traverse(e2 => {
-      if (e2.isMesh) {
-        let mesh = null
-        originModel.traverse(e3 => {
-          if (e3.isMesh && e2.name === e2.name) {
-            mesh = e3
-          }
-        })
-        if (mesh) {
-          e2.material = mesh.material.clone()
-        }
-      }
-    })
+    // model.traverse(e2 => {
+    //   if (e2.isMesh) {
+    //     let mesh = null
+    //     originModel.traverse(e3 => {
+    //       if (e3.isMesh && e2.name === e2.name) {
+    //         mesh = e3
+    //       }
+    //     })
+    //     if (mesh) {
+    //       e2.material = mesh.material.clone()
+    //     }
+    //   }
+    // })
 
     model.position.set(e.position[0], e.position[1], e.position[2])
     model.rotation.x = e.rotate[0]
