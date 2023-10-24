@@ -129,6 +129,18 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             CACHE.container.bloomPass.strength = 0.5
 
 
+            // 给控制器加 change 时间
+            container.orbitControls.addEventListener('start', (() => {
+              // 清除轮播
+              if (CACHE.groupRoamAnimate.length) {
+                CACHE.groupRoamAnimate.forEach(e => {
+                  clearTimeout(e)
+                })
+                CACHE.groupRoamAnimate = []
+              }
+            }))
+
+
             API.initModels()
             API.initDevices()
             window.STATE = STATE
@@ -239,12 +251,13 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
 
           // 右键双击
-        } if (e.event.button === 2) {
-          API.backToMainScene()
-          for (let key in STATE.popupShow) {
-            STATE.popupShow[key] = false
-          }
         }
+        // else if (e.event.button === 2) {
+        //   API.backToMainScene()
+        //   for (let key in STATE.popupShow) {
+        //     STATE.popupShow[key] = false
+        //   }
+        // }
       }
 
 

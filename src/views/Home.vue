@@ -91,6 +91,7 @@ function handleGroup(item, group) {
   if (!['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部'].includes(item)) return
 
   const list = DATA.deviceMap.filter(e => e.area === item && e.group === group)
+  console.log('list: ', list);
 
   if (!list.length) return
 
@@ -117,24 +118,40 @@ function handleGroup(item, group) {
   })
 
 
-
-  // 高亮部分的中心点
-  let x_sum = 0
-  let z_sum = 0
-  list.forEach(e => {
-    x_sum += e.position[0]
-    z_sum += e.position[2]
-  })
-
-  const center = { x: x_sum / list.length, y: 0, z: z_sum / list.length }
-  const finalPosition = API.computedCameraFocusPosition(center)
-
-  const cameraState = {
-    position: finalPosition,
-    target: { x: center.x, y: 0, z: center.z }
+  // 挨个高亮  漫游轮播
+  if (CACHE.groupRoamAnimate.length) {
+    CACHE.groupRoamAnimate.forEach(e => {
+      clearTimeout(e)
+    })
+    CACHE.groupRoamAnimate = []
   }
-  API.cameraAnimation({ cameraState })
+
+  for (let i = 0; i < list.length; i++) {
+    const timer = setTimeout(() => {
+      const model = STATE.deviceList.children.find(e => e.userData.id === list[i].id)
+      if (model) {
+        CACHE.container.outlineObjects = []
+        model.traverse(e => {
+          if (e.isMesh) {
+            CACHE.container.outlineObjects.push(e)
+          }
+        })
+      }
+
+      const target = { x: list[i].position[0], y: 0, z: list[i].position[2] }
+      const finalPosition = API.computedCameraFocusPosition(target, 100, 60)
+
+      const cameraState = {
+        position: finalPosition,
+        target: { x: list[i].position[0], y: 0, z: list[i].position[2] }
+      }
+      API.cameraAnimation({ cameraState })
+    }, i * 3000)
+
+    CACHE.groupRoamAnimate.push(timer)
+  }
 }
+
 
 function back() {
   API.backToMainScene()

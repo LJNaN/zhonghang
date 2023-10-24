@@ -432,6 +432,13 @@ function backToMainScene() {
 
     destroyCurrentPopup()
 
+    if (CACHE.groupRoamAnimate.length) {
+      CACHE.groupRoamAnimate.forEach(e => {
+        clearTimeout(e)
+      })
+      CACHE.groupRoamAnimate = []
+    }
+
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[0], 0, () => {
       STATE.deviceList.children.forEach(e => {
         e.visible = false
@@ -651,7 +658,7 @@ function handleDevice(obj) {
     }, '*')
   }
 
-  
+
   const finalPosition = API.computedCameraFocusPosition(model.position, 200)
 
   const cameraState = {
