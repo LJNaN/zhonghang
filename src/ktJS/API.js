@@ -735,23 +735,23 @@ class Popup {
     let text = ''
     this.info.list.forEach(e => {
       text += `
-        <div style="width: 100%;min-height: 20%;display: flex; justify-content: space-between;align-items: center;">
-          <span style="font-weight: bold;font-size: 5rem;word-break: keep-all; letter-spacing: 0.5rem; color: #FFF; ">${e.name}</span>
+        <div style="width: 100%;min-height: 20%;display: flex; justify-content: flex-start;align-items: center;">
+          <span style="font-weight: bold;font-size: 5rem;word-break: keep-all; letter-spacing: 0.5rem; color: #FFF; ">${e.name}: </span>
           <span style="font-weight: bold;font-size: 5rem;word-break: break-all;letter-spacing: 0.5rem; color: #FFF; ">${e.value}</span>
         </div>
       `
     })
 
     const popup = new Bol3D.POI.Popup3DSprite({
-      value: `<div style="pointer-events: all; width: 2000px; height: 1000px; background: url('./assets/3d/img/1.png') center / 100% 100% no-repeat;">
-          <p style="position: absolute;font-size: 6rem; color: #FFF;font-weight: bold;letter-spacing: 2rem;top: 10%;left: 50%;transform: translateX(-50%);">${this.info.title}</p>
-          <div style="position: absolute; display: flex;flex-direction: column;height: 65%;width: 90%;left: 5%;bottom: 8%;">
+      value: `<div style="pointer-events: all; width: 1500px; height: 1500px; background: url('./assets/3d/img/1.png') center / 100% 100% no-repeat;">
+          <p style="position: absolute;font-size: 6rem; color: #00f6f7;font-weight: bold;letter-spacing: 2rem;top: 10%;left: 10%; word-break: keep-all;">${this.info.title}</p>
+          <div style="position: absolute; display: flex;flex-direction: column;height: 65%;width: 90%;left: 10%;top: 20%;">
             ${text}
           </div>
         </div>`,
       position: [this.position.x, this.position.y, this.position.z],
-      width: 200,
-      height: 100,
+      width: 150,
+      height: 150,
       closeSize: 7,
       className: 'mouseClickPopup',
       size: this.type === 'building' ? 0.3 : 0.05,
