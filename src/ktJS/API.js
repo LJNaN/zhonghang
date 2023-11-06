@@ -2,6 +2,8 @@ import { STATE } from './STATE.js'
 import { CACHE } from './CACHE.js'
 import { DATA } from './DATA.js'
 import { watch, ref } from 'vue'
+import { VUEDATA } from '@/VUEDATA.js'
+import Ws from '@/axios/Ws.js'
 
 // 相机动画（传指定state）
 const targetPos = new Bol3D.Vector3()
@@ -218,9 +220,11 @@ function setPickable(model, evt) {
 
 
 function getData() {
-  
+  const url = `ws://frp.linkvision.cloud:42142/ws/info?access_token=${VUEDATA.token}`
 }
 
+
+console.log(Ws)
 
 // 进入不同楼
 function enterBuilding(title) {
