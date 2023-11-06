@@ -68,6 +68,7 @@ watch(STATE.currentScene,
 
 
 function handleArea(item) {
+  console.log('item: ', item);
   if (STATE.currentScene.value === 'main') {
     for (let key in popupShow) {
       popupShow[key] = false
@@ -84,6 +85,16 @@ function handleArea(item) {
   } else {
     API.handleArea(item)
   }
+
+
+  window.parent.postMessage({
+    event: 'deptClick',
+    targetData: {
+      Id: `点击事件 制造部`,
+      dept: item,
+      team: null
+    }
+  }, '*')
 }
 
 function handleGroup(item, group) {
@@ -101,7 +112,7 @@ function handleGroup(item, group) {
       team: group
     }
   }, '*')
-  
+
   if (!list.length) return
 
   STATE.deviceList.children.forEach(e => {

@@ -143,6 +143,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
             API.initModels()
             API.initDevices()
+            API.getData()
             window.STATE = STATE
             window.DATA = DATA
             window.CACHE = CACHE

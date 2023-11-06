@@ -221,10 +221,23 @@ function setPickable(model, evt) {
 
 function getData() {
   const url = `ws://frp.linkvision.cloud:42142/ws/info?access_token=${VUEDATA.token}`
+  const ws = new Ws({ url, onMessage })
+  STATE.ws = ws
+
+  function onMessage(res) {
+    console.log(res)
+    if (res.deviceStatusInfos) {
+      res.deviceStatusInfos.forEach(e => {
+        const item = STATE.deviceList.children.find(e2 => e2.userData.id === e.deviceCode)
+        if (!item) return
+
+        item.userData.group = e.groupName
+        item.userData.circle.changeState(e.currentStatus)
+      })
+    }
+  }
 }
 
-
-console.log(Ws)
 
 // 进入不同楼
 function enterBuilding(title) {
@@ -776,7 +789,7 @@ class Popup {
 }
 
 class Icon {
-  state = Math.random() > 0.9 ? 1 : 0
+  state = 0 // 0 离线 1 在线 2 报错
   popup = null
   deviceModel = null
   deviceId = ''
@@ -793,10 +806,12 @@ class Icon {
   }
 
   init() {
-    let url = './assets/3d/img/2.png'
-    if (this.state === 0) {
+    let url = './assets/3d/img/4.png'
+    if (this.state == 0) {
+      url = './assets/3d/img/4.png'
+    } else if (this.state == 1) {
       url = './assets/3d/img/2.png'
-    } else if (this.state === 1) {
+    } else if (this.state == 2) {
       url = './assets/3d/img/3.png'
     }
 
@@ -829,7 +844,7 @@ class Icon {
   }
 
   changeState(state) {
-    if (state != undefined && this.state !== state) {
+    if (state != undefined && this.state != state) {
       this.state = state
       this.destroy()
       this.init()
@@ -1040,5 +1055,6 @@ export const API = {
   deviceReset,
   setPickable,
   WallLine,
-  computedCameraFocusPosition
+  computedCameraFocusPosition,
+  getData
 }
