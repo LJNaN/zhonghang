@@ -93,6 +93,15 @@ function handleGroup(item, group) {
   const list = DATA.deviceMap.filter(e => e.area === item && e.group === group)
   console.log('list: ', list);
 
+  window.parent.postMessage({
+    event: 'teamClick',
+    targetData: {
+      Id: `点击事件 班组`,
+      dept: item,
+      team: group
+    }
+  }, '*')
+  
   if (!list.length) return
 
   STATE.deviceList.children.forEach(e => {

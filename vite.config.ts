@@ -16,7 +16,7 @@ export default defineConfig({
     // 代理
     proxy: {
       "/api": {
-        target: "http://101.200.140.188:8090/WebService.asmx",
+        target: "http://frp.linkvision.cloud:42142/api/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

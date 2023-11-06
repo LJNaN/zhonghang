@@ -6,16 +6,16 @@ import { ElMessage } from 'element-plus' // 引入el 提示框，这个项目里
 const env = import.meta.env
 axios.defaults.timeout = 60000
 axios.defaults.baseURL = ''
-const BASE_URL = env.DEV ? 'http://192.168.0.103:5173/api' : window.location.protocol == 'https:' ? 'https://www.kantu3d.com/gxq' : 'http://219.153.117.212:92'
+const BASE_URL = ""
 
 //http request 拦截器
 axios.interceptors.request.use(
   (config) => {
     // 配置请求头
     config.headers = {
-      //'Content-Type':'application/x-www-form-urlencoded',   // 传参方式表单
-      'Content-Type': 'application/json;charset=UTF-8' // 传参方式json
-      //   'token':'80c483d59ca86ad0393cf8a98416e2a1'              // 这里自定义配置，这里传的是token
+      // 'Content-Type': 'application/json;charset=UTF-8', // 传参方式json
+      'Content-Type': 'multipart/form-data',
+      'Authorization': 'Basic c2FiZXI6c2FiZXJfc2VjcmV0'
     }
     return config
   },

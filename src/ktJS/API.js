@@ -216,6 +216,12 @@ function setPickable(model, evt) {
 }
 
 
+
+function getData() {
+  
+}
+
+
 // 进入不同楼
 function enterBuilding(title) {
   if (!['2#', '17#', '5#', '3#'].includes(title)) return
