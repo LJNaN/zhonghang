@@ -1,4 +1,4 @@
-export class Ws {
+export default class Ws {
   lockReconnect = false //是否真正建立连接
   timeout = 58 * 1000 //58秒一次心跳
   timeoutObj = null //心跳心跳倒计时
