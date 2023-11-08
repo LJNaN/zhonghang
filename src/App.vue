@@ -6,7 +6,7 @@ import { ElMessage } from 'element-plus' // 引入el 提示框，这个项目里
 
 
 getToken().then(res => {
-  console.log(res)
+  
   VUEDATA.token = res.data.access_token
 
 }).catch(() => {

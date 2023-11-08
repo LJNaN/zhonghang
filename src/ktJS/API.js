@@ -225,7 +225,6 @@ function getData() {
   STATE.ws = ws
 
   function onMessage(res) {
-    console.log(res)
     if (res.deviceStatusInfos) {
       res.deviceStatusInfos.forEach(e => {
         const item = STATE.deviceList.children.find(e2 => e2.userData.id === e.deviceCode)
@@ -301,6 +300,8 @@ function enterBuilding(title) {
         team: ''
       }
     }, '*')
+
+    console.log(`点击事件 车间 ${STATE.currentScene.value}`)
 
     if (title === '2#') {
       const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
@@ -476,6 +477,8 @@ function backToMainScene() {
           team: ''
         }
       }, '*')
+
+      console.log(`点击事件 车间 ${STATE.currentScene.value} 退出`)
 
       STATE.currentScene.value = 'main'
     })
@@ -679,6 +682,8 @@ function handleDevice(obj) {
         team: modelMap.group
       }
     }, '*')
+
+    console.log(`点击事件 设备 ${obj.userData.id}`)
   }
 
 
@@ -712,6 +717,18 @@ function mouseClick(type, id, clickVal) {
       ]
     }
     const popup = new Popup('building', info, clickVal.point)
+    STATE.currentPopup = popup.popup
+
+    window.parent.postMessage({
+      event: 'productLineClick',
+      targetData: {
+        Id: `点击事件 大楼 ${id}`,
+        dept: '',
+        team: ''
+      }
+    }, '*')
+
+    console.log(`点击事件 大楼 ${id}`)
 
   } else if (type === 'device') {
     handleDevice(clickVal.object)

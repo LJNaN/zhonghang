@@ -84046,7 +84046,6 @@ void main(){
       this.dblclick = popup.dblclick
       this.click = popup.click
       this.closeCallback = popup.closeCallback
-      console.log('this: ', this);
       element.addEventListener('click', this.click)
       element.addEventListener('dblclick', this.dblclick)
       closeBtn.onclick = () => {

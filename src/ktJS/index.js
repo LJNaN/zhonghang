@@ -105,7 +105,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
                     if (e.name === 'sanbudiban') {
                       e.name = 'sanchangdiban'
                     }
-
+                    e.material.side = 2
                     e.visible = false
                     e.renderOrder = 0
                     const wall = new API.WallLine(e)
@@ -187,7 +187,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
         if (!obj) return
 
 
-        // 进入不同楼
+        // 单击不同楼
         if (STATE.currentScene.value === 'main') {
           if (['2#', '17#', '5#', '3#'].includes(obj.userData.title)) {
             API.mouseClick('building', obj.userData.title, e.objects[objIndex])
@@ -226,7 +226,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
               break
             }
           }
-          console.log('obj: ', obj);
+          
           if (!obj) return
 
 

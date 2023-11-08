@@ -68,7 +68,7 @@ watch(STATE.currentScene,
 
 
 function handleArea(item) {
-  console.log('item: ', item);
+
   if (STATE.currentScene.value === 'main') {
     for (let key in popupShow) {
       popupShow[key] = false
@@ -95,6 +95,8 @@ function handleArea(item) {
       team: null
     }
   }, '*')
+
+
 }
 
 function handleGroup(item, group) {
@@ -102,7 +104,7 @@ function handleGroup(item, group) {
   if (!['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部'].includes(item)) return
 
   const list = DATA.deviceMap.filter(e => e.area === item && e.group === group)
-  console.log('list: ', list);
+
 
   window.parent.postMessage({
     event: 'teamClick',
@@ -112,6 +114,8 @@ function handleGroup(item, group) {
       team: group
     }
   }, '*')
+
+
 
   if (!list.length) return
 
@@ -146,6 +150,15 @@ function handleGroup(item, group) {
     CACHE.groupRoamAnimate = []
   }
 
+  if (STATE.currentScene.value === '3#') {
+    list.sort((a, b) => {
+      return a.position[0] - b.position[0]
+    })
+
+  } else if (STATE.currentScene.value === '12#') {
+
+  }
+
   for (let i = 0; i < list.length; i++) {
     const timer = setTimeout(() => {
       const model = STATE.deviceList.children.find(e => e.userData.id === list[i].id)
@@ -158,14 +171,57 @@ function handleGroup(item, group) {
         })
       }
 
-      const target = { x: list[i].position[0], y: 0, z: list[i].position[2] }
-      const finalPosition = API.computedCameraFocusPosition(target, 100, 60)
 
-      const cameraState = {
-        position: finalPosition,
-        target: { x: list[i].position[0], y: 0, z: list[i].position[2] }
+      // 计算相机和目标的位置
+      const target = { x: list[i].position[0], y: 0, z: list[i].position[2] }
+      // const finalPosition = API.computedCameraFocusPosition(target, 100, 60)
+      const finalPosition = { x: 0, y: 0, z: 0 }
+      if (STATE.currentScene.value === '3#') {
+        finalPosition.x = list[i].position[0]
+        finalPosition.y = 40
+        finalPosition.z = list[i].position[2] + 85
+
+        const raycaster = new Bol3D.Raycaster()
+        const origin = new Bol3D.Vector3(finalPosition.x, finalPosition.y, finalPosition.z)
+        const direction = new Bol3D.Vector3(target.x, target.y, target.z).sub(origin).normalize()
+
+        raycaster.set(origin, direction)
+        const intersects = raycaster.intersectObjects(STATE.wallList)
+        if (intersects.length) {
+          if (intersects[0].distance < 150) {
+            finalPosition.z -= 170
+          }
+        }
+
+      } else if (STATE.currentScene.value === '12#') {
+
       }
-      API.cameraAnimation({ cameraState })
+
+
+
+
+      new Bol3D.TWEEN.Tween(CACHE.container.orbitCamera.position)
+        .to({
+          x: finalPosition.x,
+          y: finalPosition.y,
+          z: finalPosition.z
+        }, 800)
+        .easing(Bol3D.TWEEN.Easing.Quadratic.InOut)
+        .start()
+
+      new Bol3D.TWEEN.Tween(CACHE.container.orbitControls.target)
+        .to({
+          x: target.x,
+          y: target.y,
+          z: target.z
+        }, 800)
+        .easing(Bol3D.TWEEN.Easing.Quadratic.InOut)
+        .start()
+      // const cameraState = {
+      //   position: finalPosition,
+      //   target
+      // }
+      // API.cameraAnimation({ cameraState })
     }, i * 3000)
 
     CACHE.groupRoamAnimate.push(timer)
