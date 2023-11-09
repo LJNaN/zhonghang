@@ -96,7 +96,7 @@ function handleArea(item) {
     }
   }, '*')
 
-
+  console.log(`deptClick-点击事件 制造部 ${item}`)
 }
 
 function handleGroup(item, group) {
@@ -115,7 +115,7 @@ function handleGroup(item, group) {
     }
   }, '*')
 
-
+  console.log(`teamClick-点击事件 班组 ${item} ${group}`)
 
   if (!list.length) return
 

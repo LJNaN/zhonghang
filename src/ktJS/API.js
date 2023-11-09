@@ -301,7 +301,7 @@ function enterBuilding(title) {
       }
     }, '*')
 
-    console.log(`点击事件 车间 ${STATE.currentScene.value}`)
+    console.log(`productLineClick-点击事件 车间 ${STATE.currentScene.value}`)
 
     if (title === '2#') {
       const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
@@ -478,7 +478,7 @@ function backToMainScene() {
         }
       }, '*')
 
-      console.log(`点击事件 车间 ${STATE.currentScene.value} 退出`)
+      console.log(`productLineClick-点击事件 车间 ${STATE.currentScene.value} 退出`)
 
       STATE.currentScene.value = 'main'
     })
@@ -683,7 +683,7 @@ function handleDevice(obj) {
       }
     }, '*')
 
-    console.log(`点击事件 设备 ${obj.userData.id}`)
+    console.log(`deviceClick-点击事件 设备 ${obj.userData.id}`)
   }
 
 
@@ -728,7 +728,7 @@ function mouseClick(type, id, clickVal) {
       }
     }, '*')
 
-    console.log(`点击事件 大楼 ${id}`)
+    console.log(`buildingClick-点击事件 大楼 ${id}`)
 
   } else if (type === 'device') {
     handleDevice(clickVal.object)
