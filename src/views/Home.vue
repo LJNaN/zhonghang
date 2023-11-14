@@ -109,9 +109,7 @@ function handleGroup(item, group) {
   window.parent.postMessage({
     event: 'teamClick',
     targetData: {
-      Id: `点击事件 班组`,
-      dept: item,
-      team: group
+      Id: `点击事件 班组 ${item} ${group}`
     }
   }, '*')
 

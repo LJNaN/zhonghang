@@ -293,15 +293,15 @@ function enterBuilding(title) {
     STATE.currentScene.value = title
 
     window.parent.postMessage({
-      event: 'productLineClick',
+      event: 'deptClick',
       targetData: {
-        Id: `点击事件 车间 ${STATE.currentScene.value}`,
+        Id: `点击事件 制造部 ${STATE.currentScene.value}`,
         dept: '',
         team: ''
       }
     }, '*')
 
-    console.log(`productLineClick-点击事件 车间 ${STATE.currentScene.value}`)
+    console.log(`deptClick-点击事件 制造部 ${STATE.currentScene.value}`)
 
     if (title === '2#') {
       const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
@@ -470,15 +470,15 @@ function backToMainScene() {
       CACHE.container.loadingBar.style.visibility = 'hidden'
 
       window.parent.postMessage({
-        event: 'productLineClick',
+        event: 'deptClick',
         targetData: {
-          Id: `点击事件 车间 ${STATE.currentScene.value} 退出`,
+          Id: `点击事件 制造部 ${STATE.currentScene.value} 退出`,
           dept: '',
           team: ''
         }
       }, '*')
 
-      console.log(`productLineClick-点击事件 车间 ${STATE.currentScene.value} 退出`)
+      console.log(`deptClick-点击事件 制造部 ${STATE.currentScene.value} 退出`)
 
       STATE.currentScene.value = 'main'
     })
