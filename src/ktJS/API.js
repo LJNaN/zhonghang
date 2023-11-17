@@ -312,7 +312,9 @@ function enterBuilding(title) {
         Id: `点击事件 制造部 ${STATE.currentScene.value}`
       }
     }, '*')
-
+    console.log(
+      `deptClick-点击事件 制造部 ${STATE.currentScene.value}`
+    )
 
 
     // 设备显隐
@@ -459,7 +461,9 @@ function backToMainScene() {
           Id: `点击事件 制造部 ${STATE.currentScene.value} 退出`
         }
       }, '*')
-
+      console.log(
+        `deptClick-点击事件 制造部 ${STATE.currentScene.value} 退出`
+      )
 
 
       STATE.currentScene.value = 'main'
@@ -711,6 +715,9 @@ function handleDevice(obj) {
         team: modelMap.group
       }
     }, '*')
+    console.log(
+      `deviceClick-点击事件 设备 ${obj.userData.id}`
+    )
   }
   const finalPosition = API.computedCameraFocusPosition(model.position, 200)
 
@@ -728,7 +735,6 @@ function handleDevice(obj) {
 // clickVal 点击事件 xRay 获取到的信息
 // cameraMove 是否相机位移
 function mouseClick(type, id, clickVal, cameraMove = true) {
-  console.log('clickVal: ', clickVal);
   if (type === 'building') {
     let buildingArea = []
     if (id === '3#') {
@@ -753,7 +759,9 @@ function mouseClick(type, id, clickVal, cameraMove = true) {
         Id: `点击事件 大楼 ${id}`
       }
     }, '*')
-
+    console.log(
+      `buildingClick-点击事件 大楼 ${id}`
+    )
 
 
   } else if (type === 'device') {
