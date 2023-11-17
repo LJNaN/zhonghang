@@ -1,14 +1,11 @@
-
 <template>
   <div class="home">
-
     <div class="areaList">
       <div class="areaList-item" v-for="item in areaList" :key="item" @click="handleArea(item)">
         {{ item }}
         <div v-if="item != '全部显示' && popupShow[item]" class="areaList-item-group">
-          <div class="areaList-item-group-item" v-for="group in groupList[item]" @click.stop="handleGroup(item, group)">{{
-            group
-          }}
+          <div class="areaList-item-group-item" v-for="group in groupList[item]" @click.stop="handleGroup(item, group)">
+            {{ group }}
           </div>
         </div>
       </div>
@@ -21,226 +18,245 @@
 <script setup>
 import { onMounted, ref, watch, reactive, render } from "vue";
 import * as echarts from "echarts";
-import { API } from "@/ktJS/API"
-import { STATE } from "@/ktJS/STATE"
-import { DATA } from "@/ktJS/DATA"
+import { API } from "@/ktJS/API";
+import { STATE } from "@/ktJS/STATE";
+import { DATA } from "@/ktJS/DATA";
 import { CACHE } from "@/ktJS/CACHE";
 
 let areaList = ref([
-  '第一制造部',
-  '第二制造部',
-  '第三制造部',
-  '第四制造部',
-  '第五制造部',
-  '全部显示'
-])
-
+  "第一制造部",
+  "第二制造部",
+  "第三制造部",
+  "第四制造部",
+  "第五制造部",
+  "全部显示",
+]);
 
 const popupShow = reactive({
-  '第一制造部': false,
-  '第二制造部': false,
-  '第三制造部': false,
-  '第四制造部': false,
-  '第五制造部': false
-})
-STATE.popupShow = popupShow
+  第一制造部: false,
+  第二制造部: false,
+  第三制造部: false,
+  第四制造部: false,
+  第五制造部: false,
+});
+STATE.popupShow = popupShow;
+
+const groupList = {};
 
 
-const groupList = {}
-for (let key in popupShow) {
-  groupList[key] = Array.from(new Set(DATA.deviceMap.filter(e => e.area === key).map(e => e.group))).filter(e => e)
-}
-
-watch(STATE.currentScene,
-  ((newVal) => {
-    if (newVal === 'main') {
-      areaList.value = ['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部', '全部显示']
-    } else if (newVal === '2#') {
-      areaList.value = []
-    } else if (newVal === '17#') {
-      areaList.value = ['第一制造部', '第二制造部', '第四制造部', '全部显示']
-    } else if (newVal === '5#') {
-      areaList.value = []
-    } else if (newVal === '3#') {
-      areaList.value = ['第三制造部', '第五制造部', '全部显示']
+watch(
+  STATE.currentScene,
+  (newVal) => {
+    if (newVal === "main") {
+      areaList.value = [
+        "第一制造部",
+        "第二制造部",
+        "第三制造部",
+        "第四制造部",
+        "第五制造部",
+        "全部显示",
+      ];
+    } else if (newVal === "2#") {
+      areaList.value = ["第一制造部", "第三制造部", "全部显示"];
+    } else if (newVal === "17#") {
+      areaList.value = ["第一制造部", "第二制造部", "第四制造部", "全部显示"];
+    } else if (newVal === "5#") {
+      areaList.value = [];
+    } else if (newVal === "3#") {
+      areaList.value = ["第三制造部", "第五制造部", "全部显示"];
     }
-  }), { immediate: true })
 
+
+    if (['2#', '17#', '5#', '3#'].includes(newVal)) {
+      for (let key in popupShow) {
+        const list = DATA.deviceMap.filter(e => {
+          if (e.area === key) {
+            const deviceP = { position: { x: e.position[0], z: e.position[2] } }
+            return API.isDeviceAmongTheBuilding(deviceP, newVal)
+
+          } else {
+            return false
+          }
+        }).map((e) => e.group)
+
+        groupList[key] = Array.from(new Set(list)).filter((e) => e);
+      }
+    }
+  },
+  { immediate: true }
+);
 
 function handleArea(item) {
-
-  if (STATE.currentScene.value === 'main') {
+  if (STATE.currentScene.value === "main") {
     for (let key in popupShow) {
-      popupShow[key] = false
+      popupShow[key] = false;
     }
   } else {
     for (let key in popupShow) {
-      popupShow[key] = key === item
+      popupShow[key] = key === item;
     }
   }
 
-
-  if (item === '全部显示') {
-    API.deviceReset()
+  if (item === "全部显示") {
+    API.deviceReset();
   } else {
-    API.handleArea(item)
+    API.handleArea(item);
   }
 
+  window.parent.postMessage(
+    {
+      event: "deptClick",
+      targetData: {
+        Id: `点击事件 制造部 ${item}`,
+      },
+    },
+    "*"
+  );
 
-  window.parent.postMessage({
-    event: 'deptClick',
-    targetData: {
-      Id: `点击事件 制造部`,
-      dept: item,
-      team: null
-    }
-  }, '*')
-
-  console.log(`deptClick-点击事件 制造部 ${item}`)
+  console.log(`deptClick-点击事件 制造部 ${item}`);
 }
 
 function handleGroup(item, group) {
+  if (!["第一制造部", "第二制造部", "第三制造部", "第四制造部", "第五制造部"].includes(item)) return;
 
-  if (!['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部'].includes(item)) return
-
-  const list = DATA.deviceMap.filter(e => e.area === item && e.group === group)
-
-
-  window.parent.postMessage({
-    event: 'teamClick',
-    targetData: {
-      Id: `点击事件 班组 ${item} ${group}`
-    }
-  }, '*')
-
-  console.log(`teamClick-点击事件 班组 ${item} ${group}`)
-
-  if (!list.length) return
-
-  STATE.deviceList.children.forEach(e => {
-    if (e.visible && e.userData.area === item) {
-      if (e.userData.group === group) {
-        e.userData.circle.popup.material.opacity = 1
-        e.traverse(e2 => {
-          if (e2.isMesh) {
-            e2.material.transparent = false
-            e2.material.opacity = 1
-          }
-        })
-      } else {
-        e.userData.circle.popup.material.opacity = 0.1
-        e.traverse(e2 => {
-          if (e2.isMesh) {
-            e2.material.transparent = true
-            e2.material.opacity = 0.1
-          }
-        })
-      }
-    }
+  const tempList = DATA.deviceMap.filter(e => e.area === item && e.group === group)
+  const list = tempList.filter(e => {
+    const deviceP = { position: { x: e.position[0], z: e.position[2] } }
+    return API.isDeviceAmongTheBuilding(deviceP, STATE.currentScene.value)
   })
 
+  window.parent.postMessage(
+    {
+      event: "teamClick",
+      targetData: {
+        Id: `点击事件 班组 ${item} ${group}`,
+      },
+    },
+    "*"
+  );
+
+  console.log(`teamClick-点击事件 班组 ${item} ${group}`);
+
+  if (!list.length) return;
+
+  STATE.deviceList.children.forEach((e) => {
+    if (e.visible && e.userData.area === item) {
+      if (e.userData.group === group) {
+        e.userData.circle.popup.material.opacity = 1;
+        e.traverse((e2) => {
+          if (e2.isMesh) {
+            e2.material.transparent = false;
+            e2.material.opacity = 1;
+          }
+        });
+      } else {
+        e.userData.circle.popup.material.opacity = 0.1;
+        e.traverse((e2) => {
+          if (e2.isMesh) {
+            e2.material.transparent = true;
+            e2.material.opacity = 0.1;
+          }
+        });
+      }
+    }
+  });
 
   // 挨个高亮  漫游轮播
   if (CACHE.groupRoamAnimate.length) {
-    CACHE.groupRoamAnimate.forEach(e => {
-      clearTimeout(e)
-    })
-    CACHE.groupRoamAnimate = []
+    CACHE.groupRoamAnimate.forEach((e) => {
+      clearTimeout(e);
+    });
+    CACHE.groupRoamAnimate = [];
   }
 
-  if (STATE.currentScene.value === '3#') {
+  if (STATE.currentScene.value === "3#") {
     list.sort((a, b) => {
-      return a.position[0] - b.position[0]
-    })
-
-  } else if (STATE.currentScene.value === '12#') {
-
+      return a.position[0] - b.position[0];
+    });
+  } else if (STATE.currentScene.value === "12#") {
   }
 
   for (let i = 0; i < list.length; i++) {
     const timer = setTimeout(() => {
-      const model = STATE.deviceList.children.find(e => e.userData.id === list[i].id)
+      const model = STATE.deviceList.children.find((e) => e.userData.id === list[i].id);
       if (model) {
-        CACHE.container.outlineObjects = []
-        model.traverse(e => {
+        CACHE.container.outlineObjects = [];
+        model.traverse((e) => {
           if (e.isMesh) {
-            CACHE.container.outlineObjects.push(e)
+            CACHE.container.outlineObjects.push(e);
           }
-        })
+        });
       }
-
 
       // 计算相机和目标的位置
-      const target = { x: list[i].position[0], y: 0, z: list[i].position[2] }
+      const target = { x: list[i].position[0], y: 0, z: list[i].position[2] };
       // const finalPosition = API.computedCameraFocusPosition(target, 100, 60)
-      const finalPosition = { x: 0, y: 0, z: 0 }
-      if (STATE.currentScene.value === '3#') {
-        finalPosition.x = list[i].position[0]
-        finalPosition.y = 40
-        finalPosition.z = list[i].position[2] + 85
+      const finalPosition = { x: 0, y: 0, z: 0 };
+      if (STATE.currentScene.value === "3#") {
+        finalPosition.x = list[i].position[0];
+        finalPosition.y = 40;
+        finalPosition.z = list[i].position[2] + 85;
 
-        const raycaster = new Bol3D.Raycaster()
-        const origin = new Bol3D.Vector3(finalPosition.x, finalPosition.y, finalPosition.z)
-        const direction = new Bol3D.Vector3(target.x, target.y, target.z).sub(origin).normalize()
+        const raycaster = new Bol3D.Raycaster();
+        const origin = new Bol3D.Vector3(
+          finalPosition.x,
+          finalPosition.y,
+          finalPosition.z
+        );
+        const direction = new Bol3D.Vector3(target.x, target.y, target.z)
+          .sub(origin)
+          .normalize();
 
-        raycaster.set(origin, direction)
-        const intersects = raycaster.intersectObjects(STATE.wallList)
+        raycaster.set(origin, direction);
+        const intersects = raycaster.intersectObjects(STATE.wallList);
         if (intersects.length) {
           if (intersects[0].distance < 150) {
-            finalPosition.z -= 170
+            finalPosition.z -= 170;
           }
         }
-
-      } else if (STATE.currentScene.value === '12#') {
-
+      } else if (STATE.currentScene.value === "12#") {
       }
 
-
-
-
       new Bol3D.TWEEN.Tween(CACHE.container.orbitCamera.position)
-        .to({
-          x: finalPosition.x,
-          y: finalPosition.y,
-          z: finalPosition.z
-        }, 800)
+        .to(
+          {
+            x: finalPosition.x,
+            y: finalPosition.y,
+            z: finalPosition.z,
+          },
+          800
+        )
         .easing(Bol3D.TWEEN.Easing.Quadratic.InOut)
-        .start()
+        .start();
 
       new Bol3D.TWEEN.Tween(CACHE.container.orbitControls.target)
-        .to({
-          x: target.x,
-          y: target.y,
-          z: target.z
-        }, 800)
+        .to(
+          {
+            x: target.x,
+            y: target.y,
+            z: target.z,
+          },
+          800
+        )
         .easing(Bol3D.TWEEN.Easing.Quadratic.InOut)
-        .start()
-      // const cameraState = {
-      //   position: finalPosition,
-      //   target
-      // }
-      // API.cameraAnimation({ cameraState })
-    }, i * 3000)
+        .start();
 
-    CACHE.groupRoamAnimate.push(timer)
+      API.mouseClick('device', model?.userData?.id || '', { point: model.position }, false)
+    }, i * 3000);
+
+    CACHE.groupRoamAnimate.push(timer);
   }
 }
-
 
 function back() {
-  API.backToMainScene()
+  API.backToMainScene();
   for (let key in STATE.popupShow) {
-    STATE.popupShow[key] = false
+    STATE.popupShow[key] = false;
   }
 }
 
-
-onMounted(() => {
-});
-
-
+onMounted(() => { });
 </script>
-
 
 <style lang="less" scoped>
 .home {
@@ -258,7 +274,6 @@ onMounted(() => {
     width: 50%;
     justify-content: center;
 
-
     &-item {
       position: relative;
       border: 1px solid #bad3ff;
@@ -273,7 +288,7 @@ onMounted(() => {
       text-align: center;
       border-radius: 4px;
       background-color: #47669c;
-      color: #FFF;
+      color: #fff;
       font-size: 14px;
       letter-spacing: 2px;
       transition: all 0.3s;
@@ -293,7 +308,7 @@ onMounted(() => {
           justify-content: center;
           height: 24px;
           background-color: #47669c;
-          border: 1px solid #FFFFFF55;
+          border: 1px solid #ffffff55;
         }
       }
     }
@@ -319,7 +334,7 @@ onMounted(() => {
     text-align: center;
     border-radius: 4px;
     background-color: #47669c;
-    color: #FFF;
+    color: #fff;
     font-size: 14px;
     letter-spacing: 2px;
     transition: all 0.3s;

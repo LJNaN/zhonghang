@@ -53,8 +53,8 @@ export default class Ws {
 
   // 连接建立时触发
   websocketOnOpen() {
-    //开启心跳
-    this.start()
+    // //开启心跳
+    // this.start()
 
     //连接建立之后执行send方法发送数据
     let actions = { "type": "deviceStatus" }
@@ -63,7 +63,7 @@ export default class Ws {
 
   // 通信发生错误时触发
   websocketOnError() {
-    this.reconnect()
+    // this.reconnect()
   }
 
   // 客户端接收服务端数据时触发
@@ -85,13 +85,13 @@ export default class Ws {
     //关闭
 
     //重连
-    this.reconnect()
+    // this.reconnect()
   }
 
 
   //重置心跳
   reset() {
     //重启心跳
-    this.start()
+    // this.start()
   }
 }

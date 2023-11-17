@@ -15,3 +15,8 @@ export function getToken() {
   }
   return request("/api/blade-auth/oauth/token", data, "POST")
 }
+
+// 设备弹窗信息
+export function getCollectData(deviceId = '') {
+  return request(`/api/twin/getCollectData/${deviceId}`)
+}

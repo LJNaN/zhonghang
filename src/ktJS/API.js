@@ -4,6 +4,7 @@ import { DATA } from './DATA.js'
 import { watch, ref } from 'vue'
 import { VUEDATA } from '@/VUEDATA.js'
 import Ws from '@/axios/Ws.js'
+import { getCollectData } from '@/axios/api.ts'
 
 // 相机动画（传指定state）
 const targetPos = new Bol3D.Vector3()
@@ -225,9 +226,11 @@ function getData() {
   STATE.ws = ws
 
   function onMessage(res) {
+
     if (res.deviceStatusInfos) {
       res.deviceStatusInfos.forEach(e => {
         const item = STATE.deviceList.children.find(e2 => e2.userData.id === e.deviceCode)
+
         if (!item) return
 
         item.userData.group = e.groupName
@@ -252,9 +255,19 @@ function enterBuilding(title) {
 
   CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[node], 800, () => {
 
-    if (title === '2#' || title === '5#') {
+    // 开围墙
+    if (title === '5#') {
       STATE.wallList.forEach(e => {
         e.visible = false
+      })
+
+    } else if (title === '2#') {
+      STATE.wallList.forEach(e => {
+        if (e.name === '3dulidiban') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
       })
 
     } else if (title === '3#') {
@@ -276,6 +289,7 @@ function enterBuilding(title) {
       })
     }
 
+    // 全部显示
     STATE.deviceList.children.forEach(e => {
       e.userData.circle.popup.material.opacity = 1
       e.traverse(e2 => {
@@ -295,15 +309,19 @@ function enterBuilding(title) {
     window.parent.postMessage({
       event: 'deptClick',
       targetData: {
-        Id: `点击事件 制造部 ${STATE.currentScene.value}`,
-        dept: '',
-        team: ''
+        Id: `点击事件 制造部 ${STATE.currentScene.value}`
       }
     }, '*')
 
-    console.log(`deptClick-点击事件 制造部 ${STATE.currentScene.value}`)
 
-    if (title === '2#') {
+
+    // 设备显隐
+    if (title === '5#') {
+      STATE.deviceList.children.forEach(e => {
+        e.visible = false
+      })
+
+    } else if (title === '2#') {
       const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
       if (waijing) {
         waijing.traverse(e => {
@@ -312,35 +330,17 @@ function enterBuilding(title) {
           }
         })
       }
+
       STATE.deviceList.children.forEach(e => {
-        e.visible = false
+        e.visible = isDeviceAmongTheBuilding(e, title)
       })
 
-    } else if (title === '5#') {
+    } else if (title === '17#' || title === '3#') {
       STATE.deviceList.children.forEach(e => {
-        e.visible = false
-      })
-
-    } else if (title === '17#') {
-      STATE.deviceList.children.forEach(e => {
-        if (e.userData.area === '第一制造部' || e.userData.area === '第二制造部' || e.userData.area === '第四制造部') {
-          e.visible = true
-        } else {
-          e.visible = false
-        }
-      })
-
-    } else if (title === '3#') {
-      STATE.deviceList.children.forEach(e => {
-        if (e.userData.area === '第五制造部' || e.userData.area === '第三制造部') {
-          e.visible = true
-        } else {
-          e.visible = false
-        }
+        e.visible = isDeviceAmongTheBuilding(e, title)
       })
     }
 
-    // initDevices(title)
   })
 }
 
@@ -393,19 +393,6 @@ function initDevices() {
     if (!originModel) return
     const model = originModel.clone()
 
-    // model.traverse(e2 => {
-    //   if (e2.isMesh) {
-    //     let mesh = null
-    //     originModel.traverse(e3 => {
-    //       if (e3.isMesh && e2.name === e2.name) {
-    //         mesh = e3
-    //       }
-    //     })
-    //     if (mesh) {
-    //       e2.material = mesh.material.clone()
-    //     }
-    //   }
-    // })
 
     model.position.set(e.position[0], e.position[1], e.position[2])
     model.rotation.x = e.rotate[0]
@@ -427,9 +414,6 @@ function initDevices() {
       }
     })
 
-    // if (index === 0) {
-    //   setModelPosition(model)
-    // }
   })
 
   if (!STATE.deviceList.parent) {
@@ -472,13 +456,11 @@ function backToMainScene() {
       window.parent.postMessage({
         event: 'deptClick',
         targetData: {
-          Id: `点击事件 制造部 ${STATE.currentScene.value} 退出`,
-          dept: '',
-          team: ''
+          Id: `点击事件 制造部 ${STATE.currentScene.value} 退出`
         }
       }, '*')
 
-      console.log(`deptClick-点击事件 制造部 ${STATE.currentScene.value} 退出`)
+
 
       STATE.currentScene.value = 'main'
     })
@@ -498,7 +480,7 @@ function handleArea(area) {
     })
 
     STATE.wallList.forEach(e => {
-      if (e.name != '3dulidiban' || e.name != '1dulidiban') {
+      if (e.name != '1dulidiban') {
         e.visible = true
       }
     })
@@ -528,9 +510,18 @@ function handleArea(area) {
 
   } else {
 
-    if (STATE.currentScene.value === '2#' || STATE.currentScene.value === '5#') {
+    if (STATE.currentScene.value === '5#') {
       STATE.wallList.forEach(e => {
         e.visible = false
+      })
+
+    } else if (STATE.currentScene.value === '2#') {
+      STATE.wallList.forEach(e => {
+        if (e.name === '3dulidiban') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
       })
 
     } else if (STATE.currentScene.value === '3#') {
@@ -668,8 +659,46 @@ function deviceReset() {
   }
 }
 
+function isDeviceAmongTheBuilding(device, building) {
+  if (!device || !device.position || !building) {
+    return false
+  }
 
-// 点击设备
+  let area = {
+    x1: 0, x2: 0,
+    z1: 0, z2: 0
+  }
+
+  const devicePosition = { x: device.position.x, z: device.position.z }
+
+  if (building === '3#') {
+    area.x1 = 920; area.x2 = 1985
+    area.z1 = -1115; area.z2 = 350
+
+  } else if (building === '2#') {
+    area.x1 = -350; area.x2 = 550
+    area.z1 = -1420; area.z2 = -485
+
+  } else if (building === '17#') {
+    area.x1 = -2415; area.x2 = -745
+    area.z1 = -1155; area.z2 = 295
+
+  } else if (building === '5#') {
+    area.x1 = -900; area.x2 = -270
+    area.z1 = 2035; area.z2 = 2475
+  }
+
+  if (area.x1 < devicePosition.x && area.x2 > devicePosition.x && area.z1 < devicePosition.z && area.z2 > devicePosition.z) {
+    return true
+
+  } else {
+    return false
+  }
+
+}
+
+
+// 点击设备 镜头位移
 function handleDevice(obj) {
   const modelMap = DATA.deviceMap.find(e2 => e2.id === obj.userData.id)
   const model = STATE.deviceList.children.find(e2 => e2.userData.id === obj.userData.id)
@@ -682,11 +711,7 @@ function handleDevice(obj) {
         team: modelMap.group
       }
     }, '*')
-
-    console.log(`deviceClick-点击事件 设备 ${obj.userData.id}`)
   }
-
-
   const finalPosition = API.computedCameraFocusPosition(model.position, 200)
 
   const cameraState = {
@@ -700,7 +725,10 @@ function handleDevice(obj) {
 // 单击楼层、设备弹弹窗
 // type building deivce 
 // id 楼title 设备id
-function mouseClick(type, id, clickVal) {
+// clickVal 点击事件 xRay 获取到的信息
+// cameraMove 是否相机位移
+function mouseClick(type, id, clickVal, cameraMove = true) {
+  console.log('clickVal: ', clickVal);
   if (type === 'building') {
     let buildingArea = []
     if (id === '3#') {
@@ -722,26 +750,45 @@ function mouseClick(type, id, clickVal) {
     window.parent.postMessage({
       event: 'productLineClick',
       targetData: {
-        Id: `点击事件 大楼 ${id}`,
-        dept: '',
-        team: ''
+        Id: `点击事件 大楼 ${id}`
       }
     }, '*')
 
-    console.log(`buildingClick-点击事件 大楼 ${id}`)
+
 
   } else if (type === 'device') {
-    handleDevice(clickVal.object)
+    if (cameraMove) {
+      handleDevice(clickVal.object)
+    }
 
     const deviceData = DATA.deviceMap.find(e => e.id === id)
+    const typeMap = DATA.stateColorMap.find(e => e.state == STATE.deviceList.children.find(e2 => e2.userData.id === id).userData.circle.state)
     const info = {
       title: id,
       list: [
-        { name: '部别', value: deviceData.area || '--' },
-        { name: '设备状态', value: '正常' }
+        { name: '部别', value: deviceData?.area || '--' }
       ]
     }
+
     const popup = new Popup('device', info, clickVal.point)
+
+    getCollectData(id).then(res => {
+      if (res.data.code === 200) {
+        const newInfo = {
+          title: id,
+          list: [{ name: '部别', value: deviceData?.area || '--' }]
+        }
+
+        res.data.data.forEach(e => {
+          newInfo.list.push(
+            { name: e.name, value: e.value }
+          )
+        })
+
+        destroyCurrentPopup()
+        const popup = new Popup('device', newInfo, clickVal.point)
+      }
+    })
   }
 }
 
@@ -785,7 +832,7 @@ class Popup {
     const popup = new Bol3D.POI.Popup3DSprite({
       value: `<div style="pointer-events: all; width: 1500px; height: 1500px; background: url('./assets/3d/img/1.png') center / 100% 100% no-repeat;">
           <p style="position: absolute;font-size: 6rem; color: #00f6f7;font-weight: bold;letter-spacing: 2rem;top: 10%;left: 10%; word-break: keep-all;">${this.info.title}</p>
-          <div style="position: absolute; display: flex;flex-direction: column;height: 65%;width: 90%;left: 10%;top: 20%;">
+          <div style="position: absolute; display: flex;flex-direction: column;height: 73%;width: 85%;left: 10%;top: 20%;overflow-y:scroll;">
             ${text}
           </div>
         </div>`,
@@ -806,7 +853,7 @@ class Popup {
 }
 
 class Icon {
-  state = 0 // 0 离线 1 在线 2 报错
+  state = 4
   popup = null
   deviceModel = null
   deviceId = ''
@@ -823,13 +870,13 @@ class Icon {
   }
 
   init() {
-    let url = './assets/3d/img/4.png'
-    if (this.state == 0) {
-      url = './assets/3d/img/4.png'
-    } else if (this.state == 1) {
-      url = './assets/3d/img/2.png'
-    } else if (this.state == 2) {
-      url = './assets/3d/img/3.png'
+    let url = './assets/3d/img/'
+    const map = DATA.stateColorMap.find(e => e.state == this.state)
+    if (map && map.url) {
+      url += (map.url + '.png')
+
+    } else {
+      url += '5.png'
     }
 
     let top = 0
@@ -1073,5 +1120,6 @@ export const API = {
   setPickable,
   WallLine,
   computedCameraFocusPosition,
+  isDeviceAmongTheBuilding,
   getData
 }
