@@ -395,6 +395,16 @@ function initDevices() {
     if (!originModel) return
     const model = originModel.clone()
 
+    model.traverse(e2 => {
+      if (e2.isMesh) {
+        e2.material = e2.material.clone()
+        if (e2.material.map) {
+          const map = e2.material.map.clone()
+          e2.material.map = map
+          e2.material.map.needsUpdate = true
+        }
+      }
+    })
 
     model.position.set(e.position[0], e.position[1], e.position[2])
     model.rotation.x = e.rotate[0]
@@ -605,24 +615,18 @@ function deviceReset() {
       e.visible = false
     })
 
+    STATE.deviceList.children.forEach(e => {
+      e.visible = false
+    })
 
-    let areaList = []
-
-    if (STATE.currentScene.value === 'main') {
-      areaList = ['第一制造部', '第二制造部', '第三制造部', '第四制造部', '第五制造部']
-    } else if (STATE.currentScene.value === '2#') {
-      areaList = []
-    } else if (STATE.currentScene.value === '17#') {
-      areaList = ['第一制造部', '第二制造部', '第四制造部']
-    } else if (STATE.currentScene.value === '5#') {
-      areaList = []
-    } else if (STATE.currentScene.value === '3#') {
-      areaList = ['第三制造部', '第五制造部']
-    }
+  } else {
 
     STATE.deviceList.children.forEach(e => {
       e.visible = false
-      if (areaList.includes(e.userData.area)) {
+
+      if (isDeviceAmongTheBuilding(e, STATE.currentScene.value)) {
+        
+        e.visible = true
         e.userData.circle.popup.material.opacity = 1
         e.traverse(e2 => {
           if (e2.isMesh) {
@@ -632,67 +636,24 @@ function deviceReset() {
         })
       }
     })
-
-  } else {
-    if (STATE.currentScene.value === '3#') {
-      STATE.deviceList.children.forEach(e => {
-        if (['第三制造部', '第五制造部'].includes(e.userData.area)) {
-          e.userData.circle.popup.material.opacity = 1
-          e.traverse(e2 => {
-            if (e2.isMesh) {
-              e2.material.transparent = false
-              e2.material.opacity = 1
-            }
-          })
-        }
-      })
-
-    } else if (STATE.currentScene.value === '17#') {
-      STATE.deviceList.children.forEach(e => {
-        if (['第一制造部', '第二制造部', '第四制造部'].includes(e.userData.area)) {
-          e.userData.circle.popup.material.opacity = 1
-          e.traverse(e2 => {
-            if (e2.isMesh) {
-              e2.material.transparent = false
-              e2.material.opacity = 1
-            }
-          })
-        }
-      })
-    }
   }
 }
 
+// 设备是不是在范围内
 function isDeviceAmongTheBuilding(device, building) {
   if (!device || !device.position || !building) {
     return false
   }
 
-  let area = {
-    x1: 0, x2: 0,
-    z1: 0, z2: 0
-  }
-
   const devicePosition = { x: device.position.x, z: device.position.z }
 
-  if (building === '3#') {
-    area.x1 = 920; area.x2 = 1985
-    area.z1 = -1115; area.z2 = 350
-
-  } else if (building === '2#') {
-    area.x1 = -350; area.x2 = 550
-    area.z1 = -1420; area.z2 = -485
-
-  } else if (building === '17#') {
-    area.x1 = -2415; area.x2 = -745
-    area.z1 = -1155; area.z2 = 295
-
-  } else if (building === '5#') {
-    area.x1 = -900; area.x2 = -270
-    area.z1 = 2035; area.z2 = 2475
+  const area = DATA.buildingArea.find(e => e.name === building)
+  
+  if (!area) {
+    return false
   }
 
-  if (area.x1 < devicePosition.x && area.x2 > devicePosition.x && area.z1 < devicePosition.z && area.z2 > devicePosition.z) {
+  if (area.value.x1 < devicePosition.x && area.value.x2 > devicePosition.x && area.value.z1 < devicePosition.z && area.value.z2 > devicePosition.z) {
     return true
 
   } else {

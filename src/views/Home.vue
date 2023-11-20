@@ -113,17 +113,20 @@ function handleArea(item) {
     "*"
   );
 
-  console.log(`deptClick-点击事件 制造部 ${item}`);
+  console.log(
+    `deptClick-点击事件 制造部 ${item}`
+  );
 }
 
 function handleGroup(item, group) {
   if (!["第一制造部", "第二制造部", "第三制造部", "第四制造部", "第五制造部"].includes(item)) return;
 
-  const tempList = DATA.deviceMap.filter(e => e.area === item && e.group === group)
+  const tempList = STATE.deviceList.children.filter(e => e.userData.area === item && e.userData.group === group)
+  
   const list = tempList.filter(e => {
-    const deviceP = { position: { x: e.position[0], z: e.position[2] } }
-    return API.isDeviceAmongTheBuilding(deviceP, STATE.currentScene.value)
+    return API.isDeviceAmongTheBuilding(e, STATE.currentScene.value)
   })
+  
 
   window.parent.postMessage(
     {
@@ -135,29 +138,30 @@ function handleGroup(item, group) {
     "*"
   );
 
-  console.log(`teamClick-点击事件 班组 ${item} ${group}`);
+  console.log(
+    `teamClick-点击事件 班组 ${item} ${group}`
+  );
 
   if (!list.length) return;
 
+  // 透明度
   STATE.deviceList.children.forEach((e) => {
-    if (e.visible && e.userData.area === item) {
-      if (e.userData.group === group) {
-        e.userData.circle.popup.material.opacity = 1;
-        e.traverse((e2) => {
-          if (e2.isMesh) {
-            e2.material.transparent = false;
-            e2.material.opacity = 1;
-          }
-        });
-      } else {
-        e.userData.circle.popup.material.opacity = 0.1;
-        e.traverse((e2) => {
-          if (e2.isMesh) {
-            e2.material.transparent = true;
-            e2.material.opacity = 0.1;
-          }
-        });
-      }
+    if (list.map(e2 => e2.userData.id).includes(e.userData.id)) {
+      e.userData.circle.popup.material.opacity = 1;
+      e.traverse((e2) => {
+        if (e2.isMesh) {
+          e2.material.transparent = false;
+          e2.material.opacity = 1;
+        }
+      });
+    } else {
+      e.userData.circle.popup.material.opacity = 0.1;
+      e.traverse((e2) => {
+        if (e2.isMesh) {
+          e2.material.transparent = true;
+          e2.material.opacity = 0.1;
+        }
+      });
     }
   });
 
@@ -169,53 +173,50 @@ function handleGroup(item, group) {
     CACHE.groupRoamAnimate = [];
   }
 
-  if (STATE.currentScene.value === "3#") {
-    list.sort((a, b) => {
-      return a.position[0] - b.position[0];
-    });
-  } else if (STATE.currentScene.value === "12#") {
-  }
+  list.sort((a, b) => {
+    return a.position.x - b.position.x;
+  });
+
+  
 
   for (let i = 0; i < list.length; i++) {
     const timer = setTimeout(() => {
-      const model = STATE.deviceList.children.find((e) => e.userData.id === list[i].id);
-      if (model) {
-        CACHE.container.outlineObjects = [];
-        model.traverse((e) => {
-          if (e.isMesh) {
-            CACHE.container.outlineObjects.push(e);
-          }
-        });
-      }
+      const model = STATE.deviceList.children.find((e) => e.userData.id === list[i].userData.id);
+      if (!model) return
+
+      CACHE.container.outlineObjects = [];
+      model.traverse((e) => {
+        if (e.isMesh) {
+          CACHE.container.outlineObjects.push(e);
+        }
+      });
+
 
       // 计算相机和目标的位置
-      const target = { x: list[i].position[0], y: 0, z: list[i].position[2] };
-      // const finalPosition = API.computedCameraFocusPosition(target, 100, 60)
+      const target = { x: list[i].position.x, y: 0, z: list[i].position.z };
       const finalPosition = { x: 0, y: 0, z: 0 };
-      if (STATE.currentScene.value === "3#") {
-        finalPosition.x = list[i].position[0];
-        finalPosition.y = 40;
-        finalPosition.z = list[i].position[2] + 85;
+      finalPosition.x = list[i].position.x;
+      finalPosition.y = 40;
+      finalPosition.z = list[i].position.z + 85;
 
-        const raycaster = new Bol3D.Raycaster();
-        const origin = new Bol3D.Vector3(
-          finalPosition.x,
-          finalPosition.y,
-          finalPosition.z
-        );
-        const direction = new Bol3D.Vector3(target.x, target.y, target.z)
-          .sub(origin)
-          .normalize();
+      const raycaster = new Bol3D.Raycaster();
+      const origin = new Bol3D.Vector3(
+        finalPosition.x,
+        finalPosition.y,
+        finalPosition.z
+      );
+      const direction = new Bol3D.Vector3(target.x, target.y, target.z)
+        .sub(origin)
+        .normalize();
 
-        raycaster.set(origin, direction);
-        const intersects = raycaster.intersectObjects(STATE.wallList);
-        if (intersects.length) {
-          if (intersects[0].distance < 150) {
-            finalPosition.z -= 170;
-          }
+      raycaster.set(origin, direction);
+      const intersects = raycaster.intersectObjects(STATE.wallList);
+      if (intersects.length) {
+        if (intersects[0].distance < 150) {
+          finalPosition.z -= 170;
         }
-      } else if (STATE.currentScene.value === "12#") {
       }
+
 
       new Bol3D.TWEEN.Tween(CACHE.container.orbitCamera.position)
         .to(
