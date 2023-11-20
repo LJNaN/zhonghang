@@ -57,7 +57,7 @@ watch(
         "全部显示",
       ];
     } else if (newVal === "2#") {
-      areaList.value = ["第一制造部", "第三制造部", "全部显示"];
+      areaList.value = ["第三制造部", "全部显示"];
     } else if (newVal === "17#") {
       areaList.value = ["第一制造部", "第二制造部", "第四制造部", "全部显示"];
     } else if (newVal === "5#") {
@@ -150,16 +150,14 @@ function handleGroup(item, group) {
       e.userData.circle.popup.material.opacity = 1;
       e.traverse((e2) => {
         if (e2.isMesh) {
-          e2.material.transparent = false;
-          e2.material.opacity = 1;
+          e2.material = e2.userData.material[0]
         }
       });
     } else {
       e.userData.circle.popup.material.opacity = 0.1;
       e.traverse((e2) => {
         if (e2.isMesh) {
-          e2.material.transparent = true;
-          e2.material.opacity = 0.1;
+          e2.material = e2.userData.material[1]
         }
       });
     }
@@ -196,8 +194,8 @@ function handleGroup(item, group) {
       const target = { x: list[i].position.x, y: 0, z: list[i].position.z };
       const finalPosition = { x: 0, y: 0, z: 0 };
       finalPosition.x = list[i].position.x;
-      finalPosition.y = 40;
-      finalPosition.z = list[i].position.z + 85;
+      finalPosition.y = 80;
+      finalPosition.z = list[i].position.z + 170;
 
       const raycaster = new Bol3D.Raycaster();
       const origin = new Bol3D.Vector3(
@@ -212,8 +210,8 @@ function handleGroup(item, group) {
       raycaster.set(origin, direction);
       const intersects = raycaster.intersectObjects(STATE.wallList);
       if (intersects.length) {
-        if (intersects[0].distance < 150) {
-          finalPosition.z -= 170;
+        if (intersects[0].distance < 300) {
+          finalPosition.z -= 340;
         }
       }
 

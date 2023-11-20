@@ -221,7 +221,7 @@ function setPickable(model, evt) {
 
 
 function getData() {
-  const url = `ws://frp.linkvision.cloud:42142/ws/info?access_token=${VUEDATA.token}`
+  const url = `${window.wsUrl}${VUEDATA.token}`
   const ws = new Ws({ url, onMessage })
   STATE.ws = ws
 
@@ -289,17 +289,6 @@ function enterBuilding(title) {
       })
     }
 
-    // 全部显示
-    STATE.deviceList.children.forEach(e => {
-      e.userData.circle.popup.material.opacity = 1
-      e.traverse(e2 => {
-        if (e2.isMesh) {
-          e2.material.transparent = false
-          e2.material.opacity = 1
-        }
-      })
-    })
-
     CACHE.container.outlinePass.edgeStrength = 3
     CACHE.container.outlinePass.pulsePeriod = 1
     CACHE.container.outlinePass.hiddenEdgeColor = new Bol3D.Color(0.44, 1, 1)
@@ -316,7 +305,14 @@ function enterBuilding(title) {
       `deptClick-点击事件 制造部 ${STATE.currentScene.value}`
     )
 
-
+    // 设备恢复不透明
+    STATE.deviceList.children.forEach(e => {
+      e.traverse(e2 => {
+        if (e2.isMesh) {
+          e2.material = e2.userData.material[0]
+        }
+      })
+    })
     // 设备显隐
     if (title === '5#') {
       STATE.deviceList.children.forEach(e => {
@@ -397,12 +393,10 @@ function initDevices() {
 
     model.traverse(e2 => {
       if (e2.isMesh) {
-        e2.material = e2.material.clone()
-        if (e2.material.map) {
-          const map = e2.material.map.clone()
-          e2.material.map = map
-          e2.material.map.needsUpdate = true
-        }
+        const transparentMaterial = e2.material.clone()
+        transparentMaterial.transparent = true
+        transparentMaterial.opacity = 0.1
+        e2.userData.material = [e2.material, transparentMaterial]
       }
     })
 
@@ -462,6 +456,11 @@ function backToMainScene() {
     CACHE.container.updateSceneByNodes(CACHE.jsonParser.nodes[0], 0, () => {
       STATE.deviceList.children.forEach(e => {
         e.visible = false
+        e.traverse(e2 => {
+          if (e2.isMesh) {
+            e2.material = e2.userData.material[0]
+          }
+        })
       })
       CACHE.container.loadingBar.style.visibility = 'hidden'
 
@@ -506,8 +505,7 @@ function handleArea(area) {
         e.userData.circle.popup.material.opacity = 1
         e.traverse(e2 => {
           if (e2.isMesh) {
-            e2.material.transparent = false
-            e2.material.opacity = 1
+            e2.material = e2.userData.material[0]
           }
         })
 
@@ -515,8 +513,7 @@ function handleArea(area) {
         e.userData.circle.popup.material.opacity = 0.1
         e.traverse(e2 => {
           if (e2.isMesh) {
-            e2.material.transparent = true
-            e2.material.opacity = 0.1
+            e2.material = e2.userData.material[1]
           }
         })
       }
@@ -579,8 +576,7 @@ function handleArea(area) {
         e.userData.circle.popup.material.opacity = 1
         e.traverse(e2 => {
           if (e2.isMesh) {
-            e2.material.transparent = false
-            e2.material.opacity = 1
+            e2.material = e2.userData.material[0]
           }
         })
 
@@ -588,8 +584,7 @@ function handleArea(area) {
         e.userData.circle.popup.material.opacity = 0.1
         e.traverse(e2 => {
           if (e2.isMesh) {
-            e2.material.transparent = true
-            e2.material.opacity = 0.1
+            e2.material = e2.userData.material[1]
           }
         })
       }
@@ -625,7 +620,7 @@ function deviceReset() {
       e.visible = false
 
       if (isDeviceAmongTheBuilding(e, STATE.currentScene.value)) {
-        
+
         e.visible = true
         e.userData.circle.popup.material.opacity = 1
         e.traverse(e2 => {
@@ -648,7 +643,7 @@ function isDeviceAmongTheBuilding(device, building) {
   const devicePosition = { x: device.position.x, z: device.position.z }
 
   const area = DATA.buildingArea.find(e => e.name === building)
-  
+
   if (!area) {
     return false
   }
@@ -777,6 +772,7 @@ class Popup {
   }
   position = { x: 0, y: 0, z: 0 }
   popup = null
+  
 
   constructor(type, info, position) {
     if (type) {
@@ -786,7 +782,9 @@ class Popup {
       this.info.title = info.title
       this.info.list = info.list
     }
-    if (position) this.position = position
+    if (position) this.position = position.clone()
+    this.position.x += 60
+    this.position.y += 30
 
     let text = ''
     this.info.list.forEach(e => {
