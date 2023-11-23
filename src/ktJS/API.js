@@ -258,7 +258,11 @@ function enterBuilding(title) {
     // 开围墙
     if (title === '5#') {
       STATE.wallList.forEach(e => {
-        e.visible = false
+        if (e.name === '1dulidiban') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
       })
 
     } else if (title === '2#') {
@@ -313,13 +317,9 @@ function enterBuilding(title) {
         }
       })
     })
-    // 设备显隐
-    if (title === '5#') {
-      STATE.deviceList.children.forEach(e => {
-        e.visible = false
-      })
 
-    } else if (title === '2#') {
+    // 设备显隐
+    if (title === '2#') {
       const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
       if (waijing) {
         waijing.traverse(e => {
@@ -333,7 +333,7 @@ function enterBuilding(title) {
         e.visible = isDeviceAmongTheBuilding(e, title)
       })
 
-    } else if (title === '17#' || title === '3#') {
+    } else if (title === '17#' || title === '3#' || title === '5#') {
       STATE.deviceList.children.forEach(e => {
         e.visible = isDeviceAmongTheBuilding(e, title)
       })
@@ -344,40 +344,23 @@ function enterBuilding(title) {
 
 // 预加载设备模型
 function initModels() {
-  const yibumox = CACHE.container.scene.children.find(e => e.name === 'yibumox')
-  const erbumox = CACHE.container.scene.children.find(e => e.name === 'erbumox')
-  const sanbumox = CACHE.container.scene.children.find(e => e.name === 'sanbumox')
-  const sibumox = CACHE.container.scene.children.find(e => e.name === 'sibumox')
-  const wubumox = CACHE.container.scene.children.find(e => e.name === 'wubumox')
+  const modelList = ['yibumox', 'erbumox', 'sanbumox', 'sibumox', 'wubumox', '3dulsb-v1', '13SHEB-v1']
 
-  function handleModel(model) {
-    model.children.forEach(e => {
-      STATE.deviceModel[e.name] = e.clone()
-      const map = DATA.deviceIdTypeMap.find(e2 => e2.modelName === e.name)
-      if (map) {
-        STATE.deviceModel[e.name].scale.set(map.scale, map.scale, map.scale)
-        STATE.deviceModel[e.name].userData.type = map.type
-        STATE.deviceModel[e.name].userData.modelName = STATE.deviceModel[e.name].userData.name
-        delete STATE.deviceModel[e.name].userData.name
-      }
-    })
-  }
-
-  if (yibumox) {
-    handleModel(yibumox)
-  }
-  if (erbumox) {
-    handleModel(erbumox)
-  }
-  if (sanbumox) {
-    handleModel(sanbumox)
-  }
-  if (sibumox) {
-    handleModel(sibumox)
-  }
-  if (wubumox) {
-    handleModel(wubumox)
-  }
+  modelList.forEach(name => {
+    const model = CACHE.container.scene.children.find(e => e.name === name)
+    if (model) {
+      model.children.forEach(e => {
+        STATE.deviceModel[e.name] = e.clone()
+        const map = DATA.deviceIdTypeMap.find(e2 => e2.modelName === e.name)
+        if (map) {
+          STATE.deviceModel[e.name].scale.set(map.scale, map.scale, map.scale)
+          STATE.deviceModel[e.name].userData.type = map.type
+          STATE.deviceModel[e.name].userData.modelName = STATE.deviceModel[e.name].userData.name
+          delete STATE.deviceModel[e.name].userData.name
+        }
+      })
+    }
+  })
 }
 
 
@@ -523,9 +506,12 @@ function handleArea(area) {
 
     if (STATE.currentScene.value === '5#') {
       STATE.wallList.forEach(e => {
-        e.visible = false
+        if (e.name === '1dulidiban') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
       })
-
     } else if (STATE.currentScene.value === '2#') {
       STATE.wallList.forEach(e => {
         if (e.name === '3dulidiban') {
@@ -556,21 +542,7 @@ function handleArea(area) {
 
 
     STATE.deviceList.children.forEach(e => {
-      if (STATE.currentScene.value === '3#') {
-        if (e.userData.area === '第三制造部' || e.userData.area === '第五制造部') {
-          e.visible = true
-        } else {
-          e.visible = false
-        }
-      } else if (STATE.currentScene.value === '17#') {
-        if (e.userData.area === '第一制造部' || e.userData.area === '第二制造部' || e.userData.area === '第四制造部') {
-          e.visible = true
-        } else {
-          e.visible = false
-        }
-      }
-
-
+      e.visible = isDeviceAmongTheBuilding(e, STATE.currentScene.value)
 
       if (e.userData.area === area) {
         e.userData.circle.popup.material.opacity = 1
@@ -772,7 +744,7 @@ class Popup {
   }
   position = { x: 0, y: 0, z: 0 }
   popup = null
-  
+
 
   constructor(type, info, position) {
     if (type) {

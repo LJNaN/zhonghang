@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="areaList">
-      <div class="areaList-item" v-for="item in areaList" :key="item" @click="handleArea(item)">
+      <div class="areaList-item" v-for="item in areaList" :key="item" @click="handleAreaBtn(item)">
         {{ item }}
         <div v-if="item != '全部显示' && popupShow[item]" class="areaList-item-group">
           <div class="areaList-item-group-item" v-for="group in groupList[item]" @click.stop="handleGroup(item, group)">
@@ -57,11 +57,11 @@ watch(
         "全部显示",
       ];
     } else if (newVal === "2#") {
-      areaList.value = ["第三制造部", "全部显示"];
+      areaList.value = ["第一制造部", "全部显示"];
     } else if (newVal === "17#") {
       areaList.value = ["第一制造部", "第二制造部", "第四制造部", "全部显示"];
     } else if (newVal === "5#") {
-      areaList.value = [];
+      areaList.value = ["第三制造部", "全部显示"];
     } else if (newVal === "3#") {
       areaList.value = ["第三制造部", "第五制造部", "全部显示"];
     }
@@ -86,7 +86,7 @@ watch(
   { immediate: true }
 );
 
-function handleArea(item) {
+function handleAreaBtn(item) {
   if (STATE.currentScene.value === "main") {
     for (let key in popupShow) {
       popupShow[key] = false;
