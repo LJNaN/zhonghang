@@ -344,7 +344,7 @@ function enterBuilding(title) {
 
 // 预加载设备模型
 function initModels() {
-  const modelList = ['yibumox', 'erbumox', 'sanbumox', 'sibumox', 'wubumox', '3dulsb-v1', '13SHEB-v1']
+  const modelList = ['yibumox', 'erbumox', 'sanbumox', 'sibumox', 'wubumox', '3dulsb', '13SHEB-v1']
 
   modelList.forEach(name => {
     const model = CACHE.container.scene.children.find(e => e.name === name)

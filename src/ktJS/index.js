@@ -149,7 +149,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             window.CACHE = CACHE
 
 
-            API.testBox()
+            // API.testBox()
             CACHE.container.loadingBar.style.visibility = 'hidden'
           })
 

@@ -48972,16 +48972,16 @@
           "events": []
         },
         {
-          "uuid": "root_3dulsb-v1_0",
-          "name": "3dulsb-v1",
+          "uuid": "root_3dulsb_0",
+          "name": "3dulsb",
           "visible": true,
-          "selected": false,
+          "selected": true,
           "index": 0,
-          "spread": true,
+          "spread": false,
           "type": "Group",
           "children": [
             {
-              "uuid": "root_3dulsb-v1_0_Default_light",
+              "uuid": "root_3dulsb_0_Default_light",
               "name": "Default_light",
               "visible": true,
               "selected": false,
@@ -49008,11 +49008,367 @@
                 "renderOrder": 0
               },
               "show": true,
-              "parent": "root_3dulsb-v1_0",
+              "parent": "root_3dulsb_0",
               "events": []
             },
             {
-              "uuid": "root_3dulsb-v1_0_6102030016",
+              "uuid": "root_3dulsb_0_6102060041",
+              "name": "6102060041",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_3dulsb_0_6102060041_6102060041_1",
+                  "name": "6102060041_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060041",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481466",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060041_6102060041_2",
+                  "name": "6102060041_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060041",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481467",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060041_6102060041_3",
+                  "name": "6102060041_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060041",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481468",
+                    "color": "#dfaa0a",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060041_6102060041_4",
+                  "name": "6102060041_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060041",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481469",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060041_6102060041_5",
+                  "name": "6102060041_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060041",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481470",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060041_6102060041_6",
+                  "name": "6102060041_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060041",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481471",
+                    "color": "#7f7f7f",
+                    "transparent": true,
+                    "opacity": 0.3,
+                    "depthTest": true,
+                    "depthWrite": false,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  -0.3727,
+                  0,
+                  -0.3603
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_3dulsb_0",
+              "events": []
+            },
+            {
+              "uuid": "root_3dulsb_0_6102030016",
               "name": "6102030016",
               "visible": true,
               "selected": false,
@@ -49021,7 +49377,7 @@
               "type": "Group",
               "children": [
                 {
-                  "uuid": "root_3dulsb-v1_0_6102030016_6102030016_1",
+                  "uuid": "root_3dulsb_0_6102030016_6102030016_1",
                   "name": "6102030016_1",
                   "visible": true,
                   "selected": false,
@@ -49051,7 +49407,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102030016",
+                  "parent": "root_3dulsb_0_6102030016",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49075,7 +49431,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102030016_6102030016_2",
+                  "uuid": "root_3dulsb_0_6102030016_6102030016_2",
                   "name": "6102030016_2",
                   "visible": true,
                   "selected": false,
@@ -49105,7 +49461,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102030016",
+                  "parent": "root_3dulsb_0_6102030016",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49129,7 +49485,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102030016_6102030016_3",
+                  "uuid": "root_3dulsb_0_6102030016_6102030016_3",
                   "name": "6102030016_3",
                   "visible": true,
                   "selected": false,
@@ -49159,7 +49515,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102030016",
+                  "parent": "root_3dulsb_0_6102030016",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49183,7 +49539,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102030016_6102030016_4",
+                  "uuid": "root_3dulsb_0_6102030016_6102030016_4",
                   "name": "6102030016_4",
                   "visible": true,
                   "selected": false,
@@ -49213,7 +49569,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102030016",
+                  "parent": "root_3dulsb_0_6102030016",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49237,7 +49593,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102030016_6102030016_5",
+                  "uuid": "root_3dulsb_0_6102030016_6102030016_5",
                   "name": "6102030016_5",
                   "visible": true,
                   "selected": false,
@@ -49267,7 +49623,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102030016",
+                  "parent": "root_3dulsb_0_6102030016",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49291,7 +49647,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102030016_6102030016_6",
+                  "uuid": "root_3dulsb_0_6102030016_6102030016_6",
                   "name": "6102030016_6",
                   "visible": true,
                   "selected": false,
@@ -49321,7 +49677,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102030016",
+                  "parent": "root_3dulsb_0_6102030016",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49345,7 +49701,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102030016_6102030016_7",
+                  "uuid": "root_3dulsb_0_6102030016_6102030016_7",
                   "name": "6102030016_7",
                   "visible": true,
                   "selected": false,
@@ -49375,7 +49731,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102030016",
+                  "parent": "root_3dulsb_0_6102030016",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49411,18 +49767,18 @@
                   0
                 ],
                 "scale": [
-                  0.7259,
-                  0.9468,
-                  0.677
+                  1,
+                  1,
+                  1
                 ],
                 "renderOrder": 0
               },
               "show": true,
-              "parent": "root_3dulsb-v1_0",
+              "parent": "root_3dulsb_0",
               "events": []
             },
             {
-              "uuid": "root_3dulsb-v1_0_6107050007",
+              "uuid": "root_3dulsb_0_6107050007",
               "name": "6107050007",
               "visible": true,
               "selected": false,
@@ -49431,7 +49787,7 @@
               "type": "Group",
               "children": [
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050007_6107050007_1",
+                  "uuid": "root_3dulsb_0_6107050007_6107050007_1",
                   "name": "6107050007_1",
                   "visible": true,
                   "selected": false,
@@ -49461,7 +49817,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050007",
+                  "parent": "root_3dulsb_0_6107050007",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49485,7 +49841,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050007_6107050007_2",
+                  "uuid": "root_3dulsb_0_6107050007_6107050007_2",
                   "name": "6107050007_2",
                   "visible": true,
                   "selected": false,
@@ -49515,7 +49871,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050007",
+                  "parent": "root_3dulsb_0_6107050007",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49539,7 +49895,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050007_6107050007_3",
+                  "uuid": "root_3dulsb_0_6107050007_6107050007_3",
                   "name": "6107050007_3",
                   "visible": true,
                   "selected": false,
@@ -49569,7 +49925,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050007",
+                  "parent": "root_3dulsb_0_6107050007",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49593,7 +49949,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050007_6107050007_4",
+                  "uuid": "root_3dulsb_0_6107050007_6107050007_4",
                   "name": "6107050007_4",
                   "visible": true,
                   "selected": false,
@@ -49623,7 +49979,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050007",
+                  "parent": "root_3dulsb_0_6107050007",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49647,7 +50003,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050007_6107050007_5",
+                  "uuid": "root_3dulsb_0_6107050007_6107050007_5",
                   "name": "6107050007_5",
                   "visible": true,
                   "selected": false,
@@ -49677,7 +50033,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050007",
+                  "parent": "root_3dulsb_0_6107050007",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49701,7 +50057,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050007_6107050007_6",
+                  "uuid": "root_3dulsb_0_6107050007_6107050007_6",
                   "name": "6107050007_6",
                   "visible": true,
                   "selected": false,
@@ -49731,7 +50087,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050007",
+                  "parent": "root_3dulsb_0_6107050007",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49755,7 +50111,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050007_6107050007_7",
+                  "uuid": "root_3dulsb_0_6107050007_6107050007_7",
                   "name": "6107050007_7",
                   "visible": true,
                   "selected": false,
@@ -49785,7 +50141,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050007",
+                  "parent": "root_3dulsb_0_6107050007",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49809,7 +50165,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050007_6107050007_8",
+                  "uuid": "root_3dulsb_0_6107050007_6107050007_8",
                   "name": "6107050007_8",
                   "visible": true,
                   "selected": false,
@@ -49839,7 +50195,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050007",
+                  "parent": "root_3dulsb_0_6107050007",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49863,7 +50219,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050007_6107050007_9",
+                  "uuid": "root_3dulsb_0_6107050007_6107050007_9",
                   "name": "6107050007_9",
                   "visible": true,
                   "selected": false,
@@ -49893,7 +50249,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050007",
+                  "parent": "root_3dulsb_0_6107050007",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -49924,23 +50280,23 @@
                   -0.3637
                 ],
                 "rotation": [
-                  90,
                   0,
-                  -180
+                  0,
+                  0
                 ],
                 "scale": [
-                  0.891,
-                  0.347,
-                  0.7766
+                  1,
+                  1,
+                  1
                 ],
                 "renderOrder": 0
               },
               "show": true,
-              "parent": "root_3dulsb-v1_0",
+              "parent": "root_3dulsb_0",
               "events": []
             },
             {
-              "uuid": "root_3dulsb-v1_0_6107050008",
+              "uuid": "root_3dulsb_0_6107050008",
               "name": "6107050008",
               "visible": true,
               "selected": false,
@@ -49949,7 +50305,7 @@
               "type": "Group",
               "children": [
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_1",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_1",
                   "name": "6107050008_1",
                   "visible": true,
                   "selected": false,
@@ -49979,7 +50335,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50003,7 +50359,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_2",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_2",
                   "name": "6107050008_2",
                   "visible": true,
                   "selected": false,
@@ -50033,7 +50389,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50057,7 +50413,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_3",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_3",
                   "name": "6107050008_3",
                   "visible": true,
                   "selected": false,
@@ -50087,7 +50443,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50111,7 +50467,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_4",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_4",
                   "name": "6107050008_4",
                   "visible": true,
                   "selected": false,
@@ -50141,7 +50497,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50165,7 +50521,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_5",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_5",
                   "name": "6107050008_5",
                   "visible": true,
                   "selected": false,
@@ -50195,7 +50551,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50219,7 +50575,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_6",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_6",
                   "name": "6107050008_6",
                   "visible": true,
                   "selected": false,
@@ -50249,7 +50605,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50273,7 +50629,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_7",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_7",
                   "name": "6107050008_7",
                   "visible": true,
                   "selected": false,
@@ -50303,7 +50659,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50327,7 +50683,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_8",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_8",
                   "name": "6107050008_8",
                   "visible": true,
                   "selected": false,
@@ -50357,7 +50713,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50381,7 +50737,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_9",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_9",
                   "name": "6107050008_9",
                   "visible": true,
                   "selected": false,
@@ -50411,7 +50767,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50435,7 +50791,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6107050008_6107050008_10",
+                  "uuid": "root_3dulsb_0_6107050008_6107050008_10",
                   "name": "6107050008_10",
                   "visible": true,
                   "selected": false,
@@ -50465,7 +50821,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6107050008",
+                  "parent": "root_3dulsb_0_6107050008",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50497,23 +50853,23 @@
                 ],
                 "rotation": [
                   0,
-                  89.9759,
+                  0,
                   0
                 ],
                 "scale": [
-                  2.2393,
-                  0.8083,
-                  0.8333
+                  1,
+                  1,
+                  1
                 ],
                 "renderOrder": 0
               },
               "show": true,
-              "parent": "root_3dulsb-v1_0",
+              "parent": "root_3dulsb_0",
               "events": []
             },
             {
-              "uuid": "root_3dulsb-v1_0_6102060041",
-              "name": "6102060041",
+              "uuid": "root_3dulsb_0_6102060045",
+              "name": "6102060045",
               "visible": true,
               "selected": false,
               "index": 1,
@@ -50521,8 +50877,8 @@
               "type": "Group",
               "children": [
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060041_6102060041_1",
-                  "name": "6102060041_1",
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_1",
+                  "name": "6102060045_1",
                   "visible": true,
                   "selected": false,
                   "index": 2,
@@ -50551,11 +50907,11 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060041",
+                  "parent": "root_3dulsb_0_6102060045",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
-                    "name": "Material #249481466",
+                    "name": "Material #249481748",
                     "color": "#ffffff",
                     "transparent": false,
                     "opacity": 1,
@@ -50575,8 +50931,8 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060041_6102060041_2",
-                  "name": "6102060041_2",
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_2",
+                  "name": "6102060045_2",
                   "visible": true,
                   "selected": false,
                   "index": 2,
@@ -50605,227 +50961,11 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060041",
+                  "parent": "root_3dulsb_0_6102060045",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
-                    "name": "Material #249481467",
-                    "color": "#ffffff",
-                    "transparent": false,
-                    "opacity": 1,
-                    "depthTest": true,
-                    "depthWrite": true,
-                    "wireframe": false,
-                    "side": 0,
-                    "extends": {
-                      "roughness": 1,
-                      "metalness": 0,
-                      "envMapIntensity": 1,
-                      "lightMapIntensity": 1,
-                      "emissive": "#000000",
-                      "emissiveIntensity": 1,
-                      "aoMapIntensity": 1
-                    }
-                  }
-                },
-                {
-                  "uuid": "root_3dulsb-v1_0_6102060041_6102060041_3",
-                  "name": "6102060041_3",
-                  "visible": true,
-                  "selected": false,
-                  "index": 2,
-                  "spread": false,
-                  "type": "Mesh",
-                  "children": [],
-                  "options": {
-                    "position": [
-                      0,
-                      0,
-                      0
-                    ],
-                    "rotation": [
-                      0,
-                      0,
-                      0
-                    ],
-                    "scale": [
-                      1,
-                      1,
-                      1
-                    ],
-                    "renderOrder": 2,
-                    "castShadow": true,
-                    "receiveShadow": true,
-                    "bloom": false
-                  },
-                  "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060041",
-                  "events": [],
-                  "matOptions": {
-                    "type": "MeshStandardMaterial",
-                    "name": "Material #249481468",
-                    "color": "#dfaa0a",
-                    "transparent": false,
-                    "opacity": 1,
-                    "depthTest": true,
-                    "depthWrite": true,
-                    "wireframe": false,
-                    "side": 0,
-                    "extends": {
-                      "roughness": 1,
-                      "metalness": 0,
-                      "envMapIntensity": 1,
-                      "lightMapIntensity": 1,
-                      "emissive": "#000000",
-                      "emissiveIntensity": 1,
-                      "aoMapIntensity": 1
-                    }
-                  }
-                },
-                {
-                  "uuid": "root_3dulsb-v1_0_6102060041_6102060041_4",
-                  "name": "6102060041_4",
-                  "visible": true,
-                  "selected": false,
-                  "index": 2,
-                  "spread": false,
-                  "type": "Mesh",
-                  "children": [],
-                  "options": {
-                    "position": [
-                      0,
-                      0,
-                      0
-                    ],
-                    "rotation": [
-                      0,
-                      0,
-                      0
-                    ],
-                    "scale": [
-                      1,
-                      1,
-                      1
-                    ],
-                    "renderOrder": 2,
-                    "castShadow": true,
-                    "receiveShadow": true,
-                    "bloom": false
-                  },
-                  "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060041",
-                  "events": [],
-                  "matOptions": {
-                    "type": "MeshStandardMaterial",
-                    "name": "Material #249481469",
-                    "color": "#ffffff",
-                    "transparent": false,
-                    "opacity": 1,
-                    "depthTest": true,
-                    "depthWrite": true,
-                    "wireframe": false,
-                    "side": 0,
-                    "extends": {
-                      "roughness": 1,
-                      "metalness": 0,
-                      "envMapIntensity": 1,
-                      "lightMapIntensity": 1,
-                      "emissive": "#000000",
-                      "emissiveIntensity": 1,
-                      "aoMapIntensity": 1
-                    }
-                  }
-                },
-                {
-                  "uuid": "root_3dulsb-v1_0_6102060041_6102060041_5",
-                  "name": "6102060041_5",
-                  "visible": true,
-                  "selected": false,
-                  "index": 2,
-                  "spread": false,
-                  "type": "Mesh",
-                  "children": [],
-                  "options": {
-                    "position": [
-                      0,
-                      0,
-                      0
-                    ],
-                    "rotation": [
-                      0,
-                      0,
-                      0
-                    ],
-                    "scale": [
-                      1,
-                      1,
-                      1
-                    ],
-                    "renderOrder": 2,
-                    "castShadow": true,
-                    "receiveShadow": true,
-                    "bloom": false
-                  },
-                  "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060041",
-                  "events": [],
-                  "matOptions": {
-                    "type": "MeshStandardMaterial",
-                    "name": "Material #249481470",
-                    "color": "#ffffff",
-                    "transparent": false,
-                    "opacity": 1,
-                    "depthTest": true,
-                    "depthWrite": true,
-                    "wireframe": false,
-                    "side": 2,
-                    "extends": {
-                      "roughness": 0,
-                      "metalness": 0,
-                      "envMapIntensity": 1,
-                      "lightMapIntensity": 1,
-                      "emissive": "#000000",
-                      "emissiveIntensity": 1,
-                      "aoMapIntensity": 1
-                    }
-                  }
-                },
-                {
-                  "uuid": "root_3dulsb-v1_0_6102060041_6102060041_6",
-                  "name": "6102060041_6",
-                  "visible": true,
-                  "selected": false,
-                  "index": 2,
-                  "spread": false,
-                  "type": "Mesh",
-                  "children": [],
-                  "options": {
-                    "position": [
-                      0,
-                      0,
-                      0
-                    ],
-                    "rotation": [
-                      0,
-                      0,
-                      0
-                    ],
-                    "scale": [
-                      1,
-                      1,
-                      1
-                    ],
-                    "renderOrder": 2,
-                    "castShadow": true,
-                    "receiveShadow": true,
-                    "bloom": false
-                  },
-                  "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060041",
-                  "events": [],
-                  "matOptions": {
-                    "type": "MeshStandardMaterial",
-                    "name": "Material #249481471",
+                    "name": "Material #249481749",
                     "color": "#7f7f7f",
                     "transparent": true,
                     "opacity": 0.3,
@@ -50843,13 +50983,553 @@
                       "aoMapIntensity": 1
                     }
                   }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_3",
+                  "name": "6102060045_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481750",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_4",
+                  "name": "6102060045_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481751",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_5",
+                  "name": "6102060045_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481752",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_6",
+                  "name": "6102060045_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481753",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_7",
+                  "name": "6102060045_7",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481754",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_8",
+                  "name": "6102060045_8",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481755",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_9",
+                  "name": "6102060045_9",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481756",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_10",
+                  "name": "6102060045_10",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481757",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_11",
+                  "name": "6102060045_11",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481758",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060045_6102060045_12",
+                  "name": "6102060045_12",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060045",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481759",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
                 }
               ],
               "options": {
                 "position": [
-                  -0.3727,
-                  0.0001,
-                  -0.3603
+                  0.4986,
+                  0,
+                  -0.3648
                 ],
                 "rotation": [
                   0,
@@ -50857,18 +51537,18 @@
                   0
                 ],
                 "scale": [
-                  0.1119,
-                  0.4379,
-                  0.056
+                  1,
+                  1,
+                  1
                 ],
                 "renderOrder": 0
               },
               "show": true,
-              "parent": "root_3dulsb-v1_0",
+              "parent": "root_3dulsb_0",
               "events": []
             },
             {
-              "uuid": "root_3dulsb-v1_0_6102060050",
+              "uuid": "root_3dulsb_0_6102060050",
               "name": "6102060050",
               "visible": true,
               "selected": false,
@@ -50877,7 +51557,7 @@
               "type": "Group",
               "children": [
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060050_6102060050_1",
+                  "uuid": "root_3dulsb_0_6102060050_6102060050_1",
                   "name": "6102060050_1",
                   "visible": true,
                   "selected": false,
@@ -50907,7 +51587,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060050",
+                  "parent": "root_3dulsb_0_6102060050",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50931,7 +51611,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060050_6102060050_2",
+                  "uuid": "root_3dulsb_0_6102060050_6102060050_2",
                   "name": "6102060050_2",
                   "visible": true,
                   "selected": false,
@@ -50961,7 +51641,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060050",
+                  "parent": "root_3dulsb_0_6102060050",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -50985,7 +51665,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060050_6102060050_3",
+                  "uuid": "root_3dulsb_0_6102060050_6102060050_3",
                   "name": "6102060050_3",
                   "visible": true,
                   "selected": false,
@@ -51015,7 +51695,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060050",
+                  "parent": "root_3dulsb_0_6102060050",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -51039,7 +51719,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060050_6102060050_4",
+                  "uuid": "root_3dulsb_0_6102060050_6102060050_4",
                   "name": "6102060050_4",
                   "visible": true,
                   "selected": false,
@@ -51069,7 +51749,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060050",
+                  "parent": "root_3dulsb_0_6102060050",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -51095,14 +51775,14 @@
               ],
               "options": {
                 "position": [
-                  0.3512,
+                  0.3521,
                   0,
                   -0.3584
                 ],
                 "rotation": [
-                  90,
                   0,
-                  90
+                  0,
+                  0
                 ],
                 "scale": [
                   1,
@@ -51112,11 +51792,11 @@
                 "renderOrder": 0
               },
               "show": true,
-              "parent": "root_3dulsb-v1_0",
+              "parent": "root_3dulsb_0",
               "events": []
             },
             {
-              "uuid": "root_3dulsb-v1_0_6102060048",
+              "uuid": "root_3dulsb_0_6102060048",
               "name": "6102060048",
               "visible": true,
               "selected": false,
@@ -51125,7 +51805,7 @@
               "type": "Group",
               "children": [
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060048_6102060048_1",
+                  "uuid": "root_3dulsb_0_6102060048_6102060048_1",
                   "name": "6102060048_1",
                   "visible": true,
                   "selected": false,
@@ -51155,7 +51835,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060048",
+                  "parent": "root_3dulsb_0_6102060048",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -51179,7 +51859,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060048_6102060048_2",
+                  "uuid": "root_3dulsb_0_6102060048_6102060048_2",
                   "name": "6102060048_2",
                   "visible": true,
                   "selected": false,
@@ -51209,7 +51889,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060048",
+                  "parent": "root_3dulsb_0_6102060048",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -51233,7 +51913,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060048_6102060048_3",
+                  "uuid": "root_3dulsb_0_6102060048_6102060048_3",
                   "name": "6102060048_3",
                   "visible": true,
                   "selected": false,
@@ -51263,7 +51943,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060048",
+                  "parent": "root_3dulsb_0_6102060048",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -51287,7 +51967,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060048_6102060048_4",
+                  "uuid": "root_3dulsb_0_6102060048_6102060048_4",
                   "name": "6102060048_4",
                   "visible": true,
                   "selected": false,
@@ -51317,7 +51997,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060048",
+                  "parent": "root_3dulsb_0_6102060048",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -51341,7 +52021,7 @@
                   }
                 },
                 {
-                  "uuid": "root_3dulsb-v1_0_6102060048_6102060048_5",
+                  "uuid": "root_3dulsb_0_6102060048_6102060048_5",
                   "name": "6102060048_5",
                   "visible": true,
                   "selected": false,
@@ -51371,7 +52051,7 @@
                     "bloom": false
                   },
                   "show": true,
-                  "parent": "root_3dulsb-v1_0_6102060048",
+                  "parent": "root_3dulsb_0_6102060048",
                   "events": [],
                   "matOptions": {
                     "type": "MeshStandardMaterial",
@@ -51407,14 +52087,370 @@
                   0
                 ],
                 "scale": [
-                  1.3483,
-                  1.3483,
-                  1.3483
+                  1,
+                  1,
+                  1
                 ],
                 "renderOrder": 0
               },
               "show": true,
-              "parent": "root_3dulsb-v1_0",
+              "parent": "root_3dulsb_0",
+              "events": []
+            },
+            {
+              "uuid": "root_3dulsb_0_6102060034",
+              "name": "6102060034",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Group",
+              "children": [
+                {
+                  "uuid": "root_3dulsb_0_6102060034_6102060034_1",
+                  "name": "6102060034_1",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060034",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481762",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060034_6102060034_2",
+                  "name": "6102060034_2",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060034",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481763",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060034_6102060034_3",
+                  "name": "6102060034_3",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060034",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481764",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 0,
+                    "extends": {
+                      "roughness": 1,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060034_6102060034_4",
+                  "name": "6102060034_4",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060034",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481765",
+                    "color": "#ffffff",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060034_6102060034_5",
+                  "name": "6102060034_5",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060034",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481766",
+                    "color": "#050405",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                },
+                {
+                  "uuid": "root_3dulsb_0_6102060034_6102060034_6",
+                  "name": "6102060034_6",
+                  "visible": true,
+                  "selected": false,
+                  "index": 2,
+                  "spread": false,
+                  "type": "Mesh",
+                  "children": [],
+                  "options": {
+                    "position": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "renderOrder": 2,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "bloom": false
+                  },
+                  "show": true,
+                  "parent": "root_3dulsb_0_6102060034",
+                  "events": [],
+                  "matOptions": {
+                    "type": "MeshStandardMaterial",
+                    "name": "Material #249481767",
+                    "color": "#7f7f7f",
+                    "transparent": false,
+                    "opacity": 1,
+                    "depthTest": true,
+                    "depthWrite": true,
+                    "wireframe": false,
+                    "side": 2,
+                    "extends": {
+                      "roughness": 0,
+                      "metalness": 0,
+                      "envMapIntensity": 1,
+                      "lightMapIntensity": 1,
+                      "emissive": "#000000",
+                      "emissiveIntensity": 1,
+                      "aoMapIntensity": 1
+                    }
+                  }
+                }
+              ],
+              "options": {
+                "position": [
+                  0.6358,
+                  0,
+                  -0.359
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 0
+              },
+              "show": true,
+              "parent": "root_3dulsb_0",
               "events": []
             }
           ],
@@ -67429,7 +68465,7 @@
       "id": 5
     },
     {
-      "file": "3dulsb-v1.glb",
+      "file": "3dulsb.glb",
       "id": 6
     },
     {
