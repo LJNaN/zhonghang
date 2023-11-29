@@ -11,6 +11,8 @@
       </div>
     </div>
 
+    <Editor></Editor>
+
     <div v-if="STATE.currentScene.value != 'main'" class="back" @click="back">返回</div>
   </div>
 </template>
@@ -22,6 +24,7 @@ import { API } from "@/ktJS/API";
 import { STATE } from "@/ktJS/STATE";
 import { DATA } from "@/ktJS/DATA";
 import { CACHE } from "@/ktJS/CACHE";
+import Editor from '@/components/editor.vue'
 
 let areaList = ref([
   "第一制造部",
@@ -69,7 +72,7 @@ watch(
 
     if (['2#', '17#', '5#', '3#'].includes(newVal)) {
       for (let key in popupShow) {
-        const list = DATA.deviceMap.filter(e => {
+        const list = DATA.deviceList.filter(e => {
           if (e.area === key) {
             const deviceP = { position: { x: e.position[0], z: e.position[2] } }
             return API.isDeviceAmongTheBuilding(deviceP, newVal)
@@ -345,4 +348,5 @@ onMounted(() => { });
     opacity: 1;
   }
 }
+
 </style>

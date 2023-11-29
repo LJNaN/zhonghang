@@ -2,6 +2,8 @@ import { API } from './API.js'
 import { CACHE } from './CACHE.js'
 import { STATE } from './STATE.js'
 import { DATA } from './DATA.js'
+import { VUEDATA } from '@/VUEDATA.js'
+import bus from '@/utils/bus.js'
 
 let container
 
@@ -185,6 +187,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           }
         }
         if (!obj) return
+        console.log('obj: ', obj);
 
 
         // 单击不同楼
@@ -207,7 +210,12 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
         } else {
           if (obj.userData.type === 'device') {
-            API.mouseClick('device', obj.userData.id, e.objects[objIndex])
+            console.log('obj.userData.id: ', obj.userData.id);
+            if (VUEDATA.isEditMode.value) {
+              bus.$emit('device', obj.userData.id)
+            } else {
+              API.mouseClick('device', obj.userData.id, e.objects[objIndex])
+            }
           }
         }
       }
@@ -226,7 +234,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
               break
             }
           }
-          
+
           if (!obj) return
 
 
@@ -279,7 +287,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
 
         if (obj.userData.type === 'device') {
-          const modelMap = DATA.deviceMap.find(e2 => e2.id === obj.userData.id)
+          const modelMap = DATA.deviceList.find(e2 => e2.id === obj.userData.id)
           const model = STATE.deviceList.children.find(e2 => e2.userData.id === obj.userData.id)
           if (modelMap && model) {
             CACHE.container.outlineObjects = []

@@ -1,5 +1,5 @@
-const deviceMap = window.deviceMap
-const deviceIdTypeMap = window.deviceIdTypeMap
+const deviceList = window.deviceList
+const deviceTypeMap = window.deviceTypeMap
 
 const stateColorMap = [
   { name: '报警', state: '1', color: '#FF4D4F', url: '2' },
@@ -18,8 +18,8 @@ const buildingArea = [
 
 
 export const DATA = {
-  deviceMap,
-  deviceIdTypeMap,
+  deviceList,
+  deviceTypeMap,
   stateColorMap,
   buildingArea
 }

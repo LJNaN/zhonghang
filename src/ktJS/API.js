@@ -351,10 +351,10 @@ function initModels() {
     if (model) {
       model.children.forEach(e => {
         STATE.deviceModel[e.name] = e.clone()
-        const map = DATA.deviceIdTypeMap.find(e2 => e2.modelName === e.name)
+        const map = DATA.deviceTypeMap.find(e2 => e2.modelName === e.name)
         if (map) {
           STATE.deviceModel[e.name].scale.set(map.scale, map.scale, map.scale)
-          STATE.deviceModel[e.name].userData.type = map.type
+          STATE.deviceModel[e.name].userData.deviceType = map.type
           STATE.deviceModel[e.name].userData.modelName = STATE.deviceModel[e.name].userData.name
           delete STATE.deviceModel[e.name].userData.name
         }
@@ -367,8 +367,8 @@ function initModels() {
 // 设备加载
 function initDevices() {
   STATE.deviceList.children = []
-  DATA.deviceMap.forEach((e, index) => {
-    const modelMap = DATA.deviceIdTypeMap.find(e2 => e2.id.includes(e.id))
+  DATA.deviceList.forEach((e, index) => {
+    const modelMap = DATA.deviceTypeMap.find(e2 => e2.id.includes(e.id))
     if (!modelMap) return
     const originModel = STATE.deviceModel[modelMap.modelName]
     if (!originModel) return
@@ -391,6 +391,7 @@ function initDevices() {
     model.userData.area = e.area
     model.userData.type = 'device'
     model.userData.group = e.group
+    model.userData.deviceType = originModel.userData.deviceType || 0
     model.visible = false
     STATE.deviceList.add(model)
 
@@ -476,9 +477,7 @@ function handleArea(area) {
     })
 
     STATE.wallList.forEach(e => {
-      if (e.name != '1dulidiban') {
-        e.visible = true
-      }
+      e.visible = true
     })
 
     STATE.deviceList.children.forEach(e => {
@@ -632,7 +631,7 @@ function isDeviceAmongTheBuilding(device, building) {
 
 // 点击设备 镜头位移
 function handleDevice(obj) {
-  const modelMap = DATA.deviceMap.find(e2 => e2.id === obj.userData.id)
+  const modelMap = DATA.deviceList.find(e2 => e2.id === obj.userData.id)
   const model = STATE.deviceList.children.find(e2 => e2.userData.id === obj.userData.id)
   if (modelMap && model) {
     window.parent.postMessage({
@@ -697,7 +696,7 @@ function mouseClick(type, id, clickVal, cameraMove = true) {
       handleDevice(clickVal.object)
     }
 
-    const deviceData = DATA.deviceMap.find(e => e.id === id)
+    const deviceData = DATA.deviceList.find(e => e.id === id)
     const typeMap = DATA.stateColorMap.find(e => e.state == STATE.deviceList.children.find(e2 => e2.userData.id === id).userData.circle.state)
     const info = {
       title: id,
@@ -826,7 +825,7 @@ class Icon {
         }
       }
     })
-    const typeMap = DATA.deviceIdTypeMap.find(e => e.id.includes(this.deviceId))
+    const typeMap = DATA.deviceTypeMap.find(e => e.id.includes(this.deviceId))
 
     const popup = new Bol3D.POI.Icon({
       url,
