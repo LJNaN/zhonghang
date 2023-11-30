@@ -10,11 +10,20 @@
     <el-table v-show="!isEdit" :data="DATA.deviceList" class="table" @row-click="clickRow" ref="table"
       highlight-current-row border>
       <el-table-column prop="id" label="ID" width="100" align="center" />
-      <el-table-column prop="rotate" label="旋转" width="60" align="center" />
+      <el-table-column label="旋转" width="78" align="center">
+        <template #default="scope">
+          {{ scope.row.rotate * 180 / 3.14 + '°' }}
+        </template>
+      </el-table-column>
       <el-table-column prop="position" label="位置" align="center" />
       <el-table-column prop="area" label="制造部" width="100" align="center" />
       <el-table-column prop="group" label="班组" width="100" align="center" />
-      <el-table-column prop="visible" label="显示" width="60" align="center" />
+      <el-table-column label="显示" width="60" align="center">
+        <template #default="scope">
+          {{ scope.row.visible ? '是' : '否' }}
+        </template>
+      </el-table-column>
+
       <el-table-column label="操作" width="60" align="center">
         <template #default="scope">
           <el-button link size="small" style="color: #476494;" @click="clickEdit(scope)">编辑</el-button>
@@ -33,19 +42,36 @@
         <el-input v-model="formData.id" />
       </el-form-item>
 
-      <el-form-item label="位置" prop="x" label-width="60">
-        <el-input v-model="formData.x" @focus="handleInput('position')" style="width:30%" />
-        <el-input v-model="formData.z" @focus="handleInput('position')" style="width:30%" />
+      <el-form-item label="班组" prop="area" label-width="60">
+        <el-input v-model="formData.area" />
+      </el-form-item>
+
+      <el-form-item label="制造部" prop="group" label-width="60">
+        <el-input v-model="formData.group" />
+      </el-form-item>
+
+      <el-form-item label="位置" prop="position" label-width="60">
+        <el-input v-model="formData.position[0]" @focus="handleInput('position')" style="width:30%" />
+        <el-input v-model="formData.position[2]" @focus="handleInput('position')" style="width:30%" />
       </el-form-item>
 
       <el-form-item label="旋转" prop="rotate" label-width="60">
         <el-input v-model="formData.rotate" @focus="handleInput('rotate')" style="width:30%" />
       </el-form-item>
 
-      <el-form-item label="显示" prop="visible" label-width="60">
+      <el-space fill style="width: 100%;">
+        <el-form-item label="缩放" prop="scale" label-width="60">
+          <el-slider v-model="formData.scale" show-input :min="10" :max="2000" @input="handleScale"
+            style="--el-slider-main-bg-color:#48576e;" />
+        </el-form-item>
+        <el-alert type="info" :closable="false" style="margin-top: -3%;">
+          <p>缩放对所有同类型设备生效</p>
+        </el-alert>
+      </el-space>
+
+      <el-form-item label="显示" prop="visible" label-width="60" style="margin-top:3%;">
         <el-switch v-model="formData.visible" @click="handleVisible" style="--el-switch-on-color:#48576e; width:30%" />
       </el-form-item>
-
 
       <el-form-item label-width="60" style="margin-top: 10%;">
         <el-button @click="isInsertMode ? insertSubmit(0) : handleSubmit(0)">保存</el-button>
@@ -63,10 +89,12 @@ import { VUEDATA } from '@/VUEDATA'
 import { DATA } from '@/ktJS/DATA'
 import { CACHE } from '@/ktJS/CACHE'
 import { STATE } from '@/ktJS/STATE'
+import { API } from '@/ktJS/API'
 import { Group, Mesh, Object3D } from 'three'
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 import bus from '@/utils/bus.js'
 import { ElMessage } from 'element-plus'
+import { objectPick } from '@vueuse/shared'
 
 let control = null            // transform 控制器
 let table = ref(null)         // 表格 ref dom
@@ -79,27 +107,30 @@ let tempModel = null          // 编辑类型时的临时模型
 interface FormData {
   deviceType: number,
   id: string,
-  x: number,
-  z: number,
   rotate: number,
+  scale: number,
   position: number[],
-  visible: boolean
+  visible: boolean,
+  group: string,
+  area: string
 }
 const formData = reactive({
   deviceType: 0,
   id: '',
-  x: 0,
-  z: 0,
   rotate: 0,
+  scale: 1,
   position: [0, 0, 0],
-  visible: true
+  visible: true,
+  group: '',
+  area: ''
 })
+console.log(formData )
 
-// 点击左下按钮
+// 点击左下进入编辑按钮按钮
 function handleEditMode(): void {
   VUEDATA.isEditMode.value = !VUEDATA.isEditMode.value
   const waijing = CACHE.container.scene.children.find((e: { name: string }) => e.name === 'waijing')
-
+  const tagGroup = CACHE.container.scene.children.find((e: { userData: { type: string } }) => e.userData.type === 'TagGroup')
 
   waijing.children.forEach((e: Mesh) => {
     if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
@@ -107,6 +138,8 @@ function handleEditMode(): void {
       e.children.forEach((e2: Mesh) => e2.visible = !VUEDATA.isEditMode.value)
     }
   })
+
+  tagGroup.visible = !VUEDATA.isEditMode.value
 
   STATE.wallList.forEach((e: Mesh) => {
     e.visible = VUEDATA.isEditMode.value
@@ -116,7 +149,6 @@ function handleEditMode(): void {
     e.visible = VUEDATA.isEditMode.value
   })
 }
-
 
 // 点击编辑按钮
 function clickEdit(scope: { row: FormData }): void {
@@ -134,10 +166,13 @@ function clickEdit(scope: { row: FormData }): void {
   const typeMap = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(scope.row.id))
   formData.deviceType = typeMap.type || '未知'
   formData.id = scope.row.id
-  formData.x = scope.row.position[0]
-  formData.z = scope.row.position[2]
-  formData.rotate = scope.row.rotate
+  formData.position[0] = scope.row.position[0]
+  formData.position[2] = scope.row.position[2]
+  formData.rotate = scope.row.rotate * 180 / 3.14
   formData.visible = scope.row.visible
+  formData.group = scope.row.group
+  formData.area = scope.row.area
+  formData.scale = typeMap.scale
 
   oldVal = JSON.parse(JSON.stringify(formData))
   oldModel = model
@@ -153,7 +188,7 @@ function handleSubmit(type: number): void {
 
     // 新模型
     if (tempModel) {
-      const index = DATA.deviceMap.value.findIndex(e => e.type === oldModel.userData.deviceType && e.id === oldModel.userData.id)
+      const index = DATA.deviceMap.value.findIndex((e: { type: any; id: any }) => e.type === oldModel.userData.deviceType && e.id === oldModel.userData.id)
       if (index >= 0) {
         DATA.deviceMap.value.splice(index, 1)
       }
@@ -169,9 +204,9 @@ function handleSubmit(type: number): void {
 
       obj.userData.deviceType = formData.deviceType
       obj.userData.id = formData.id
-      obj.traverse(e => {
+      obj.traverse((e: any) => {
         if (e.isMesh) {
-          e.userData.type = '机台'
+          e.userData.type = 'device'
           e.userData.deviceType = formData.deviceType
           e.userData.id = formData.id
           CACHE.container.clickObjects.push(e)
@@ -180,23 +215,29 @@ function handleSubmit(type: number): void {
 
       // 模型没变
     } else {
-      const data = DATA.deviceMap.value.find(e => e.type === oldModel.userData.deviceType && e.id === oldModel.userData.id)
+      const data = DATA.deviceList.find((e: FormData) => e.id === oldModel.userData.id)
 
       if (data) {
         data.id = formData.id
-        data.type = formData.deviceType
-        data.position[0] = Number(formData.x.toFixed(1))
-        data.position[2] = Number(formData.z.toFixed(1))
-        data.rotate = formData.rotate
+        data.position[0] = Number(formData.position[0].toFixed(1))
+        data.position[2] = Number(formData.position[2].toFixed(1))
+        data.rotate = formData.rotate / 180 * 3.14
         data.visible = formData.visible
+        data.group = formData.group
+        data.area = formData.area
       }
 
-      obj.userData.deviceType = formData.deviceType
+      const map = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(obj.userData.id))
+
+      if (map) {
+        map.scale = formData.scale
+      }
+
       obj.userData.id = formData.id
-      obj.traverse(e => {
+      obj.traverse((e: any) => {
         if (e.isMesh) {
-          e.userData.type = '机台'
-          e.userData.deviceType = formData.deviceType
+
+          e.userData.type = 'device'
           e.userData.id = formData.id
         }
       })
@@ -206,10 +247,12 @@ function handleSubmit(type: number): void {
   } else if (type === 1) {
     control.removeEventListener("change", changeListener)
     control.detach()
-    oldModel.position.x = oldVal.x
-    oldModel.position.z = oldVal.z
-    oldModel.rotation.y = oldVal.rotate * Math.PI / 180
+    oldModel.position.x = oldVal.position[0]
+    oldModel.position.z = oldVal.position[2]
+    oldModel.rotation.y = oldVal.rotate
     oldModel.visible = oldVal.visible
+    oldModel.group = oldVal.group
+    oldModel.area = oldVal.area
     if (tempModel) {
       tempModel.parent.remove(tempModel)
     }
@@ -221,9 +264,9 @@ function handleSubmit(type: number): void {
     CACHE.container.outlineObjects = []
 
     oldModel.parent.remove(oldModel)
-    const index = DATA.deviceMap.value.findIndex(e => e.type === oldModel.userData.deviceType && e.id === oldModel.userData.id)
+    const index = DATA.deviceList.findIndex((e: FormData) => e.id === oldModel.userData.id)
     if (index >= 0) {
-      DATA.deviceMap.value.splice(index, 1)
+      DATA.deviceList.splice(index, 1)
     }
 
     oldModel = null
@@ -242,7 +285,7 @@ function insertSubmit(type: number): void {
 
 // 切换显示隐藏
 function handleVisible(): void {
-  if (VUEDATA.isEditMode.value) {
+  if (tempModel) {
     tempModel.visible = formData.visible
 
   } else {
@@ -250,7 +293,7 @@ function handleVisible(): void {
   }
 }
 
-// 点击 position 或 rotate 栏
+// 点击 position 或 rotate 栏 
 function handleInput(type: string): void {
   if (type === 'position') {
     control.setMode('translate')
@@ -263,24 +306,125 @@ function handleInput(type: string): void {
     control.showX = false
     control.showY = true
     control.showZ = false
+
+  }
+}
+
+// 点击 scale 栏
+function handleScale(val: number): void {
+  if (tempModel) {
+
+  } else if (oldModel) {
+    const map = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(formData.id))
+    map.id.forEach((e: string) => {
+      const model = STATE.deviceList.children.find((item: Mesh | Group) => item.userData.id === e)
+      if (model) {
+        model.scale.set(val, val, val)
+      }
+    })
   }
 }
 
 // 点击表格的某一行
-function clickRow(e: any): void {
+function clickRow(e: FormData): void {
 
+  CACHE.container.outlineObjects = []
+  const item = DATA.deviceList.find((e2: FormData) => e2.id === e.id)
+  if (!item) return
+
+  const obj = STATE.deviceList.children.find((e2: Mesh | Group) => e2.userData.id === item.id)
+  if (!obj) return
+
+  obj.traverse((e2: any) => {
+    if (e2.isMesh) {
+      CACHE.container.outlineObjects.push(e2)
+    }
+  })
+
+  const cameraPosition = API.computedCameraFocusPosition(obj.position)
+  const cameraState = {
+    position: cameraPosition,
+    target: obj.position
+  }
+  API.cameraAnimation({ cameraState })
 }
 
 // 设备类型改变
 function selectChange(e: any): void {
 
-}
+  // if (e === oldVal.deviceType) return
 
+  // if (tempModel) {
+  //   if (isInsertMode.value) {
+  //     control.removeEventListener("change", changeListener)
+  //     control.detach()
+  //   }
+  //   tempModel.parent.remove(tempModel)
+  //   tempModel = null
+  // }
+
+  // if (isInsertMode.value) {
+  //   const originModel = STATE.sceneList[e]
+
+  //   if (!originModel) return
+
+  //   const model = originModel.clone()
+  //   model.position.set(formData.x, 0, formData.z)
+  //   model.rotation.y = Math.PI / 180 * formData.rotate
+  //   model.visible = true
+  //   CACHE.container.scene.add(model)
+  //   CACHE.container.outlineObjects = []
+  //   model.traverse(e => {
+  //     if (e.isMesh) {
+  //       CACHE.container.outlineObjects.push(e)
+  //     }
+  //   })
+
+  //   if (control) {
+
+  //     control.attach(model)
+  //     control.object = model
+  //   } else {
+  //     const controls = editorControls(model)
+  //     control = controls
+  //   }
+  //   control.addEventListener("change", changeListener)
+
+  //   formData.id = e + '_1'
+  //   formData.x = model.position.x
+  //   formData.z = model.position.z
+  //   formData.rotate = model.rotation.y
+  //   formData.visible = true
+
+  //   oldVal = JSON.parse(JSON.stringify(formData))
+  //   tempModel = model
+
+
+  // } else {
+
+  //   oldModel.visible = false
+  //   const model = STATE.sceneList[e].clone()
+  //   model.position.x = formData.x
+  //   model.position.z = formData.z
+  //   model.rotation.y = formData.rotate * Math.PI / 180
+  //   model.visible = true
+  //   tempModel = model
+
+  //   CACHE.container.scene.add(model)
+  //   CACHE.container.outlineObjects = []
+  //   model.traverse(e => {
+  //     if (e.isMesh) {
+  //       CACHE.container.outlineObjects.push(e)
+  //     }
+  //   })
+  //   control.object = model
+  // }
+}
 
 // 点击新增按钮
 function clickInsert(): void {
-  // isInsertMode.value = true
-  // isEdit.value = true
+  isInsertMode.value = true
+  isEdit.value = true
 
   // const originModel = STATE.sceneList[modelList[0]?.modelName]
   // if (!originModel) return
@@ -330,13 +474,11 @@ function clickOutput(): void {
   link.click()
 }
 
-
-
 // transform
 function editorControls(mesh: Object3D): TransformControls {
   // CACHE.container.bloomPass.enabled = false
   const controls = CACHE.container.transformControl;
-  controls.translationSnap = 0.1
+  controls.translationSnap = 1
   controls.rotationSnap = Math.PI / 8
   controls.showY = false
   controls.attach(mesh);
@@ -344,9 +486,9 @@ function editorControls(mesh: Object3D): TransformControls {
   return controls
 }
 
-function changeListener() {
-  formData.x = Number(control.object.position.x.toFixed(1))
-  formData.z = Number(control.object.position.z.toFixed(1))
+function changeListener(): void {
+  formData.position[0] = Number(control.object.position.x.toFixed(1))
+  formData.position[2] = Number(control.object.position.z.toFixed(1))
   formData.rotate = Number((control.object.rotation.y * 180 / Math.PI).toFixed(1))
 }
 
@@ -355,7 +497,6 @@ function changeListener() {
 
 onMounted(() => {
   bus.$on('device', (id: string) => {
-  console.log('id: ', id);
     if (id) {
       if (isEdit.value) {
         ElMessage({

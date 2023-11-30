@@ -191,7 +191,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
 
         // 单击不同楼
-        if (STATE.currentScene.value === 'main') {
+        if (STATE.currentScene.value === 'main' && !VUEDATA.isEditMode.value) {
           if (['2#', '17#', '5#', '3#'].includes(obj.userData.title)) {
             API.mouseClick('building', obj.userData.title, e.objects[objIndex])
 
@@ -208,14 +208,14 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             API.mouseClick('building', '3#', e.objects[objIndex])
           }
 
-        } else {
-          if (obj.userData.type === 'device') {
-            console.log('obj.userData.id: ', obj.userData.id);
-            if (VUEDATA.isEditMode.value) {
-              bus.$emit('device', obj.userData.id)
-            } else {
-              API.mouseClick('device', obj.userData.id, e.objects[objIndex])
-            }
+        }
+
+        if (obj.userData.type === 'device') {
+          if (VUEDATA.isEditMode.value) {
+            bus.$emit('device', obj.userData.id)
+
+          } else {
+            API.mouseClick('device', obj.userData.id, e.objects[objIndex])
           }
         }
       }
@@ -223,7 +223,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
       events.ondblclick = (e) => {
         // 左键双击
         if (e.event.button === 0) {
-          if (!e.objects.length) {
+          if (VUEDATA.isEditMode.value || !e.objects.length) {
             return
           }
 
@@ -272,7 +272,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
 
       events.onhover = (e) => {
-        if (!e.objects.length) {
+        if (VUEDATA.isEditMode.value || !e.objects.length) {
           return
         }
 

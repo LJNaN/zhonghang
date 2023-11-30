@@ -9,7 +9,7 @@ import { getCollectData } from '@/axios/api.ts'
 // 相机动画（传指定state）
 const targetPos = new Bol3D.Vector3()
 const pos = new Bol3D.Vector3()
-function cameraAnimation({ cameraState, callback, delayTime = 0, duration = 800 }) {
+function cameraAnimation({ cameraState, callback = () => { }, delayTime = 0, duration = 800 }) {
   targetPos.set(cameraState.target.x, cameraState.target.y, cameraState.target.z)
   pos.set(cameraState.position.x, cameraState.position.y, cameraState.position.z)
 
@@ -34,6 +34,7 @@ function cameraAnimation({ cameraState, callback, delayTime = 0, duration = 800 
       },
       duration
     )
+    .easing(Bol3D.TWEEN.Easing.Quadratic.InOut)
     .onUpdate(() => { })
     .onComplete(() => {
       count++
@@ -56,6 +57,7 @@ function cameraAnimation({ cameraState, callback, delayTime = 0, duration = 800 
       },
       duration
     )
+    .easing(Bol3D.TWEEN.Easing.Quadratic.InOut)
     .onUpdate(() => { })
     .onComplete(() => {
       count++
@@ -350,19 +352,55 @@ function initModels() {
     const model = CACHE.container.scene.children.find(e => e.name === name)
     if (model) {
       model.children.forEach(e => {
-        STATE.deviceModel[e.name] = e.clone()
+        const cloneModel = e.clone()
+        STATE.deviceModel.add(cloneModel)
         const map = DATA.deviceTypeMap.find(e2 => e2.modelName === e.name)
         if (map) {
-          STATE.deviceModel[e.name].scale.set(map.scale, map.scale, map.scale)
-          STATE.deviceModel[e.name].userData.deviceType = map.type
-          STATE.deviceModel[e.name].userData.modelName = STATE.deviceModel[e.name].userData.name
-          delete STATE.deviceModel[e.name].userData.name
+          e.scale.set(map.scale, map.scale, map.scale)
+          cloneModel.scale.set(map.scale, map.scale, map.scale)
+          cloneModel.userData.deviceType = map.type
+          cloneModel.userData.modelName = cloneModel.userData.name
+          delete cloneModel.userData.name
+        } else {
+          console.log(e)
         }
       })
     }
   })
+
+  initDeviceGround()
 }
 
+// 加载把设备摆上去 在编辑器里面提供选择的区域
+function initDeviceGround() {
+  const width = 1800
+  const height = 1400
+  const spacingX = width / Math.ceil(Math.sqrt(STATE.deviceModel.children.length))
+  const spacingY = height / Math.ceil(Math.sqrt(STATE.deviceModel.children.length))
+  let currentX = spacingX / 2 - width / 2
+  let currentY = spacingY / 2 - height / 2
+  STATE.deviceModel.children.forEach(e => {
+    e.position.x = currentX
+    e.position.z = currentY
+
+    currentX += spacingX
+    if (currentX > (width / 2)) {
+      currentX = spacingX / 2 - width / 2
+      currentY += spacingY
+    }
+  })
+  STATE.deviceModel.position.y = 500
+  CACHE.container.scene.add(STATE.deviceModel)
+
+  const planeM = new Bol3D.MeshBasicMaterial({ color: "#48576e" })
+  const planeG = new Bol3D.PlaneGeometry(2000, 2000)
+  const plane = new Bol3D.Mesh(planeG, planeM)
+  plane.name = 'deviceGround'
+  plane.position.y = 500
+  plane.material.side = 2
+  plane.rotation.x = -Math.PI / 2
+  CACHE.container.scene.add(plane)
+}
 
 // 设备加载
 function initDevices() {
@@ -370,7 +408,7 @@ function initDevices() {
   DATA.deviceList.forEach((e, index) => {
     const modelMap = DATA.deviceTypeMap.find(e2 => e2.id.includes(e.id))
     if (!modelMap) return
-    const originModel = STATE.deviceModel[modelMap.modelName]
+    const originModel = STATE.deviceModel.children.find(e2 => e2.userData.modelName === modelMap.modelName)
     if (!originModel) return
     const model = originModel.clone()
 
@@ -384,9 +422,9 @@ function initDevices() {
     })
 
     model.position.set(e.position[0], e.position[1], e.position[2])
-    model.rotation.x = e.rotate[0]
-    model.rotation.y = e.rotate[1]
-    model.rotation.z = e.rotate[2]
+    model.rotation.x = 0
+    model.rotation.y = e.rotate
+    model.rotation.z = 0
     model.userData.id = e.id
     model.userData.area = e.area
     model.userData.type = 'device'

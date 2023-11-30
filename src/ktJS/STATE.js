@@ -8,7 +8,7 @@ const initialState = {
   target: { x: -921.59, y: 0, z: 879.28 }
 }
 
-const deviceModel = {}
+const deviceModel = new Bol3D.Group()
 
 // main 主场景
 // 2# 17# 5# 3# 各楼
