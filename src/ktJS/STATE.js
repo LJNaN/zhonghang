@@ -22,6 +22,9 @@ const wallList = []
 
 const clock = new Bol3D.Clock()
 
+const isEditMode = ref(false) // 是否在编辑模式
+const isGroundPick = ref(false) // 是否展示所有设备 在进行选择
+
 export const STATE = {
   initialState,
   currentScene,
@@ -30,5 +33,7 @@ export const STATE = {
   currentPopup,
   wallList,
   clock,
-  deviceList
+  deviceList,
+  isEditMode,
+  isGroundPick
 }

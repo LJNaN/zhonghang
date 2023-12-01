@@ -187,11 +187,11 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           }
         }
         if (!obj) return
-        console.log('obj: ', obj);
+        
 
 
         // 单击不同楼
-        if (STATE.currentScene.value === 'main' && !VUEDATA.isEditMode.value) {
+        if (STATE.currentScene.value === 'main' && !STATE.isEditMode.value) {
           if (['2#', '17#', '5#', '3#'].includes(obj.userData.title)) {
             API.mouseClick('building', obj.userData.title, e.objects[objIndex])
 
@@ -211,19 +211,24 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
         }
 
         if (obj.userData.type === 'device') {
-          if (VUEDATA.isEditMode.value) {
+          if (STATE.isEditMode.value) {
             bus.$emit('device', obj.userData.id)
-
+            
           } else {
             API.mouseClick('device', obj.userData.id, e.objects[objIndex])
           }
+          
+          // 在ground pick模式进行选择的时候
+        } else if (obj.userData.type === 'originModel') {
+          bus.$emit('originModel', obj.userData.modelName)
+          
         }
       }
 
       events.ondblclick = (e) => {
         // 左键双击
         if (e.event.button === 0) {
-          if (VUEDATA.isEditMode.value || !e.objects.length) {
+          if (STATE.isEditMode.value || !e.objects.length) {
             return
           }
 
@@ -272,7 +277,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
 
       events.onhover = (e) => {
-        if (VUEDATA.isEditMode.value || !e.objects.length) {
+        if (STATE.isEditMode.value || !e.objects.length) {
           return
         }
 

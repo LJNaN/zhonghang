@@ -1,9 +1,9 @@
 <template>
-  <div class="btn" @click="handleEditMode">{{ VUEDATA.isEditMode.value ? '退出编辑模式' : '进入编辑模式' }}</div>
+  <div class="btn" @click="handleEditMode">{{ STATE.isEditMode.value ? '退出编辑模式' : '进入编辑模式' }}</div>
 
-  <div class="editor">
+  <div class="editor" v-show="STATE.isEditMode.value">
     <div class="output" v-show="!isEdit">
-      <el-button @click="clickInsert">新增</el-button>
+      <!-- <el-button @click="clickInsert">新增</el-button> -->
       <el-button @click="clickOutput">导出配置(替换"根目录/data/deviceList.js")</el-button>
     </div>
 
@@ -33,47 +33,50 @@
 
     <el-form v-show="isEdit" class="form" :model="formData">
       <el-form-item label="类型" prop="deviceType" label-width="60">
-        <el-select v-model="formData.deviceType" @change="selectChange">
-          <el-option v-for="item in DATA.deviceTypeMap" :label="'与 ' + item.modelName + ' 相同'" :value="item.type" />
+        <el-select v-model="formData.deviceType" @change="selectChange" :disabled="isGroundPick">
+          <el-option v-for="item in DATA.deviceTypeMap" :label="item.type" :value="item.type" />
         </el-select>
+        <el-button @click="handleGroundPick" type="primary"
+          style="--el-button-bg-color:#48576e;--el-button-border-color:#48576e;--el-button-hover-bg-color:#667b9b;--el-button-hover-border-color:#667b9b;">{{
+            isGroundPick ? '就选这个 隐藏所有设备' : '展示所有设备' }}</el-button>
       </el-form-item>
 
-      <el-form-item label="ID" prop="id" label-width="60">
+      <el-form-item label="ID" prop="id" label-width="60" v-show="!isGroundPick">
         <el-input v-model="formData.id" />
       </el-form-item>
 
-      <el-form-item label="班组" prop="area" label-width="60">
+      <el-form-item label="班组" prop="area" label-width="60" v-show="!isGroundPick">
         <el-input v-model="formData.area" />
       </el-form-item>
 
-      <el-form-item label="制造部" prop="group" label-width="60">
+      <el-form-item label="制造部" prop="group" label-width="60" v-show="!isGroundPick">
         <el-input v-model="formData.group" />
       </el-form-item>
 
-      <el-form-item label="位置" prop="position" label-width="60">
+      <el-form-item label="位置" prop="position" label-width="60" v-show="!isGroundPick">
         <el-input v-model="formData.position[0]" @focus="handleInput('position')" style="width:30%" />
         <el-input v-model="formData.position[2]" @focus="handleInput('position')" style="width:30%" />
       </el-form-item>
 
-      <el-form-item label="旋转" prop="rotate" label-width="60">
+      <el-form-item label="旋转" prop="rotate" label-width="60" v-show="!isGroundPick">
         <el-input v-model="formData.rotate" @focus="handleInput('rotate')" style="width:30%" />
       </el-form-item>
 
-      <el-space fill style="width: 100%;">
+      <el-space fill style="width: 100%;" v-show="!isGroundPick">
         <el-form-item label="缩放" prop="scale" label-width="60">
           <el-slider v-model="formData.scale" show-input :min="10" :max="2000" @input="handleScale"
             style="--el-slider-main-bg-color:#48576e;" />
         </el-form-item>
         <el-alert type="info" :closable="false" style="margin-top: -3%;">
-          <p>缩放对所有同类型设备生效</p>
+          <p>缩放对所有同类型设备生效。更改设备类型后请保存提交，重新进入编辑模式生效</p>
         </el-alert>
       </el-space>
 
-      <el-form-item label="显示" prop="visible" label-width="60" style="margin-top:3%;">
+      <el-form-item label="显示" prop="visible" label-width="60" style="margin-top:3%;" v-show="!isGroundPick">
         <el-switch v-model="formData.visible" @click="handleVisible" style="--el-switch-on-color:#48576e; width:30%" />
       </el-form-item>
 
-      <el-form-item label-width="60" style="margin-top: 10%;">
+      <el-form-item label-width="60" style="margin-top: 10%;" v-show="!isGroundPick">
         <el-button @click="isInsertMode ? insertSubmit(0) : handleSubmit(0)">保存</el-button>
         <el-button @click="isInsertMode ? insertSubmit(1) : handleSubmit(1)">返回(不保存)</el-button>
         <el-button type="danger" @click="handleSubmit(2)" v-show="!isInsertMode">删除</el-button>
@@ -99,6 +102,7 @@ import { objectPick } from '@vueuse/shared'
 let control = null            // transform 控制器
 let table = ref(null)         // 表格 ref dom
 let isEdit = ref(false)       // 是否进入编辑模式
+let isGroundPick = ref(false) // 是否进入了广场选设备模式
 let isInsertMode = ref(false) // 新增模式
 let oldVal = null             // 原始模型的数据 备份
 let oldModel = null           // 原始模型 备份
@@ -124,30 +128,69 @@ const formData = reactive({
   group: '',
   area: ''
 })
-console.log(formData )
 
 // 点击左下进入编辑按钮按钮
 function handleEditMode(): void {
-  VUEDATA.isEditMode.value = !VUEDATA.isEditMode.value
+  STATE.isEditMode.value = !STATE.isEditMode.value
   const waijing = CACHE.container.scene.children.find((e: { name: string }) => e.name === 'waijing')
   const tagGroup = CACHE.container.scene.children.find((e: { userData: { type: string } }) => e.userData.type === 'TagGroup')
 
   waijing.children.forEach((e: Mesh) => {
     if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
-      e.visible = !VUEDATA.isEditMode.value
-      e.children.forEach((e2: Mesh) => e2.visible = !VUEDATA.isEditMode.value)
+      e.visible = !STATE.isEditMode.value
+      e.children.forEach((e2: Mesh) => e2.visible = !STATE.isEditMode.value)
     }
   })
 
-  tagGroup.visible = !VUEDATA.isEditMode.value
+  tagGroup.visible = !STATE.isEditMode.value
 
   STATE.wallList.forEach((e: Mesh) => {
-    e.visible = VUEDATA.isEditMode.value
+    e.visible = STATE.isEditMode.value
   })
 
   STATE.deviceList.children.forEach((e: Mesh) => {
-    e.visible = VUEDATA.isEditMode.value
+    e.visible = STATE.isEditMode.value
   })
+
+  if (STATE.isEditMode.value) {
+    bus.$on('device', (id: string) => {
+
+
+      if (id) {
+        if (isEdit.value) {
+          ElMessage({
+            message: '请先完成当前编辑',
+            type: 'warning',
+          })
+          return
+        }
+
+        CACHE.container.outlineObjects = []
+        const group = STATE.deviceList.children.find((e: Mesh | Group) => e.userData.id === id)
+        if (!group) return
+
+        group.traverse((e: any) => {
+          if (e.isMesh) {
+            CACHE.container.outlineObjects.push(e)
+          }
+        })
+
+        // 操，具体细节我就不说了，功能是双击模型，然后 element table 进行对应跳转
+        const tableBody = table.value.$el.children[0].children[2].children[0].children[0].children[0].children[0].children[1]
+        for (let i = 0; i < tableBody.children.length; i++) {
+          if (tableBody.children[i].children[0].children[0].innerText === group.userData.id) {
+            const rowIndex = DATA.deviceList.findIndex((e: { id: string }) => e.id === group.userData.id)
+            table.value.setCurrentRow(DATA.deviceList[rowIndex])
+            table.value.scrollTo({ top: tableBody.children[i].offsetTop, behavior: 'smooth' })
+            break
+          }
+        }
+      }
+    })
+
+  } else {
+    bus.$off('device')
+  }
 }
 
 // 点击编辑按钮
@@ -188,30 +231,55 @@ function handleSubmit(type: number): void {
 
     // 新模型
     if (tempModel) {
-      const index = DATA.deviceMap.value.findIndex((e: { type: any; id: any }) => e.type === oldModel.userData.deviceType && e.id === oldModel.userData.id)
+      // 删除 deviceList 上的旧数据
+      const index = DATA.deviceList.findIndex((e: { id: string }) => e.id === oldVal.id)
       if (index >= 0) {
-        DATA.deviceMap.value.splice(index, 1)
+        DATA.deviceList.splice(index, 1)
       }
-      oldModel.parent.remove(oldModel)
-      oldModel = null
-      DATA.deviceMap.value.push({
+
+      if (oldModel) {
+        oldModel.parent.remove(oldModel)
+        oldModel = null
+      }
+
+      DATA.deviceList.push({
         id: formData.id,
         type: formData.deviceType,
-        position: [obj.position.x, obj.position.y, obj.position.z],
-        rotate: formData.rotate,
+        position: [formData.position[0], 0, formData.position[2]],
+        rotate: formData.rotate / 180 * 3.14,
+        area: formData.area,
+        group: formData.group,
         visible: formData.visible
       })
 
-      obj.userData.deviceType = formData.deviceType
-      obj.userData.id = formData.id
-      obj.traverse((e: any) => {
+      tempModel.parent.remove(tempModel)
+      STATE.deviceList.add(tempModel)
+
+      tempModel.userData.deviceType = formData.deviceType
+      tempModel.userData.id = formData.id
+      tempModel.userData.area = formData.area
+      tempModel.userData.group = formData.group
+      tempModel.traverse((e: any) => {
         if (e.isMesh) {
+
           e.userData.type = 'device'
           e.userData.deviceType = formData.deviceType
           e.userData.id = formData.id
+          e.userData.area = formData.area
+          e.userData.group = formData.group
           CACHE.container.clickObjects.push(e)
         }
       })
+
+      const typeMap = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(formData.id))
+      if (typeMap) {
+        const index = typeMap.id.findIndex((e: string) => e === formData.id)
+        typeMap.id.splice(index, 1)
+      }
+
+      const newTypeMap = DATA.deviceTypeMap.find((e: { type: number }) => e.type === formData.deviceType)
+      newTypeMap.id.push(formData.id)
+
 
       // 模型没变
     } else {
@@ -350,75 +418,137 @@ function clickRow(e: FormData): void {
 }
 
 // 设备类型改变
-function selectChange(e: any): void {
+function selectChange(type: number): void {
+  if (type === oldVal.deviceType) return
 
-  // if (e === oldVal.deviceType) return
+  const map = DATA.deviceTypeMap.find((e: { type: number }) => e.type === type)
+  if (!map) return
 
-  // if (tempModel) {
-  //   if (isInsertMode.value) {
-  //     control.removeEventListener("change", changeListener)
-  //     control.detach()
-  //   }
-  //   tempModel.parent.remove(tempModel)
-  //   tempModel = null
-  // }
+  if (tempModel) {
+    if (isInsertMode.value) {
+      control.removeEventListener("change", changeListener)
+      control.detach()
+    }
+    tempModel.parent.remove(tempModel)
+    tempModel = null
+  }
 
-  // if (isInsertMode.value) {
-  //   const originModel = STATE.sceneList[e]
+  if (isInsertMode.value) {
+    const originModel = STATE.sceneList[type]
 
-  //   if (!originModel) return
+    if (!originModel) return
 
-  //   const model = originModel.clone()
-  //   model.position.set(formData.x, 0, formData.z)
-  //   model.rotation.y = Math.PI / 180 * formData.rotate
-  //   model.visible = true
-  //   CACHE.container.scene.add(model)
-  //   CACHE.container.outlineObjects = []
-  //   model.traverse(e => {
-  //     if (e.isMesh) {
-  //       CACHE.container.outlineObjects.push(e)
-  //     }
-  //   })
+    const model = originModel.clone()
+    model.position.set(formData.position[0], 0, formData.position[2])
+    model.rotation.y = Math.PI / 180 * formData.rotate
+    model.visible = true
+    CACHE.container.scene.add(model)
+    CACHE.container.outlineObjects = []
+    model.traverse((e: any) => {
+      if (e.isMesh) {
+        CACHE.container.outlineObjects.push(e)
+      }
+    })
 
-  //   if (control) {
+    if (control) {
 
-  //     control.attach(model)
-  //     control.object = model
-  //   } else {
-  //     const controls = editorControls(model)
-  //     control = controls
-  //   }
-  //   control.addEventListener("change", changeListener)
+      control.attach(model)
+      control.object = model
+    } else {
+      const controls = editorControls(model)
+      control = controls
+    }
+    control.addEventListener("change", changeListener)
 
-  //   formData.id = e + '_1'
-  //   formData.x = model.position.x
-  //   formData.z = model.position.z
-  //   formData.rotate = model.rotation.y
-  //   formData.visible = true
+    // formData.id = e + '_1'
+    formData.position[0] = model.position.x
+    formData.position[2] = model.position.z
+    formData.rotate = model.rotation.y
+    formData.visible = true
 
-  //   oldVal = JSON.parse(JSON.stringify(formData))
-  //   tempModel = model
+    oldVal = JSON.parse(JSON.stringify(formData))
+    tempModel = model
 
 
-  // } else {
+  } else {
+    oldModel.visible = false
+    const model = STATE.deviceModel.children.find(e2 => e2.name === map.modelName).clone()
+    model.position.x = formData.position[0]
+    model.position.z = formData.position[2]
+    model.rotation.y = formData.rotate * 3.14 / 180
+    model.visible = true
+    model.scale.set(map.scale, map.scale, map.scale)
+    tempModel = model
 
-  //   oldModel.visible = false
-  //   const model = STATE.sceneList[e].clone()
-  //   model.position.x = formData.x
-  //   model.position.z = formData.z
-  //   model.rotation.y = formData.rotate * Math.PI / 180
-  //   model.visible = true
-  //   tempModel = model
+    CACHE.container.scene.add(model)
+    CACHE.container.outlineObjects = []
+    model.traverse((e: any) => {
+      if (e.isMesh) {
+        CACHE.container.outlineObjects.push(e)
+      }
+    })
+    control.object = model
+  }
+}
 
-  //   CACHE.container.scene.add(model)
-  //   CACHE.container.outlineObjects = []
-  //   model.traverse(e => {
-  //     if (e.isMesh) {
-  //       CACHE.container.outlineObjects.push(e)
-  //     }
-  //   })
-  //   control.object = model
-  // }
+// 显示 / 隐藏所有设备
+function handleGroundPick(): void {
+  isGroundPick.value = !isGroundPick.value
+  CACHE.container.transformControl.visible = !isGroundPick.value
+
+  if (isGroundPick.value) {
+    // 保存一下视角
+    CACHE.groupPickCameraState = {
+      camera: CACHE.container.orbitCamera.position.clone(),
+      target: CACHE.container.orbitControls.target.clone()
+    }
+
+    CACHE.container.orbitCamera.position.set(-65.6431, 1218.8404, -854.6625)
+    CACHE.container.orbitControls.target.set(-59.6002, 0, 95.4743)
+    CACHE.container.orbitControls.maxPolarAngle = 1.2
+
+
+    bus.$on('originModel', (modelName: string) => {
+      const typeMap = DATA.deviceTypeMap.find((e: { modelName: string }) => e.modelName === modelName)
+      const model = STATE.deviceModel.children.find(e => e.userData.modelName === modelName)
+
+      // 插个队
+      setTimeout(() => {
+        CACHE.container.outlineObjects = []
+        model.traverse((e: any) => {
+          if (e.isMesh) {
+            CACHE.container.outlineObjects.push(e)
+          }
+        })
+      }, 0)
+
+      if (typeMap) {
+        formData.deviceType = typeMap.type
+
+      } else {
+        const newType = {
+          type: Math.max(...DATA.deviceTypeMap.map((e: { type: number }) => e.type)) + 1,
+          modelName,
+          id: [modelName],
+          scale: 300
+        }
+        DATA.deviceTypeMap.push(newType)
+        formData.deviceType = newType.type
+      }
+
+      selectChange(formData.deviceType)
+    })
+    STATE.deviceModel.visible = true
+
+  } else {
+    CACHE.container.orbitCamera.position.set(CACHE.groupPickCameraState.camera.x, CACHE.groupPickCameraState.camera.y, CACHE.groupPickCameraState.camera.z)
+    CACHE.container.orbitControls.target.set(CACHE.groupPickCameraState.target.x, CACHE.groupPickCameraState.target.y, CACHE.groupPickCameraState.target.z)
+    CACHE.container.orbitControls.maxPolarAngle = Math.PI / 2
+    CACHE.groupPickCameraState = {}
+    bus.$off('originModel')
+    STATE.deviceModel.visible = false
+  }
+
 }
 
 // 点击新增按钮
@@ -468,9 +598,17 @@ function clickInsert(): void {
 // 点击导出按钮
 function clickOutput(): void {
   const link = document.createElement('a')
-  link.download = 'deviceList.js'
+  link.download = 'deviceInfo.js'
   const outDeviceList = DATA.deviceList
-  link.href = `data:text/plain,const deviceList = ${JSON.stringify(outDeviceList)}\n window.deviceList = deviceList`
+  const outDeviceTypeMap = DATA.deviceTypeMap
+  link.href = `
+    data:text/plain,
+    const deviceList = ${JSON.stringify(outDeviceList)}\n
+    window.deviceList = deviceList
+    
+    const deviceTypeMap = ${JSON.stringify(outDeviceTypeMap)}\n
+    window.deviceTypeMap = deviceTypeMap
+    `
   link.click()
 }
 
@@ -496,38 +634,7 @@ function changeListener(): void {
 
 
 onMounted(() => {
-  bus.$on('device', (id: string) => {
-    if (id) {
-      if (isEdit.value) {
-        ElMessage({
-          message: '请先完成当前编辑',
-          type: 'warning',
-        })
-        return
-      }
 
-      CACHE.container.outlineObjects = []
-      const group = STATE.deviceList.children.find((e: Mesh | Group) => e.userData.id === id)
-      if (!group) return
-
-      group.traverse((e: any) => {
-        if (e.isMesh) {
-          CACHE.container.outlineObjects.push(e)
-        }
-      })
-
-      // 操，具体细节我就不说了，功能是双击模型，然后 element table 进行对应跳转
-      const tableBody = table.value.$el.children[0].children[2].children[0].children[0].children[0].children[0].children[1]
-      for (let i = 0; i < tableBody.children.length; i++) {
-        if (tableBody.children[i].children[0].children[0].innerText === group.userData.id) {
-          const rowIndex = DATA.deviceList.findIndex((e: { id: string }) => e.id === group.userData.id)
-          table.value.setCurrentRow(DATA.deviceList[rowIndex])
-          table.value.scrollTo({ top: tableBody.children[i].offsetTop, behavior: 'smooth' })
-          break
-        }
-      }
-    }
-  })
 })
 
 </script>
@@ -561,14 +668,16 @@ onMounted(() => {
   top: 20%;
   width: 32%;
   height: 60vh;
-  pointer-events: all;
+  pointer-events: none;
 
   .output {
+    pointer-events: all;
     position: absolute;
     top: -10%;
   }
 
   .table {
+    pointer-events: all;
     height: 100%;
   }
 

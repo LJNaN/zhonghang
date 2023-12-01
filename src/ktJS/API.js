@@ -351,6 +351,7 @@ function initModels() {
   modelList.forEach(name => {
     const model = CACHE.container.scene.children.find(e => e.name === name)
     if (model) {
+      model.visible = false
       model.children.forEach(e => {
         const cloneModel = e.clone()
         STATE.deviceModel.add(cloneModel)
@@ -361,9 +362,16 @@ function initModels() {
           cloneModel.userData.deviceType = map.type
           cloneModel.userData.modelName = cloneModel.userData.name
           delete cloneModel.userData.name
-        } else {
-          console.log(e)
         }
+
+        cloneModel.traverse(e2 => {
+          if (e2.isMesh) {
+            CACHE.container.clickObjects.push(e2)
+            e2.userData.type = 'originModel'
+            e2.userData.deviceType = map?.type || 0
+            e2.userData.modelName = cloneModel.userData.modelName
+          }
+        })
       })
     }
   })
@@ -373,7 +381,7 @@ function initModels() {
 
 // 加载把设备摆上去 在编辑器里面提供选择的区域
 function initDeviceGround() {
-  const width = 1800
+  const width = 2000
   const height = 1400
   const spacingX = width / Math.ceil(Math.sqrt(STATE.deviceModel.children.length))
   const spacingY = height / Math.ceil(Math.sqrt(STATE.deviceModel.children.length))
@@ -390,16 +398,17 @@ function initDeviceGround() {
     }
   })
   STATE.deviceModel.position.y = 500
-  CACHE.container.scene.add(STATE.deviceModel)
 
   const planeM = new Bol3D.MeshBasicMaterial({ color: "#48576e" })
-  const planeG = new Bol3D.PlaneGeometry(2000, 2000)
+  const planeG = new Bol3D.PlaneGeometry(10000, 10000)
   const plane = new Bol3D.Mesh(planeG, planeM)
   plane.name = 'deviceGround'
-  plane.position.y = 500
   plane.material.side = 2
   plane.rotation.x = -Math.PI / 2
-  CACHE.container.scene.add(plane)
+  STATE.deviceModel.add(plane)
+
+  STATE.deviceModel.visible = false
+  CACHE.container.scene.add(STATE.deviceModel)
 }
 
 // 设备加载
