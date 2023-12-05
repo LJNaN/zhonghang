@@ -1,9 +1,9 @@
 <template>
-  <div class="btn" @click="handleEditMode">{{ STATE.isEditMode.value ? '退出编辑模式' : '进入编辑模式' }}</div>
+  <div v-show="!isEdit" class="btn" @click="handleEditMode">{{ STATE.isEditMode.value ? '退出编辑模式' : '进入编辑模式' }}</div>
 
   <div class="editor" v-show="STATE.isEditMode.value">
     <div class="output" v-show="!isEdit">
-      <!-- <el-button @click="clickInsert">新增</el-button> -->
+      <el-button @click="clickInsert">新增</el-button>
       <el-button @click="clickOutput">导出配置(替换"根目录/data/deviceList.js")</el-button>
     </div>
 
@@ -62,7 +62,7 @@
         <el-input v-model="formData.rotate" @focus="handleInput('rotate')" style="width:30%" />
       </el-form-item>
 
-      <el-space fill style="width: 100%;" v-show="!isGroundPick">
+      <el-space v-if="!isInsertMode" fill style="width: 100%;" v-show="!isGroundPick">
         <el-form-item label="缩放" prop="scale" label-width="60">
           <el-slider v-model="formData.scale" show-input :min="10" :max="2000" @input="handleScale"
             style="--el-slider-main-bg-color:#48576e;" />
@@ -77,8 +77,8 @@
       </el-form-item>
 
       <el-form-item label-width="60" style="margin-top: 10%;" v-show="!isGroundPick">
-        <el-button @click="isInsertMode ? insertSubmit(0) : handleSubmit(0)">保存</el-button>
-        <el-button @click="isInsertMode ? insertSubmit(1) : handleSubmit(1)">返回(不保存)</el-button>
+        <el-button @click="handleSubmit(0)">保存</el-button>
+        <el-button @click="handleSubmit(1)">返回(不保存)</el-button>
         <el-button type="danger" @click="handleSubmit(2)" v-show="!isInsertMode">删除</el-button>
       </el-form-item>
     </el-form>
@@ -97,7 +97,6 @@ import { Group, Mesh, Object3D } from 'three'
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 import bus from '@/utils/bus.js'
 import { ElMessage } from 'element-plus'
-import { objectPick } from '@vueuse/shared'
 
 let control = null            // transform 控制器
 let table = ref(null)         // 表格 ref dom
@@ -229,8 +228,57 @@ function handleSubmit(type: number): void {
     control.removeEventListener("change", changeListener)
     control.detach()
 
-    // 新模型
-    if (tempModel) {
+    if (isInsertMode.value) {
+      
+      
+      const index = DATA.deviceList.findIndex((e: { id: string }) => e.id === formData.id)
+      
+      if (index >= 0) {
+        ElMessage.warning('已存在此ID')
+        return
+      }
+
+      DATA.deviceList.push({
+        id: formData.id,
+        type: formData.deviceType,
+        position: [formData.position[0], 0, formData.position[2]],
+        rotate: formData.rotate / 180 * 3.14,
+        area: formData.area,
+        group: formData.group,
+        visible: formData.visible
+      })
+
+      tempModel.parent.remove(tempModel)
+      STATE.deviceList.add(tempModel)
+
+      tempModel.userData.deviceType = formData.deviceType
+      tempModel.userData.id = formData.id
+      tempModel.userData.area = formData.area
+      tempModel.userData.group = formData.group
+      tempModel.traverse((e: any) => {
+        if (e.isMesh) {
+          e.userData.type = 'device'
+          e.userData.deviceType = formData.deviceType
+          e.userData.id = formData.id
+          e.userData.area = formData.area
+          e.userData.group = formData.group
+          CACHE.container.clickObjects.push(e)
+        }
+      })
+
+      const typeMap = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(formData.id))
+      if (typeMap) {
+        const index = typeMap.id.findIndex((e: string) => e === formData.id)
+        typeMap.id.splice(index, 1)
+      }
+
+      const newTypeMap = DATA.deviceTypeMap.find((e: { type: number }) => e.type === formData.deviceType)
+      if (newTypeMap) {
+        newTypeMap.id.push(formData.id)
+      }
+
+
+    } else if (tempModel) {
       // 删除 deviceList 上的旧数据
       const index = DATA.deviceList.findIndex((e: { id: string }) => e.id === oldVal.id)
       if (index >= 0) {
@@ -278,7 +326,9 @@ function handleSubmit(type: number): void {
       }
 
       const newTypeMap = DATA.deviceTypeMap.find((e: { type: number }) => e.type === formData.deviceType)
-      newTypeMap.id.push(formData.id)
+      if (newTypeMap) {
+        newTypeMap.id.push(formData.id)
+      }
 
 
       // 模型没变
@@ -315,12 +365,16 @@ function handleSubmit(type: number): void {
   } else if (type === 1) {
     control.removeEventListener("change", changeListener)
     control.detach()
-    oldModel.position.x = oldVal.position[0]
-    oldModel.position.z = oldVal.position[2]
-    oldModel.rotation.y = oldVal.rotate
-    oldModel.visible = oldVal.visible
-    oldModel.group = oldVal.group
-    oldModel.area = oldVal.area
+
+    if (oldModel) {
+      oldModel.position.x = oldVal.position[0]
+      oldModel.position.z = oldVal.position[2]
+      oldModel.rotation.y = oldVal.rotate
+      oldModel.visible = oldVal.visible
+      oldModel.group = oldVal.group
+      oldModel.area = oldVal.area
+    }
+
     if (tempModel) {
       tempModel.parent.remove(tempModel)
     }
@@ -341,14 +395,11 @@ function handleSubmit(type: number): void {
     isEdit.value = false
   }
 
+  isInsertMode.value = false
+  isEdit.value = false
   oldVal = null
   oldModel = null
   tempModel = null
-}
-
-// 新增状态下 点击保存、不保存
-function insertSubmit(type: number): void {
-
 }
 
 // 切换显示隐藏
@@ -381,6 +432,7 @@ function handleInput(type: string): void {
 // 点击 scale 栏
 function handleScale(val: number): void {
   if (tempModel) {
+    tempModel.scale.set(val, val, val)
 
   } else if (oldModel) {
     const map = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(formData.id))
@@ -419,8 +471,6 @@ function clickRow(e: FormData): void {
 
 // 设备类型改变
 function selectChange(type: number): void {
-  if (type === oldVal.deviceType) return
-
   const map = DATA.deviceTypeMap.find((e: { type: number }) => e.type === type)
   if (!map) return
 
@@ -433,46 +483,31 @@ function selectChange(type: number): void {
     tempModel = null
   }
 
+  let model = null
   if (isInsertMode.value) {
-    const originModel = STATE.sceneList[type]
-
+    const map = DATA.deviceTypeMap.find((e: { type: number }) => e.type === type)
+    if (!map) return
+    const originModel = STATE.deviceModel.children.find((e: { name: string }) => e.name === map.modelName)
     if (!originModel) return
 
-    const model = originModel.clone()
+    model = originModel.clone()
     model.position.set(formData.position[0], 0, formData.position[2])
     model.rotation.y = Math.PI / 180 * formData.rotate
     model.visible = true
     CACHE.container.scene.add(model)
-    CACHE.container.outlineObjects = []
-    model.traverse((e: any) => {
-      if (e.isMesh) {
-        CACHE.container.outlineObjects.push(e)
-      }
-    })
 
-    if (control) {
+    control.object = model
 
-      control.attach(model)
-      control.object = model
-    } else {
-      const controls = editorControls(model)
-      control = controls
-    }
-    control.addEventListener("change", changeListener)
-
-    // formData.id = e + '_1'
     formData.position[0] = model.position.x
     formData.position[2] = model.position.z
     formData.rotate = model.rotation.y
     formData.visible = true
-
-    oldVal = JSON.parse(JSON.stringify(formData))
     tempModel = model
 
 
   } else {
     oldModel.visible = false
-    const model = STATE.deviceModel.children.find(e2 => e2.name === map.modelName).clone()
+    model = STATE.deviceModel.children.find(e2 => e2.name === map.modelName).clone()
     model.position.x = formData.position[0]
     model.position.z = formData.position[2]
     model.rotation.y = formData.rotate * 3.14 / 180
@@ -481,13 +516,16 @@ function selectChange(type: number): void {
     tempModel = model
 
     CACHE.container.scene.add(model)
+    control.object = model
+  }
+
+  if (model && !isGroundPick.value) {
     CACHE.container.outlineObjects = []
     model.traverse((e: any) => {
       if (e.isMesh) {
         CACHE.container.outlineObjects.push(e)
       }
     })
-    control.object = model
   }
 }
 
@@ -497,6 +535,7 @@ function handleGroundPick(): void {
   CACHE.container.transformControl.visible = !isGroundPick.value
 
   if (isGroundPick.value) {
+    CACHE.container.outlineObjects = []
     // 保存一下视角
     CACHE.groupPickCameraState = {
       camera: CACHE.container.orbitCamera.position.clone(),
@@ -507,20 +546,16 @@ function handleGroundPick(): void {
     CACHE.container.orbitControls.target.set(-59.6002, 0, 95.4743)
     CACHE.container.orbitControls.maxPolarAngle = 1.2
 
-
     bus.$on('originModel', (modelName: string) => {
       const typeMap = DATA.deviceTypeMap.find((e: { modelName: string }) => e.modelName === modelName)
       const model = STATE.deviceModel.children.find(e => e.userData.modelName === modelName)
 
-      // 插个队
-      setTimeout(() => {
-        CACHE.container.outlineObjects = []
-        model.traverse((e: any) => {
-          if (e.isMesh) {
-            CACHE.container.outlineObjects.push(e)
-          }
-        })
-      }, 0)
+      CACHE.container.outlineObjects = []
+      model.traverse((e: any) => {
+        if (e.isMesh) {
+          CACHE.container.outlineObjects.push(e)
+        }
+      })
 
       if (typeMap) {
         formData.deviceType = typeMap.type
@@ -547,8 +582,14 @@ function handleGroundPick(): void {
     CACHE.groupPickCameraState = {}
     bus.$off('originModel')
     STATE.deviceModel.visible = false
-  }
 
+    CACHE.container.outlineObjects = []
+    control.object.traverse((e: any) => {
+      if (e.isMesh) {
+        CACHE.container.outlineObjects.push(e)
+      }
+    })
+  }
 }
 
 // 点击新增按钮
@@ -556,43 +597,45 @@ function clickInsert(): void {
   isInsertMode.value = true
   isEdit.value = true
 
-  // const originModel = STATE.sceneList[modelList[0]?.modelName]
-  // if (!originModel) return
+  const defaultMap = DATA.deviceTypeMap[0]
+  const defaultModel = STATE.deviceModel.children.find((e: { name: string }) => e.name === defaultMap.modelName)
+  if (!defaultModel) return
 
-  // const model = originModel.clone()
-  // model.position.set(0, 0, 0)
-  // model.rotation.y = 0
-  // model.visible = true
-  // model.userData.deviceType = modelList[0]?.modelName
-  // model.userData.id = modelList[0]?.modelName + '_1'
-  // CACHE.container.scene.add(model)
-  // CACHE.container.outlineObjects = []
-  // model.traverse(e => {
-  //   if (e.isMesh) {
-  //     CACHE.container.outlineObjects.push(e)
-  //   }
-  // })
-
-
-  // if (control) {
-  //   control.attach(model)
-  //   control.object = model
-  // } else {
-  //   const controls = editorControls(model)
-  //   control = controls
-  // }
-  // control.addEventListener("change", changeListener)
-
-  // formData.deviceType = model.userData.deviceType
-  // formData.id = model.userData.id
-  // formData.x = model.position.x
-  // formData.z = model.position.z
-  // formData.rotate = model.rotation.y
-  // formData.visible = true
+  const model = defaultModel.clone()
+  model.position.set(0, 0, 0)
+  model.rotation.y = 0
+  model.scale.set(defaultMap.scale, defaultMap.scale, defaultMap.scale)
+  model.visible = true
+  model.userData.deviceType = defaultMap.type
+  model.userData.id = '0000000000'
+  CACHE.container.scene.add(model)
+  CACHE.container.outlineObjects = []
+  model.traverse((e: any) => {
+    if (e.isMesh) {
+      CACHE.container.outlineObjects.push(e)
+    }
+  })
 
 
-  // oldVal = JSON.parse(JSON.stringify(formData))
-  // tempModel = model
+  if (control) {
+    control.attach(model)
+    control.object = model
+
+  } else {
+    const controls = editorControls(model)
+    control = controls
+  }
+  control.addEventListener("change", changeListener)
+
+  formData.deviceType = model.userData.deviceType
+  formData.id = model.userData.id
+  formData.position = [0, 0, 0]
+  formData.rotate = 0
+  formData.scale = defaultMap.scale
+  formData.visible = true
+
+  oldVal = JSON.parse(JSON.stringify(formData))
+  tempModel = model
 }
 
 // 点击导出按钮
