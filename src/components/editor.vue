@@ -1,5 +1,6 @@
 <template>
-  <div v-show="!isEdit" class="btn" @click="handleEditMode">{{ STATE.isEditMode.value ? '退出编辑模式' : '进入编辑模式' }}</div>
+  <div v-show="!isEdit && STATE.currentScene.value === 'main'" class="btn" @click="handleEditMode">{{
+    STATE.isEditMode.value ? '退出编辑模式' : '进入编辑模式' }}</div>
 
   <div class="editor" v-show="STATE.isEditMode.value">
     <div class="output" v-show="!isEdit">
@@ -34,7 +35,8 @@
     <el-form v-show="isEdit" class="form" :model="formData">
       <el-form-item label="类型" prop="deviceType" label-width="60">
         <el-select v-model="formData.deviceType" @change="selectChange" :disabled="isGroundPick">
-          <el-option v-for="item in DATA.deviceTypeMap" :label="item.type" :value="item.type" />
+          <el-option v-for="item in DATA.deviceTypeMap"
+            :label="'与 ' + (item.id.length ? item.id[0] : item.modelName) + ' 相同'" :value="item.type" />
         </el-select>
         <el-button @click="handleGroundPick" type="primary"
           style="--el-button-bg-color:#48576e;--el-button-border-color:#48576e;--el-button-hover-bg-color:#667b9b;--el-button-hover-border-color:#667b9b;">{{
@@ -45,12 +47,12 @@
         <el-input v-model="formData.id" />
       </el-form-item>
 
-      <el-form-item label="班组" prop="area" label-width="60" v-show="!isGroundPick">
-        <el-input v-model="formData.area" />
+      <el-form-item label="班组" prop="group" label-width="60" v-show="!isGroundPick">
+        <el-input v-model="formData.group" />
       </el-form-item>
 
-      <el-form-item label="制造部" prop="group" label-width="60" v-show="!isGroundPick">
-        <el-input v-model="formData.group" />
+      <el-form-item label="制造部" prop="area" label-width="60" v-show="!isGroundPick">
+        <el-input v-model="formData.area" />
       </el-form-item>
 
       <el-form-item label="位置" prop="position" label-width="60" v-show="!isGroundPick">
@@ -229,10 +231,10 @@ function handleSubmit(type: number): void {
     control.detach()
 
     if (isInsertMode.value) {
-      
-      
+
+
       const index = DATA.deviceList.findIndex((e: { id: string }) => e.id === formData.id)
-      
+
       if (index >= 0) {
         ElMessage.warning('已存在此ID')
         return
@@ -369,7 +371,7 @@ function handleSubmit(type: number): void {
     if (oldModel) {
       oldModel.position.x = oldVal.position[0]
       oldModel.position.z = oldVal.position[2]
-      oldModel.rotation.y = oldVal.rotate
+      oldModel.rotation.y = oldVal.rotate / 180 * 3.14
       oldModel.visible = oldVal.visible
       oldModel.group = oldVal.group
       oldModel.area = oldVal.area
@@ -670,7 +672,12 @@ function editorControls(mesh: Object3D): TransformControls {
 function changeListener(): void {
   formData.position[0] = Number(control.object.position.x.toFixed(1))
   formData.position[2] = Number(control.object.position.z.toFixed(1))
-  formData.rotate = Number((control.object.rotation.y * 180 / Math.PI).toFixed(1))
+
+  if (control.object.rotation.x > -3.15 && control.object.rotation.x < -3.14 && control.object.rotation.z > -3.15 && control.object.rotation.z < -3.14) {
+    formData.rotate = Number(((3.1415926535 - control.object.rotation.y) * 180 / Math.PI).toFixed(1))
+  } else {
+    formData.rotate = Number((control.object.rotation.y * 180 / Math.PI).toFixed(1))
+  }
 }
 
 

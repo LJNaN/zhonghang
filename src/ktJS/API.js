@@ -366,6 +366,10 @@ function initModels() {
 
         cloneModel.traverse(e2 => {
           if (e2.isMesh) {
+            // e2.material.color.set('#444444')
+            // e2.material.emissive.set('#444444')
+            // e2.material.emissiveIntensity = 0
+            // e2.material.needsUpdate = true
             CACHE.container.clickObjects.push(e2)
             e2.userData.type = 'originModel'
             e2.userData.deviceType = map?.type || 0
@@ -715,13 +719,24 @@ function mouseClick(type, id, clickVal, cameraMove = true) {
       buildingArea = ['第三制造部', '第五制造部']
     } else if (id === '17#') {
       buildingArea = ['第一制造部', '第二制造部', '第四制造部']
+    } else if (id === '2#') {
+      buildingArea = ['第一制造部']
+    } else if (id === '5#') {
+      buildingArea = ['第三制造部']
     }
+
+    let deviceNum = 0
+    STATE.deviceList.children.forEach(e => {
+      if (isDeviceAmongTheBuilding(e, id)) {
+        deviceNum++
+      }
+    })
 
     const info = {
       title: id,
       list: [
-        { name: '部别', value: buildingArea.length ? buildingArea.join(' ') : '--' },
-        { name: '设备数', value: '123台' }
+        { name: '部门', value: buildingArea.length ? buildingArea.join(' ') : '--' },
+        { name: '设备数', value: `${deviceNum}台` }
       ]
     }
     const popup = new Popup('building', info, clickVal.point)
@@ -748,7 +763,7 @@ function mouseClick(type, id, clickVal, cameraMove = true) {
     const info = {
       title: id,
       list: [
-        { name: '部别', value: deviceData?.area || '--' }
+        { name: '部门', value: deviceData?.area || '--' }
       ]
     }
 
@@ -758,7 +773,7 @@ function mouseClick(type, id, clickVal, cameraMove = true) {
       if (res.data.code === 200) {
         const newInfo = {
           title: id,
-          list: [{ name: '部别', value: deviceData?.area || '--' }]
+          list: [{ name: '部门', value: deviceData?.area || '--' }]
         }
 
         res.data.data.forEach(e => {
@@ -807,7 +822,7 @@ class Popup {
     let text = ''
     this.info.list.forEach(e => {
       text += `
-        <div style="width: 100%;min-height: 20%;display: flex; justify-content: flex-start;align-items: center;">
+        <div style="width: 100%;min-height: ${this.type === 'device' ? '10%' : '20%'};display: flex; justify-content: flex-start;align-items: center;">
           <span style="font-weight: bold;font-size: 5rem;word-break: keep-all; letter-spacing: 0.5rem; color: #FFF; ">${e.name}: </span>
           <span style="font-weight: bold;font-size: 5rem;word-break: break-all;letter-spacing: 0.5rem; color: #FFF; ">${e.value}</span>
         </div>
@@ -815,7 +830,7 @@ class Popup {
     })
 
     const popup = new Bol3D.POI.Popup3DSprite({
-      value: `<div style="pointer-events: all; width: 1500px; height: 1500px; background: url('./assets/3d/img/1.png') center / 100% 100% no-repeat;">
+      value: `<div style="pointer-events: all; width: 1500px; height: ${this.type === 'device' ? 2500 : 1500}px; background: url('./assets/3d/img/1.png') center / 100% 100% no-repeat;">
           <p style="position: absolute;font-size: 6rem; color: #00f6f7;font-weight: bold;letter-spacing: 2rem;top: 10%;left: 10%; word-break: keep-all;">${this.info.title}</p>
           <div style="position: absolute; display: flex;flex-direction: column;height: 73%;width: 85%;left: 10%;top: 20%;overflow-y:scroll;">
             ${text}
@@ -823,7 +838,7 @@ class Popup {
         </div>`,
       position: [this.position.x, this.position.y, this.position.z],
       width: 150,
-      height: 150,
+      height: this.type === 'device' ? 250 : 150,
       closeSize: 7,
       className: 'mouseClickPopup',
       size: this.type === 'building' ? 0.3 : 0.05,

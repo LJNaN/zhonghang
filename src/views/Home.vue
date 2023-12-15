@@ -129,7 +129,8 @@ function handleGroup(item, group) {
   const list = tempList.filter(e => {
     return API.isDeviceAmongTheBuilding(e, STATE.currentScene.value)
   })
-  
+
+  popupShow[item] = false
 
   window.parent.postMessage(
     {
