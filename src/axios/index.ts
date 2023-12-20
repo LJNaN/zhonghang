@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { showMessage } from './status' // 引入状态码文件
 import { ElMessage } from 'element-plus' // 引入el 提示框，这个项目里用什么组件库这里引什么
+import { VUEDATA } from '@/VUEDATA.js'
 
 // 设置接口超时时间
 const env = import.meta.env
@@ -11,11 +12,16 @@ const BASE_URL = ""
 //http request 拦截器
 axios.interceptors.request.use(
   (config) => {
-    // 配置请求头
-    config.headers = {
-      // 'Content-Type': 'application/json;charset=UTF-8', // 传参方式json
-      'Content-Type': 'multipart/form-data',
-      'Authorization': 'Basic c2FiZXI6c2FiZXJfc2VjcmV0'
+    if (config.url.includes('/twin/getCollectData')) {
+      config.headers = {
+        'Blade-Auth': VUEDATA.token
+      }
+
+    } else if (config.url.includes('/blade-auth/oauth/token')) {
+      config.headers = {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': 'Basic c2FiZXI6c2FiZXJfc2VjcmV0'
+      }
     }
     return config
   },

@@ -5,3 +5,5 @@ let token = ""
 export const VUEDATA = {
   token
 }
+
+window.VUEDATA = VUEDATA
