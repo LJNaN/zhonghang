@@ -55617,6 +55617,32 @@
                 "opacity": 0.2,
                 "tagType": "title"
               }
+            },
+            {
+              "uuid": "86945835-F651-4B2B-A8E4-336AC39725A1",
+              "name": "Tag",
+              "type": "title",
+              "options": {
+                "titleHeight": 0.5,
+                "color": "#042644",
+                "type": 3,
+                "title": "XX#",
+                "titleSize": 0.29,
+                "fontSize": 89,
+                "position": [
+                  50,
+                  200,
+                  1080
+                ],
+                "size": 300,
+                "renderOrder": 1,
+                "visible": true,
+                "fontColor": "#FFFFFF",
+                "bgColor": "#000000",
+                "strokeColor": "#ffffff",
+                "opacity": 0.2,
+                "tagType": "title"
+              }
             }
           ]
         },

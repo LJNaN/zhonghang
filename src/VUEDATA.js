@@ -1,9 +1,11 @@
 import { ref } from 'vue'
 let token = ""
+let showEditor = false
 
 
 export const VUEDATA = {
-  token
+  token,
+  showEditor
 }
 
 window.VUEDATA = VUEDATA

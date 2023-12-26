@@ -822,7 +822,7 @@ class Popup {
     let text = ''
     this.info.list.forEach(e => {
       text += `
-        <div style="width: 100%;min-height: ${this.type === 'device' ? '10%' : '20%'};display: flex; justify-content: flex-start;align-items: center;">
+        <div style="width: 100%;margin-bottom: 5%;display: flex; justify-content: flex-start;align-items: center;">
           <span style="font-weight: bold;font-size: 5rem;word-break: keep-all; letter-spacing: 0.5rem; color: #FFF; ">${e.name}: </span>
           <span style="font-weight: bold;font-size: 5rem;word-break: break-all;letter-spacing: 0.5rem; color: #FFF; ">${e.value}</span>
         </div>
@@ -830,7 +830,7 @@ class Popup {
     })
 
     const popup = new Bol3D.POI.Popup3DSprite({
-      value: `<div style="pointer-events: all; width: 1500px; height: ${this.type === 'device' ? 2500 : 1500}px; background: url('./assets/3d/img/1.png') center / 100% 100% no-repeat;">
+      value: `<div style="pointer-events: all; width: 1500px; height: ${this.type === 'device' ? 2000 : 1500}px; background: url('./assets/3d/img/1.png') center / 100% 100% no-repeat;">
           <p style="position: absolute;font-size: 6rem; color: #00f6f7;font-weight: bold;letter-spacing: 2rem;top: 10%;left: 10%; word-break: keep-all;">${this.info.title}</p>
           <div style="position: absolute; display: flex;flex-direction: column;height: 73%;width: 85%;left: 10%;top: 20%;overflow-y:scroll;">
             ${text}
@@ -838,7 +838,7 @@ class Popup {
         </div>`,
       position: [this.position.x, this.position.y, this.position.z],
       width: 150,
-      height: this.type === 'device' ? 250 : 150,
+      height: this.type === 'device' ? 200 : 150,
       closeSize: 7,
       className: 'mouseClickPopup',
       size: this.type === 'building' ? 0.3 : 0.05,

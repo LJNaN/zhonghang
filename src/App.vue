@@ -4,9 +4,9 @@ import { VUEDATA } from '@/VUEDATA.js'
 import { getToken } from '@/axios/api'
 import { ElMessage } from 'element-plus' // 引入el 提示框，这个项目里用什么组件库这里引什么
 
+VUEDATA.showEditor = window.showEditor
 
 getToken().then(res => {
-  
   VUEDATA.token = res.data.access_token
 
 }).catch(() => {

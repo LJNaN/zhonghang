@@ -44,7 +44,7 @@
       </el-form-item>
 
       <el-form-item label="ID" prop="id" label-width="60" v-show="!isGroundPick">
-        <el-input v-model="formData.id" />
+        <el-input v-model="formData.id" placeholder="请输入ID，请勿与已有的设备重复" />
       </el-form-item>
 
       <el-form-item label="班组" prop="group" label-width="60" v-show="!isGroundPick">
@@ -231,8 +231,6 @@ function handleSubmit(type: number): void {
     control.detach()
 
     if (isInsertMode.value) {
-
-
       const index = DATA.deviceList.findIndex((e: { id: string }) => e.id === formData.id)
 
       if (index >= 0) {
@@ -305,13 +303,24 @@ function handleSubmit(type: number): void {
       tempModel.parent.remove(tempModel)
       STATE.deviceList.add(tempModel)
 
+      const typeMap = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(oldVal.id))
+      if (typeMap) {
+        const index = typeMap.id.findIndex((e: string) => e === oldVal.id)
+        typeMap.id.splice(index, 1)
+      }
+      
+      const newTypeMap = DATA.deviceTypeMap.find((e: { type: number }) => e.type === formData.deviceType)
+      if (newTypeMap) {
+        newTypeMap.id.push(formData.id)
+        newTypeMap.scale = formData.scale
+      }
+
       tempModel.userData.deviceType = formData.deviceType
       tempModel.userData.id = formData.id
       tempModel.userData.area = formData.area
       tempModel.userData.group = formData.group
       tempModel.traverse((e: any) => {
         if (e.isMesh) {
-
           e.userData.type = 'device'
           e.userData.deviceType = formData.deviceType
           e.userData.id = formData.id
@@ -320,17 +329,6 @@ function handleSubmit(type: number): void {
           CACHE.container.clickObjects.push(e)
         }
       })
-
-      const typeMap = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(formData.id))
-      if (typeMap) {
-        const index = typeMap.id.findIndex((e: string) => e === formData.id)
-        typeMap.id.splice(index, 1)
-      }
-
-      const newTypeMap = DATA.deviceTypeMap.find((e: { type: number }) => e.type === formData.deviceType)
-      if (newTypeMap) {
-        newTypeMap.id.push(formData.id)
-      }
 
 
       // 模型没变
@@ -347,16 +345,21 @@ function handleSubmit(type: number): void {
         data.area = formData.area
       }
 
-      const map = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(obj.userData.id))
-
-      if (map) {
-        map.scale = formData.scale
+      const typeMap = DATA.deviceTypeMap.find((e: { id: string[] }) => e.id.includes(obj.userData.id))
+      if (typeMap) {
+        const index = typeMap.id.findIndex((e: string) => e === obj.userData.id)
+        typeMap.id.splice(index, 1)
+      }
+      
+      const newTypeMap = DATA.deviceTypeMap.find((e: { type: number }) => e.type === formData.deviceType)
+      if (newTypeMap) {
+        newTypeMap.id.push(formData.id)
+        newTypeMap.scale = formData.scale
       }
 
       obj.userData.id = formData.id
       obj.traverse((e: any) => {
         if (e.isMesh) {
-
           e.userData.type = 'device'
           e.userData.id = formData.id
         }
@@ -477,10 +480,6 @@ function selectChange(type: number): void {
   if (!map) return
 
   if (tempModel) {
-    if (isInsertMode.value) {
-      control.removeEventListener("change", changeListener)
-      control.detach()
-    }
     tempModel.parent.remove(tempModel)
     tempModel = null
   }
@@ -609,7 +608,7 @@ function clickInsert(): void {
   model.scale.set(defaultMap.scale, defaultMap.scale, defaultMap.scale)
   model.visible = true
   model.userData.deviceType = defaultMap.type
-  model.userData.id = '0000000000'
+  model.userData.id = ''
   CACHE.container.scene.add(model)
   CACHE.container.outlineObjects = []
   model.traverse((e: any) => {
@@ -628,6 +627,7 @@ function clickInsert(): void {
     control = controls
   }
   control.addEventListener("change", changeListener)
+  
 
   formData.deviceType = model.userData.deviceType
   formData.id = model.userData.id
@@ -648,10 +648,13 @@ function clickOutput(): void {
   const outDeviceTypeMap = DATA.deviceTypeMap
   link.href = `
     data:text/plain,
-    const deviceList = ${JSON.stringify(outDeviceList)}\n
+    const showEditor = ${VUEDATA.showEditor}
+    window.showEditor = showEditor
+
+    const deviceList = ${JSON.stringify(outDeviceList)}
     window.deviceList = deviceList
     
-    const deviceTypeMap = ${JSON.stringify(outDeviceTypeMap)}\n
+    const deviceTypeMap = ${JSON.stringify(outDeviceTypeMap)}
     window.deviceTypeMap = deviceTypeMap
     `
   link.click()

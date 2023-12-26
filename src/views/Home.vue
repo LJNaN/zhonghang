@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <Editor></Editor>
+    <Editor v-if="VUEDATA.showEditor"></Editor>
 
     <div v-if="STATE.currentScene.value != 'main'" class="back" @click="back">返回</div>
   </div>
@@ -25,6 +25,7 @@ import { STATE } from "@/ktJS/STATE";
 import { DATA } from "@/ktJS/DATA";
 import { CACHE } from "@/ktJS/CACHE";
 import Editor from '@/components/editor.vue'
+import { VUEDATA } from "@/VUEDATA";
 
 let areaList = ref([
   "第一制造部",
@@ -125,7 +126,7 @@ function handleGroup(item, group) {
   if (!["第一制造部", "第二制造部", "第三制造部", "第四制造部", "第五制造部"].includes(item)) return;
 
   const tempList = STATE.deviceList.children.filter(e => e.userData.area === item && e.userData.group === group)
-  
+
   const list = tempList.filter(e => {
     return API.isDeviceAmongTheBuilding(e, STATE.currentScene.value)
   })
@@ -179,7 +180,7 @@ function handleGroup(item, group) {
     return a.position.x - b.position.x;
   });
 
-  
+
 
   for (let i = 0; i < list.length; i++) {
     const timer = setTimeout(() => {
@@ -349,5 +350,4 @@ onMounted(() => { });
     opacity: 1;
   }
 }
-
 </style>
