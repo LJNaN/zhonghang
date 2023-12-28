@@ -122,6 +122,8 @@ function handleAreaBtn(item) {
   );
 }
 
+
+// 点击班组 轮播
 function handleGroup(item, group) {
   if (!["第一制造部", "第二制造部", "第三制造部", "第四制造部", "第五制造部"].includes(item)) return;
 
@@ -176,15 +178,35 @@ function handleGroup(item, group) {
     CACHE.groupRoamAnimate = [];
   }
 
-  list.sort((a, b) => {
-    return a.position.x - b.position.x;
-  });
 
+  const listPart = []
+  list.forEach(e => {
+    let flag = false
+    for (let i = 0; i < listPart.length; i++) {
+      for (let j = 0; j < listPart[i].length; j++) {
+        if (listPart[i][j].position.z > (e.position.z - 30) && listPart[i][j].position.z < (e.position.z + 30)) {
+          listPart[i].push(e)
+          flag = true
+          break
+        }
+      }
+    }
+    if (!flag) {
+      listPart.push([e])
+    }
+  })
 
+  listPart.forEach(e => {
+    e.sort((a, b) => {
+      return a.position.x - b.position.x;
+    });
+  })
 
-  for (let i = 0; i < list.length; i++) {
+  const flatList = listPart.flat();
+
+  for (let i = 0; i < flatList.length; i++) {
     const timer = setTimeout(() => {
-      const model = STATE.deviceList.children.find((e) => e.userData.id === list[i].userData.id);
+      const model = STATE.deviceList.children.find((e) => e.userData.id === flatList[i].userData.id);
       if (!model) return
 
       CACHE.container.outlineObjects = [];
@@ -196,11 +218,11 @@ function handleGroup(item, group) {
 
 
       // 计算相机和目标的位置
-      const target = { x: list[i].position.x, y: 0, z: list[i].position.z };
+      const target = { x: flatList[i].position.x, y: 0, z: flatList[i].position.z };
       const finalPosition = { x: 0, y: 0, z: 0 };
-      finalPosition.x = list[i].position.x;
+      finalPosition.x = flatList[i].position.x;
       finalPosition.y = 80;
-      finalPosition.z = list[i].position.z + 170;
+      finalPosition.z = flatList[i].position.z + 170;
 
       const raycaster = new Bol3D.Raycaster();
       const origin = new Bol3D.Vector3(

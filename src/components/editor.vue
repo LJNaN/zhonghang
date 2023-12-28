@@ -137,7 +137,7 @@ function handleEditMode(): void {
   const tagGroup = CACHE.container.scene.children.find((e: { userData: { type: string } }) => e.userData.type === 'TagGroup')
 
   waijing.children.forEach((e: Mesh) => {
-    if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
+    if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj' || e.name === '1dcf-lc-01') {
       e.visible = !STATE.isEditMode.value
       e.children.forEach((e2: Mesh) => e2.visible = !STATE.isEditMode.value)
     }
@@ -308,7 +308,7 @@ function handleSubmit(type: number): void {
         const index = typeMap.id.findIndex((e: string) => e === oldVal.id)
         typeMap.id.splice(index, 1)
       }
-      
+
       const newTypeMap = DATA.deviceTypeMap.find((e: { type: number }) => e.type === formData.deviceType)
       if (newTypeMap) {
         newTypeMap.id.push(formData.id)
@@ -350,7 +350,7 @@ function handleSubmit(type: number): void {
         const index = typeMap.id.findIndex((e: string) => e === obj.userData.id)
         typeMap.id.splice(index, 1)
       }
-      
+
       const newTypeMap = DATA.deviceTypeMap.find((e: { type: number }) => e.type === formData.deviceType)
       if (newTypeMap) {
         newTypeMap.id.push(formData.id)
@@ -627,7 +627,7 @@ function clickInsert(): void {
     control = controls
   }
   control.addEventListener("change", changeListener)
-  
+
 
   formData.deviceType = model.userData.deviceType
   formData.id = model.userData.id
