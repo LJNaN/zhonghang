@@ -150,6 +150,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             window.DATA = DATA
             window.CACHE = CACHE
 
+            // evt.updateSceneByNodes(jsonParser.nodes[6], 200, () => {})
 
             // API.testBox()
             CACHE.container.loadingBar.style.visibility = 'hidden'

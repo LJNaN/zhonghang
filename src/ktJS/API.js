@@ -245,7 +245,7 @@ function getData() {
 
 // 进入不同楼
 function enterBuilding(title) {
-  if (!['2#', '17#', '5#', '3#'].includes(title)) return
+  if (!['2#', '17#', '5#', '3#', '6#'].includes(title)) return
 
   let node = 2
   if (title === '2#') node = 2
