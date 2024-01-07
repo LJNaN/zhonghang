@@ -99,10 +99,10 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
               } else if (sModel.name === 'waijing') {
                 sModel.traverse(e => {
-                  if (['3dlcf_1', '3dlcf_3', '124cf_1', '124cf_3', '1cdlcj_1', '1cdlcj_3', '35cf_1', '35cf_3'].includes(e.name)) {
+                  if (['3dlcf_1', '3dlcf_3', '124cf_1', '124cf_3', '1cdlcj_1', '1cdlcj_3', '35cf_1', '35cf_3', 'jz_1', 'jz_2', 'jz_3', 'jz_4'].includes(e.name)) {
                     evt.clickObjects.push(e)
 
-                  } else if (['1dulidiban', 'sanbudiban', 'wuchangdiban', '3dulidiban', 'yichangdiban', 'sichangdiban', 'erchangdiban'].includes(e.name)) {// 围墙
+                  } else if (['1dulidiban', 'sanbudiban', 'wuchangdiban', '3dulidiban', 'yichangdiban', 'sichangdiban', 'erchangdiban', '6changfangztzz'].includes(e.name)) {// 围墙
                     STATE.wallList.push(e)
                     if (e.name === 'sanbudiban') {
                       e.name = 'sanchangdiban'
@@ -150,8 +150,6 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             window.DATA = DATA
             window.CACHE = CACHE
 
-            // evt.updateSceneByNodes(jsonParser.nodes[6], 200, () => {})
-
             // API.testBox()
             CACHE.container.loadingBar.style.visibility = 'hidden'
           })
@@ -188,12 +186,12 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           }
         }
         if (!obj) return
-        
+
 
 
         // 单击不同楼
         if (STATE.currentScene.value === 'main' && !STATE.isEditMode.value) {
-          if (['2#', '17#', '5#', '3#'].includes(obj.userData.title)) {
+          if (['2#', '17#', '5#', '3#', '6#'].includes(obj.userData.title)) {
             API.mouseClick('building', obj.userData.title, e.objects[objIndex])
 
           } else if (obj.name === '3dlcf_1' || obj.name === '3dlcf_3') {
@@ -207,6 +205,9 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
           } else if (obj.name === '35cf_1' || obj.name === '35cf_3') {
             API.mouseClick('building', '3#', e.objects[objIndex])
+
+          } else if (obj.name === 'jz_1' || obj.name === 'jz_2' || obj.name === 'jz_3' || obj.name === 'jz_4') {
+            API.mouseClick('building', '6#', e.objects[objIndex])
           }
 
         }
@@ -214,15 +215,15 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
         if (obj.userData.type === 'device') {
           if (STATE.isEditMode.value) {
             bus.$emit('device', obj.userData.id)
-            
+
           } else {
             API.mouseClick('device', obj.userData.id, e.objects[objIndex])
           }
-          
+
           // 在ground pick模式进行选择的时候
         } else if (obj.userData.type === 'originModel') {
           bus.$emit('originModel', obj.userData.modelName)
-          
+
         }
       }
 
@@ -246,7 +247,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
           // 进入不同楼
           if (STATE.currentScene.value === 'main') {
-            if (['2#', '17#', '5#', '3#'].includes(obj.userData.title)) {
+            if (['2#', '17#', '5#', '3#', '6#'].includes(obj.userData.title)) {
               API.enterBuilding(obj.userData.title)
 
             } else if (obj.name === '3dlcf_1' || obj.name === '3dlcf_3') {
@@ -260,8 +261,11 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
             } else if (obj.name === '35cf_1' || obj.name === '35cf_3') {
               API.enterBuilding('3#')
-            }
 
+            } else if (obj.name === 'jz_1' || obj.name === 'jz_2' || obj.name === 'jz_3' || obj.name === 'jz_4') {
+              API.enterBuilding('6#')
+
+            }
           }
 
 

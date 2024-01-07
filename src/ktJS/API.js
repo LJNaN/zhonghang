@@ -252,6 +252,7 @@ function enterBuilding(title) {
   else if (title === '17#') node = 3
   else if (title === '5#') node = 5
   else if (title === '3#') node = 4
+  else if (title === '6#') node = 6
 
   destroyCurrentPopup()
 
@@ -288,6 +289,14 @@ function enterBuilding(title) {
     } else if (title === '17#') {
       STATE.wallList.forEach(e => {
         if (e.name === 'yichangdiban' || e.name === 'erchangdiban' || e.name === 'sichangdiban') {
+          e.visible = true
+        } else {
+          e.visible = false
+        }
+      })
+    } else if (title === '6#') {
+      STATE.wallList.forEach(e => {
+        if (e.name === '6changfangztzz') {
           e.visible = true
         } else {
           e.visible = false
@@ -335,7 +344,7 @@ function enterBuilding(title) {
         e.visible = isDeviceAmongTheBuilding(e, title)
       })
 
-    } else if (title === '17#' || title === '3#' || title === '5#') {
+    } else if (title === '17#' || title === '3#' || title === '5#' || title === '6#') {
       STATE.deviceList.children.forEach(e => {
         e.visible = isDeviceAmongTheBuilding(e, title)
       })

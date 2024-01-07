@@ -70470,7 +70470,7 @@
             {
               "uuid": "root_waijing_0_1dcf-lc-02",
               "name": "1dcf-lc-02",
-              "visible": true,
+              "visible": false,
               "selected": false,
               "index": 1,
               "spread": false,
@@ -70523,8 +70523,8 @@
             {
               "uuid": "root_waijing_0_1dcf-lc-01",
               "name": "1dcf-lc-01",
-              "visible": true,
-              "selected": true,
+              "visible": false,
+              "selected": false,
               "index": 1,
               "spread": false,
               "type": "Mesh",
@@ -71080,6 +71080,165 @@
               },
               "show": true,
               "parent": "root_waijing_0"
+            },
+            {
+              "uuid": "root_waijing_0_6changfangztzz",
+              "name": "6changfangztzz",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  8.808,
+                  4.5,
+                  114.161
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 2,
+                "castShadow": false,
+                "receiveShadow": false,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_waijing_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "xian",
+                "color": "#24b1dd",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_waijing_0_Plane001",
+              "name": "Plane001",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  -29.487,
+                  0,
+                  65.536
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 2,
+                "castShadow": false,
+                "receiveShadow": false,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_waijing_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "Material #249484976",
+                "color": "#010007",
+                "transparent": false,
+                "opacity": 1,
+                "depthTest": true,
+                "depthWrite": true,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
+            },
+            {
+              "uuid": "root_waijing_0_changfang6",
+              "name": "changfang6",
+              "visible": true,
+              "selected": false,
+              "index": 1,
+              "spread": false,
+              "type": "Mesh",
+              "children": [],
+              "options": {
+                "position": [
+                  8.228,
+                  2.045,
+                  108.786
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "renderOrder": 2,
+                "castShadow": false,
+                "receiveShadow": false,
+                "bloom": false
+              },
+              "show": true,
+              "parent": "root_waijing_0",
+              "matOptions": {
+                "type": "MeshStandardMaterial",
+                "name": "qiang",
+                "color": "#182530",
+                "transparent": true,
+                "opacity": 0.26,
+                "depthTest": true,
+                "depthWrite": false,
+                "wireframe": false,
+                "side": 2,
+                "extends": {
+                  "roughness": 1,
+                  "metalness": 0,
+                  "envMapIntensity": 1,
+                  "lightMapIntensity": 1,
+                  "emissive": "#000000",
+                  "emissiveIntensity": 1,
+                  "aoMapIntensity": 1
+                }
+              }
             }
           ],
           "options": {
