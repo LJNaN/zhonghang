@@ -99,7 +99,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
 
               } else if (sModel.name === 'waijing') {
                 sModel.traverse(e => {
-                  if (['3dlcf_1', '3dlcf_3', '124cf_1', '124cf_3', '1cdlcj_1', '1cdlcj_3', '35cf_1', '35cf_3', 'jz_1', 'jz_2', 'jz_3', 'jz_4'].includes(e.name)) {
+                  if (['3dlcf_1', '3dlcf_3', '124cf_1', '124cf_3', '1cdlcj_1', '1cdlcj_3', '35cf_1', '35cf_3', 'jz6_3', 'jz6_1', 'jzwd1_3'].includes(e.name)) {
                     evt.clickObjects.push(e)
 
                   } else if (['1dulidiban', 'sanbudiban', 'wuchangdiban', '3dulidiban', 'yichangdiban', 'sichangdiban', 'erchangdiban', '6changfangztzz'].includes(e.name)) {// 围墙
@@ -108,8 +108,8 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
                       e.name = 'sanchangdiban'
                     }
                     e.material.side = 2
-                    e.visible = false
                     e.renderOrder = 0
+                    e.visible = false
                     const wall = new API.WallLine(e)
                     wall.name = e.name
                   }
@@ -206,7 +206,7 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
           } else if (obj.name === '35cf_1' || obj.name === '35cf_3') {
             API.mouseClick('building', '3#', e.objects[objIndex])
 
-          } else if (obj.name === 'jz_1' || obj.name === 'jz_2' || obj.name === 'jz_3' || obj.name === 'jz_4') {
+          } else if (obj.name === 'jzwd1_3' || obj.name === 'jz6_1' || obj.name === 'jz6_3') {
             API.mouseClick('building', '6#', e.objects[objIndex])
           }
 
@@ -262,21 +262,12 @@ export const loadSceneByJSON = ({ domElement, callback }) => {
             } else if (obj.name === '35cf_1' || obj.name === '35cf_3') {
               API.enterBuilding('3#')
 
-            } else if (obj.name === 'jz_1' || obj.name === 'jz_2' || obj.name === 'jz_3' || obj.name === 'jz_4') {
+            } else if (obj.name === 'jz6_1' || obj.name === 'jzwd1_3' || obj.name === 'jz6_3') {
               API.enterBuilding('6#')
 
             }
           }
-
-
-          // 右键双击
         }
-        // else if (e.event.button === 2) {
-        //   API.backToMainScene()
-        //   for (let key in STATE.popupShow) {
-        //     STATE.popupShow[key] = false
-        //   }
-        // }
       }
 
 

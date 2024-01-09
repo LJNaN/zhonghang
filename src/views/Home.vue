@@ -3,7 +3,7 @@
     <div class="areaList">
       <div class="areaList-item" v-for="item in areaList" :key="item" @click="handleAreaBtn(item)">
         {{ item }}
-        <div v-if="item != '全部显示' && popupShow[item]" class="areaList-item-group">
+        <div v-if="item != '全部显示' && item === currentArea && STATE.currentScene.value != 'main'" class="areaList-item-group">
           <div class="areaList-item-group-item" v-for="group in groupList[item]" @click.stop="handleGroup(item, group)">
             {{ group }}
           </div>
@@ -27,28 +27,13 @@ import { CACHE } from "@/ktJS/CACHE";
 import Editor from '@/components/editor.vue'
 import { VUEDATA } from "@/VUEDATA";
 
-let areaList = ref([
-  "第一制造部",
-  "第二制造部",
-  "第三制造部",
-  "第四制造部",
-  "第五制造部",
-  "全部显示",
-]);
-
-const popupShow = reactive({
-  第一制造部: false,
-  第二制造部: false,
-  第三制造部: false,
-  第四制造部: false,
-  第五制造部: false,
-});
-STATE.popupShow = popupShow;
+let areaList = ref(["第一制造部", "第二制造部", "第三制造部", "第四制造部", "第五制造部", "全部显示"]);
 const groupList = {};
+let currentArea = ref("")
 
 
 // 中文排序
-const chineseNums = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十","十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十","二十一", "二十二", "二十三", "二十四", "二十五", "二十六", "二十七", "二十八", "二十九", "三十","三十一", "三十二", "三十三", "三十四", "三十五", "三十六", "三十七", "三十八", "三十九", "四十", "四十一", "四十二", "四十三", "四十四", "四十五", "四十六", "四十七", "四十八", "四十九", "五十","五十一", "五十二", "五十三", "五十四", "五十五", "五十六", "五十七", "五十八", "五十九", "六十","六十一", "六十二", "六十三", "六十四", "六十五", "六十六", "六十七", "六十八", "六十九", "七十","七十一", "七十二", "七十三", "七十四", "七十五", "七十六", "七十七", "七十八", "七十九", "八十","八十一", "八十二", "八十三", "八十四", "八十五", "八十六", "八十七", "八十八", "八十九", "九十","九十一", "九十二", "九十三", "九十四", "九十五", "九十六", "九十七", "九十八", "九十九", "一百"]
+const chineseNums = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十", "二十一", "二十二", "二十三", "二十四", "二十五", "二十六", "二十七", "二十八", "二十九", "三十", "三十一", "三十二", "三十三", "三十四", "三十五", "三十六", "三十七", "三十八", "三十九", "四十", "四十一", "四十二", "四十三", "四十四", "四十五", "四十六", "四十七", "四十八", "四十九", "五十", "五十一", "五十二", "五十三", "五十四", "五十五", "五十六", "五十七", "五十八", "五十九", "六十", "六十一", "六十二", "六十三", "六十四", "六十五", "六十六", "六十七", "六十八", "六十九", "七十", "七十一", "七十二", "七十三", "七十四", "七十五", "七十六", "七十七", "七十八", "七十九", "八十", "八十一", "八十二", "八十三", "八十四", "八十五", "八十六", "八十七", "八十八", "八十九", "九十", "九十一", "九十二", "九十三", "九十四", "九十五", "九十六", "九十七", "九十八", "九十九", "一百"]
 const chineseRegexp = new RegExp('(?<=第).*(?=制造部)', 'g')
 function chineseSort(a, b) {
   const aMatch = a.match(chineseRegexp)
@@ -77,6 +62,7 @@ watch(
       }
     }
 
+    // 获取去重之后的区域列表
     function getSetAreaList() {
       const setAreaList = []
       if (STATE.currentScene.value === 'main') {
@@ -102,9 +88,9 @@ watch(
 
 
       if (['2#', '17#', '5#', '3#', '6#'].includes(newVal)) {
-        for (let key in popupShow) {
+        areaList.value.forEach(area => {
           const list = DATA.deviceList.filter(e => {
-            if (e.area === key) {
+            if (e.area === area) {
               const deviceP = { position: { x: e.position[0], z: e.position[2] } }
               return API.isDeviceAmongTheBuilding(deviceP, newVal)
 
@@ -113,8 +99,8 @@ watch(
             }
           }).map((e) => e.group)
 
-          groupList[key] = Array.from(new Set(list)).filter((e) => e);
-        }
+          groupList[area] = Array.from(new Set(list)).filter((e) => e);
+        })
       }
     }
   },
@@ -122,20 +108,13 @@ watch(
 );
 
 function handleAreaBtn(item) {
-  if (STATE.currentScene.value === "main") {
-    for (let key in popupShow) {
-      popupShow[key] = false;
-    }
-  } else {
-    for (let key in popupShow) {
-      popupShow[key] = key === item;
-    }
-  }
 
   if (item === "全部显示") {
     API.deviceReset();
+    currentArea.value = ''
   } else {
     API.handleArea(item);
+    currentArea.value = item
   }
 
   window.parent.postMessage(
@@ -156,15 +135,13 @@ function handleAreaBtn(item) {
 
 // 点击班组 轮播
 function handleGroup(item, group) {
-  if (!["第一制造部", "第二制造部", "第三制造部", "第四制造部", "第五制造部"].includes(item)) return;
-
+  
+  currentArea.value = ''
   const tempList = STATE.deviceList.children.filter(e => e.userData.area === item && e.userData.group === group)
 
   const list = tempList.filter(e => {
     return API.isDeviceAmongTheBuilding(e, STATE.currentScene.value)
   })
-
-  popupShow[item] = false
 
   window.parent.postMessage(
     {
@@ -306,10 +283,8 @@ function handleGroup(item, group) {
 }
 
 function back() {
+  currentArea.value = ''
   API.backToMainScene();
-  for (let key in STATE.popupShow) {
-    STATE.popupShow[key] = false;
-  }
 }
 
 onMounted(() => { });

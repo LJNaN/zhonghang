@@ -13,7 +13,7 @@
       <el-table-column prop="id" label="ID" width="100" align="center" />
       <el-table-column label="旋转" width="78" align="center">
         <template #default="scope">
-          {{ scope.row.rotate * 180 / 3.14 + '°' }}
+          {{ scope.row.rotate + '°' }}
         </template>
       </el-table-column>
       <el-table-column prop="position" label="位置" align="center" />
@@ -47,12 +47,12 @@
         <el-input v-model="formData.id" placeholder="请输入ID，请勿与已有的设备重复" />
       </el-form-item>
 
-      <el-form-item label="班组" prop="group" label-width="60" v-show="!isGroundPick">
-        <el-input v-model="formData.group" />
-      </el-form-item>
-
       <el-form-item label="制造部" prop="area" label-width="60" v-show="!isGroundPick">
         <el-input v-model="formData.area" />
+      </el-form-item>
+
+      <el-form-item label="班组" prop="group" label-width="60" v-show="!isGroundPick">
+        <el-input v-model="formData.group" />
       </el-form-item>
 
       <el-form-item label="位置" prop="position" label-width="60" v-show="!isGroundPick">
@@ -112,7 +112,7 @@ let tempModel = null          // 编辑类型时的临时模型
 interface FormData {
   deviceType: number,
   id: string,
-  rotate: number,
+  rotate: number, // 还是换成角度好了
   scale: number,
   position: number[],
   visible: boolean,
@@ -136,14 +136,17 @@ function handleEditMode(): void {
   const waijing = CACHE.container.scene.children.find((e: { name: string }) => e.name === 'waijing')
   const tagGroup = CACHE.container.scene.children.find((e: { userData: { type: string } }) => e.userData.type === 'TagGroup')
 
-  waijing.children.forEach((e: Mesh) => {
-    if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj' || e.name === '1dcf-lc-01') {
+  waijing.children.forEach((e: Mesh | Group) => {
+    if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj' || e.name === '1dcf-lc-01' || e.name === 'jzwd1' || e.name === 'jz6') {
       e.visible = !STATE.isEditMode.value
       e.children.forEach((e2: Mesh) => e2.visible = !STATE.isEditMode.value)
     }
   })
 
   tagGroup.visible = !STATE.isEditMode.value
+  tagGroup.traverse((tagMesh: any) => {
+    tagMesh.visible = !STATE.isEditMode.value
+  })
 
   STATE.wallList.forEach((e: Mesh) => {
     e.visible = STATE.isEditMode.value
@@ -212,7 +215,7 @@ function clickEdit(scope: { row: FormData }): void {
   formData.id = scope.row.id
   formData.position[0] = scope.row.position[0]
   formData.position[2] = scope.row.position[2]
-  formData.rotate = scope.row.rotate * 180 / 3.14
+  formData.rotate = scope.row.rotate
   formData.visible = scope.row.visible
   formData.group = scope.row.group
   formData.area = scope.row.area
@@ -230,19 +233,19 @@ function handleSubmit(type: number): void {
     control.removeEventListener("change", changeListener)
     control.detach()
 
-    if (isInsertMode.value) {
-      const index = DATA.deviceList.findIndex((e: { id: string }) => e.id === formData.id)
+    const index = DATA.deviceList.findIndex((e: { id: string }) => e.id === formData.id)
 
-      if (index >= 0) {
-        ElMessage.warning('已存在此ID')
-        return
-      }
+    if (index >= 0) {
+      ElMessage.warning('已存在此ID')
+      return
+    }
+    if (isInsertMode.value) {
 
       DATA.deviceList.push({
         id: formData.id,
         type: formData.deviceType,
         position: [formData.position[0], 0, formData.position[2]],
-        rotate: formData.rotate / 180 * 3.14,
+        rotate: formData.rotate,
         area: formData.area,
         group: formData.group,
         visible: formData.visible
@@ -294,7 +297,7 @@ function handleSubmit(type: number): void {
         id: formData.id,
         type: formData.deviceType,
         position: [formData.position[0], 0, formData.position[2]],
-        rotate: formData.rotate / 180 * 3.14,
+        rotate: formData.rotate,
         area: formData.area,
         group: formData.group,
         visible: formData.visible
@@ -339,7 +342,7 @@ function handleSubmit(type: number): void {
         data.id = formData.id
         data.position[0] = Number(formData.position[0].toFixed(1))
         data.position[2] = Number(formData.position[2].toFixed(1))
-        data.rotate = formData.rotate / 180 * 3.14
+        data.rotate = formData.rotate
         data.visible = formData.visible
         data.group = formData.group
         data.area = formData.area
@@ -374,7 +377,7 @@ function handleSubmit(type: number): void {
     if (oldModel) {
       oldModel.position.x = oldVal.position[0]
       oldModel.position.z = oldVal.position[2]
-      oldModel.rotation.y = oldVal.rotate / 180 * 3.14
+      oldModel.rotation.y = oldVal.rotate
       oldModel.visible = oldVal.visible
       oldModel.group = oldVal.group
       oldModel.area = oldVal.area
@@ -493,7 +496,7 @@ function selectChange(type: number): void {
 
     model = originModel.clone()
     model.position.set(formData.position[0], 0, formData.position[2])
-    model.rotation.y = Math.PI / 180 * formData.rotate
+    model.rotation.y = formDataRy2modelRy(formData.rotate)
     model.visible = true
     CACHE.container.scene.add(model)
 
@@ -501,7 +504,7 @@ function selectChange(type: number): void {
 
     formData.position[0] = model.position.x
     formData.position[2] = model.position.z
-    formData.rotate = model.rotation.y
+    formData.rotate = formDataRy2modelRy(model.rotation.y, true)
     formData.visible = true
     tempModel = model
 
@@ -511,7 +514,7 @@ function selectChange(type: number): void {
     model = STATE.deviceModel.children.find(e2 => e2.name === map.modelName).clone()
     model.position.x = formData.position[0]
     model.position.z = formData.position[2]
-    model.rotation.y = formData.rotate * 3.14 / 180
+    model.rotation.y = formDataRy2modelRy(formData.rotate)
     model.visible = true
     model.scale.set(map.scale, map.scale, map.scale)
     tempModel = model
@@ -528,6 +531,11 @@ function selectChange(type: number): void {
       }
     })
   }
+}
+
+// formdata的rotateY 与 model的rotationY 转换，reverse:倒过来转换
+function formDataRy2modelRy(formDataRy: number, reverse: boolean = false): number {
+  return reverse ? formDataRy * 180 / 3.14 : formDataRy * 3.14 / 180
 }
 
 // 显示 / 隐藏所有设备
@@ -676,10 +684,83 @@ function changeListener(): void {
   formData.position[0] = Number(control.object.position.x.toFixed(1))
   formData.position[2] = Number(control.object.position.z.toFixed(1))
 
-  if (control.object.rotation.x > -3.15 && control.object.rotation.x < -3.14 && control.object.rotation.z > -3.15 && control.object.rotation.z < -3.14) {
-    formData.rotate = Number(((3.1415926535 - control.object.rotation.y) * 180 / Math.PI).toFixed(1))
-  } else {
-    formData.rotate = Number((control.object.rotation.y * 180 / Math.PI).toFixed(1))
+  // 取个模先
+  let y = control.object.rotation.y
+  // transformControl 的缺陷 旋转时x和z要乱动
+  if (
+    (control.object.rotation.x > -3.15
+      && control.object.rotation.x < -3.14
+      && control.object.rotation.z > -3.15
+      && control.object.rotation.z < -3.14
+    ) ||
+
+    (control.object.rotation.x > 3.14
+      && control.object.rotation.x < 3.15
+      && control.object.rotation.z > 3.14
+      && control.object.rotation.z < 3.15
+    )
+  ) {
+    y = 3.14 - control.object.rotation.y
+  }
+
+  y = y % 6.28
+  if (y > 3.14) {
+    y -= 6.28
+
+  } else if (y < -3.14) {
+    y += 6.28
+  }
+
+  if (y > -0.1 && y < 0.1) {
+    formData.rotate = 0
+
+  } else if (y > 0.38 && y < 0.41) {
+    formData.rotate = 22.5
+
+  } else if (y > 0.77 && y < 0.80) {
+    formData.rotate = 45
+
+  } else if (y > 1.16 && y < 1.19) {
+    formData.rotate = 67.5
+
+  } else if (y > 1.55 && y < 1.59) {
+    formData.rotate = 90
+
+  } else if (y > 1.95 && y < 1.98) {
+    formData.rotate = 112.5
+
+  } else if (y > 2.34 && y < 2.37) {
+    formData.rotate = 135
+
+  } else if (y > 2.73 && y < 2.76) {
+    formData.rotate = 157.5
+
+  } else if (y > 3.13 && y < 3.16) {
+    formData.rotate = 180
+
+  } else if (y < -0.38 && y > -0.41) {
+    formData.rotate = -22.5
+
+  } else if (y < -0.77 && y > -0.80) {
+    formData.rotate = -45
+
+  } else if (y < -1.16 && y > -1.19) {
+    formData.rotate = -67.5
+
+  } else if (y < -1.55 && y > -1.59) {
+    formData.rotate = -90
+
+  } else if (y < -1.95 && y > -1.98) {
+    formData.rotate = -112.5
+
+  } else if (y < -2.34 && y > -2.37) {
+    formData.rotate = -135
+
+  } else if (y < -2.73 && y > -2.76) {
+    formData.rotate = -157.5
+
+  } else if (y < -3.13 && y > - 3.16) {
+    formData.rotate = 180
   }
 }
 

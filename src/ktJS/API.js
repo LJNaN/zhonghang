@@ -304,10 +304,6 @@ function enterBuilding(title) {
       })
     }
 
-    CACHE.container.outlinePass.edgeStrength = 3
-    CACHE.container.outlinePass.pulsePeriod = 1
-    CACHE.container.outlinePass.hiddenEdgeColor = new Bol3D.Color(0.44, 1, 1)
-    CACHE.container.outlinePass.visibleEdgeColor = new Bol3D.Color(0.44, 1, 1)
     STATE.currentScene.value = title
 
     window.parent.postMessage({
@@ -445,7 +441,7 @@ function initDevices() {
 
     model.position.set(e.position[0], e.position[1], e.position[2])
     model.rotation.x = 0
-    model.rotation.y = e.rotate
+    model.rotation.y = e.rotate * 3.14 / 180
     model.rotation.z = 0
     model.userData.id = e.id
     model.userData.area = e.area
@@ -531,7 +527,7 @@ function handleArea(area) {
   if (STATE.currentScene.value === 'main') {
     const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
     waijing.children.forEach(e => {
-      if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
+      if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj'||e.name === '1dcf-lc-01' || e.name === 'jzwd1' || e.name === 'jz6') {
         e.visible = false
       }
     })
@@ -632,7 +628,7 @@ function deviceReset() {
 
     const waijing = CACHE.container.scene.children.find(e => e.name === 'waijing')
     waijing.children.forEach(e => {
-      if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj') {
+      if (e.name === '124cf' || e.name === '35cf' || e.name === '3dlcf' || e.name === '1cdlcj'||e.name === '1dcf-lc-01' || e.name === 'jzwd1' || e.name === 'jz6') {
         e.visible = true
       }
     })
