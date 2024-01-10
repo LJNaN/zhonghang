@@ -233,14 +233,18 @@ function handleSubmit(type: number): void {
     control.removeEventListener("change", changeListener)
     control.detach()
 
-    const index = DATA.deviceList.findIndex((e: { id: string }) => e.id === formData.id)
 
-    if (index >= 0) {
-      ElMessage.warning('已存在此ID')
-      return
+    // 判断id是否重复的
+    if (isInsertMode.value || (oldVal.id !== formData.id)) {
+      const index = DATA.deviceList.findIndex((e: { id: string }) => e.id === formData.id)
+      if (index >= 0) {
+        ElMessage.warning('已存在此ID')
+        return
+      }
     }
-    if (isInsertMode.value) {
 
+
+    if (isInsertMode.value) {
       DATA.deviceList.push({
         id: formData.id,
         type: formData.deviceType,
@@ -377,7 +381,7 @@ function handleSubmit(type: number): void {
     if (oldModel) {
       oldModel.position.x = oldVal.position[0]
       oldModel.position.z = oldVal.position[2]
-      oldModel.rotation.y = oldVal.rotate
+      oldModel.rotation.set(0, formDataRy2modelRy(oldVal.rotate), 0)
       oldModel.visible = oldVal.visible
       oldModel.group = oldVal.group
       oldModel.area = oldVal.area
