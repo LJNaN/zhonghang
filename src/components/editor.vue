@@ -34,7 +34,7 @@
 
     <el-form v-show="isEdit" class="form" :model="formData">
       <el-form-item label="类型" prop="deviceType" label-width="60">
-        <el-select v-model="formData.deviceType" @change="selectChange" :disabled="isGroundPick">
+        <el-select v-model="formData.deviceType" @change="selectChange" :disabled="isGroundPick" filterable>
           <el-option v-for="item in DATA.deviceTypeMap"
             :label="'与 ' + (item.id.length ? item.id[0] : item.modelName) + ' 相同'" :value="item.type" />
         </el-select>
