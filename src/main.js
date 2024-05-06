@@ -9,6 +9,4 @@ const app = createApp(App)
 app.use(ElementPlus)
 app.use(router)
 
-if(new Date() * 1 < new Date('2024-3-31') * 1) {
-  app.mount('#app')
-}
+app.mount('#app')
